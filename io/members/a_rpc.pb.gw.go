@@ -20,7 +20,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/status"
-	io_0 "stash.passkit.com/io/model/sdk/go/io"
+	io_0 "github.com/PassKit/passkit-golang-sdk/io"
 )
 
 var _ codes.Code

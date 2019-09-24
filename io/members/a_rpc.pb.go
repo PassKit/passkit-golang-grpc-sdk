@@ -14,7 +14,7 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	math "math"
-	io "stash.passkit.com/io/model/sdk/go/io"
+	io "github.com/PassKit/passkit-golang-sdk/io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
