@@ -1,5 +1,5 @@
 # passkit-golang-sdk
-The PassKit IO SDK makes it quick and easy to create and install your branded Digital Membership Cards for Apple Wallet and Google Pay.
+The PassKit IO SDK makes it quick and easy to create and manage your branded Digital Membership Cards for Apple Wallet and Google Pay.
 
 ## Table of Content
 * [Quickstart](#quickstart)
