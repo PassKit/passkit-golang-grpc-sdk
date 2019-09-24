@@ -9,7 +9,7 @@ The PassKit IO SDK makes it quick and easy to create and install your branded Di
 * [License](#license)
 
 ## Quickstart
-1. Create a PassKit account (Sign up for free [HERE](https://dev-app.passkit.io))
+1. Create a PassKit account (Sign up for free [HERE](https://dev-app.passkit.io/signup))
 2. Get credentials from your Profile Page.
 3. Choose a type of pass to create.
    * Membership Card
