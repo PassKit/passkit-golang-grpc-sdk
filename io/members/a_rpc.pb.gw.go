@@ -13,6 +13,7 @@ import (
 	"io"
 	"net/http"
 
+	io_0 "github.com/PassKit/passkit-golang-sdk/io"
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -21,7 +22,6 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/status"
-	io_0 "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Suppress "imported and not used" errors
