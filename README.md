@@ -1,8 +1,6 @@
 # passkit-golang-sdk
 
-__Important Disclaimer:__ _This repository is currently under development. Below instructions are meant as a reference for beta partners, and could be subject to changes. Please note that the environment mentioned in below Quickstart is our Development Environment, which should not be used in a production setting; this is purely for exploratory testing. Data created in our Development Environment can be purged at anytime at our discretion without notice._
-
-The PassKit IO SDK makes it quick and easy to create and manage your branded Digital Membership Cards for Apple Wallet and Google Pay.
+T he PassKit IO SDK makes it quick and easy to create and manage your branded Digital Membership Cards for Apple Wallet and Google Pay.
 
 ## Table of Content
 * [Quickstart](#quickstart)
@@ -12,7 +10,7 @@ The PassKit IO SDK makes it quick and easy to create and manage your branded Dig
 * [License](#license)
 
 ## Quickstart
-1. Create a PassKit account (Sign up for free [HERE](https://dev-app.passkit.io/signup))
+1. Create a PassKit account (Sign up for free [HERE](https://app.passkit.com/signup))
 2. Get credentials from your Profile Page.
 3. Choose a type of pass to create.
    * Membership Card
@@ -23,7 +21,7 @@ The PassKit IO SDK makes it quick and easy to create and manage your branded Dig
 * [PassKit.IO Official Documentation](https://docs.passkit.io/)
 
 ## GUI Tool
-GUI tool can be accessed from [your PassKit.IO account](https://dev-app.passkit.io/login).
+GUI tool can be accessed from [your PassKit account](https://app.passkit.com/login).
 
 ## Getting Help
 * Email [support@passkit.com](email:support@passkit.com)

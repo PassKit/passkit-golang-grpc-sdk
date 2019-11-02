@@ -24,18 +24,21 @@ const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 type IntegrationStatus int32
 
 const (
-	IntegrationStatus_INTEGRATION_DISABLED IntegrationStatus = 0
-	IntegrationStatus_INTEGRATION_ACTIVE   IntegrationStatus = 1
+	IntegrationStatus_INTEGRATION_STATUS_NONE IntegrationStatus = 0
+	IntegrationStatus_INTEGRATION_DISABLED    IntegrationStatus = 1
+	IntegrationStatus_INTEGRATION_ACTIVE      IntegrationStatus = 2
 )
 
 var IntegrationStatus_name = map[int32]string{
-	0: "INTEGRATION_DISABLED",
-	1: "INTEGRATION_ACTIVE",
+	0: "INTEGRATION_STATUS_NONE",
+	1: "INTEGRATION_DISABLED",
+	2: "INTEGRATION_ACTIVE",
 }
 
 var IntegrationStatus_value = map[string]int32{
-	"INTEGRATION_DISABLED": 0,
-	"INTEGRATION_ACTIVE":   1,
+	"INTEGRATION_STATUS_NONE": 0,
+	"INTEGRATION_DISABLED":    1,
+	"INTEGRATION_ACTIVE":      2,
 }
 
 func (x IntegrationStatus) String() string {
@@ -46,18 +49,117 @@ func (IntegrationStatus) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_de96aa3e87c64e2a, []int{0}
 }
 
+type ConfigurationType int32
+
+const (
+	ConfigurationType_CONFIGURATION_NONE ConfigurationType = 0
+	ConfigurationType_WEBHOOK            ConfigurationType = 1
+	ConfigurationType_DB_MYSQL           ConfigurationType = 2
+	ConfigurationType_ZOHO               ConfigurationType = 3
+	ConfigurationType__CONFIG_TYPE_1     ConfigurationType = 100
+)
+
+var ConfigurationType_name = map[int32]string{
+	0:   "CONFIGURATION_NONE",
+	1:   "WEBHOOK",
+	2:   "DB_MYSQL",
+	3:   "ZOHO",
+	100: "_CONFIG_TYPE_1",
+}
+
+var ConfigurationType_value = map[string]int32{
+	"CONFIGURATION_NONE": 0,
+	"WEBHOOK":            1,
+	"DB_MYSQL":           2,
+	"ZOHO":               3,
+	"_CONFIG_TYPE_1":     100,
+}
+
+func (x ConfigurationType) String() string {
+	return proto.EnumName(ConfigurationType_name, int32(x))
+}
+
+func (ConfigurationType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{1}
+}
+
+// IntegrationType allows to select the timing of integration occurs and the order of data processing.
 type IntegrationType int32
 
 const (
-	IntegrationType_INTEGRATION_MYSQL IntegrationType = 0
+	IntegrationType_INTEGRATION_TYPE_NONE IntegrationType = 0
+	// Trigger event occurs on a third party platform which triggers action (chain of events) inside the PassKit. E.g. Database update triggers PassKit to issue a pass.
+	IntegrationType_SOURCE_INTEGRATION IntegrationType = 1
+	// An integration event happens after all chain of events finished inside PassKit. E.g. Create a pass holder record and issue a pass, then create a record on a third party platform.
+	IntegrationType_SINK_INTEGRATION IntegrationType = 2
+	// Pass holder data is processed by a third party application first then its outcome and original data are stored in PassKit.
+	IntegrationType_HOOK_BEFORE_OBJECT_RECORD_CREATION IntegrationType = 4
+	// A hook event occurs after pass holder's data is created on PassKit.
+	IntegrationType_HOOK_AFTER_OBJECT_RECORD_CREATION IntegrationType = 8
+	// A hook event occurs after pass holder record creation and before pass issue.
+	IntegrationType_HOOK_BEFORE_PASS_ISSUE IntegrationType = 16
+	// A hook event occurs after pass issue.
+	IntegrationType_HOOK_AFTER_PASS_ISSUE IntegrationType = 32
+	// A hook event occurs after pass has been installed on mobile.
+	IntegrationType_HOOK_AFTER_PASS_INSTALL IntegrationType = 64
+	// A hook event occurs after pass has been uninstalled from mobile.
+	IntegrationType_HOOK_AFTER_PASS_UNINSTALL IntegrationType = 128
+	// A hook event occurs before pass holder's record is updated on PassKit.
+	IntegrationType_HOOK_BEFORE_OBJECT_RECORD_UPDATE IntegrationType = 256
+	// A hook event occurs after pass holder's record is updated on PassKit.
+	IntegrationType_HOOK_AFTER_OBJECT_RECORD_UPDATE IntegrationType = 512
+	// A hook event occurs before the pass is updated. This includes changes in dynamic information (e.g. displayName), generic information (e.g. links, legal disclaimer), pass design (e.g. background color).
+	IntegrationType_HOOK_BEFORE_PASS_RECORD_UPDATE IntegrationType = 1024
+	// A hook event occurs after the pass is updated. This includes changes in dynamic information (e.g. displayName), generic information (e.g. links, legal disclaimer), pass design (e.g. background color).
+	IntegrationType_HOOK_AFTER_PASS_RECORD_UPDATE IntegrationType = 2048
+	// A hook event occurs before the information on the pass is updated.
+	IntegrationType_HOOK_BEFORE_PASS_UPDATE IntegrationType = 4096
+	// A hook event occurs after the information on the pass is updated.
+	IntegrationType_HOOK_AFTER_PASS_UPDATE IntegrationType = 8192
+	// A hook event occurs before a pass is deleted.
+	IntegrationType_HOOK_BEFORE_PASS_RECORD_DELETE IntegrationType = 16384
+	// A hook event occurs after a pass is deleted.
+	IntegrationType_HOOK_AFTER_PASS_RECORD_DELETE IntegrationType = 32768
 )
 
 var IntegrationType_name = map[int32]string{
-	0: "INTEGRATION_MYSQL",
+	0:     "INTEGRATION_TYPE_NONE",
+	1:     "SOURCE_INTEGRATION",
+	2:     "SINK_INTEGRATION",
+	4:     "HOOK_BEFORE_OBJECT_RECORD_CREATION",
+	8:     "HOOK_AFTER_OBJECT_RECORD_CREATION",
+	16:    "HOOK_BEFORE_PASS_ISSUE",
+	32:    "HOOK_AFTER_PASS_ISSUE",
+	64:    "HOOK_AFTER_PASS_INSTALL",
+	128:   "HOOK_AFTER_PASS_UNINSTALL",
+	256:   "HOOK_BEFORE_OBJECT_RECORD_UPDATE",
+	512:   "HOOK_AFTER_OBJECT_RECORD_UPDATE",
+	1024:  "HOOK_BEFORE_PASS_RECORD_UPDATE",
+	2048:  "HOOK_AFTER_PASS_RECORD_UPDATE",
+	4096:  "HOOK_BEFORE_PASS_UPDATE",
+	8192:  "HOOK_AFTER_PASS_UPDATE",
+	16384: "HOOK_BEFORE_PASS_RECORD_DELETE",
+	32768: "HOOK_AFTER_PASS_RECORD_DELETE",
 }
 
 var IntegrationType_value = map[string]int32{
-	"INTEGRATION_MYSQL": 0,
+	"INTEGRATION_TYPE_NONE":              0,
+	"SOURCE_INTEGRATION":                 1,
+	"SINK_INTEGRATION":                   2,
+	"HOOK_BEFORE_OBJECT_RECORD_CREATION": 4,
+	"HOOK_AFTER_OBJECT_RECORD_CREATION":  8,
+	"HOOK_BEFORE_PASS_ISSUE":             16,
+	"HOOK_AFTER_PASS_ISSUE":              32,
+	"HOOK_AFTER_PASS_INSTALL":            64,
+	"HOOK_AFTER_PASS_UNINSTALL":          128,
+	"HOOK_BEFORE_OBJECT_RECORD_UPDATE":   256,
+	"HOOK_AFTER_OBJECT_RECORD_UPDATE":    512,
+	"HOOK_BEFORE_PASS_RECORD_UPDATE":     1024,
+	"HOOK_AFTER_PASS_RECORD_UPDATE":      2048,
+	"HOOK_BEFORE_PASS_UPDATE":            4096,
+	"HOOK_AFTER_PASS_UPDATE":             8192,
+	"HOOK_BEFORE_PASS_RECORD_DELETE":     16384,
+	"HOOK_AFTER_PASS_RECORD_DELETE":      32768,
 }
 
 func (x IntegrationType) String() string {
@@ -65,229 +167,163 @@ func (x IntegrationType) String() string {
 }
 
 func (IntegrationType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_de96aa3e87c64e2a, []int{1}
+	return fileDescriptor_de96aa3e87c64e2a, []int{2}
 }
 
-type Integration struct {
-	Name   string            `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Status IntegrationStatus `protobuf:"varint,2,opt,name=status,proto3,enum=io.IntegrationStatus" json:"status,omitempty"`
-	// Types that are valid to be assigned to Configuration:
-	//	*Integration_SqlConfiguration
-	Configuration        isIntegration_Configuration `protobuf_oneof:"Configuration"`
-	XXX_NoUnkeyedLiteral struct{}                    `json:"-"`
-	XXX_unrecognized     []byte                      `json:"-"`
-	XXX_sizecache        int32                       `json:"-"`
+// Integration object contains configuration data to integrate PassKit application with third party application.
+type IntegrationConfigs struct {
+	// The uuid for the class object.
+	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
+	ClassId string `protobuf:"bytes,1,opt,name=classId,proto3" json:"classId,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
+	// Key string is enum of ConfigurationType (e.g. WEBHOOK, DB_MYSQL, ZOHO). Value string is a json string of configuration object.
+	// @tag: validateGeneric:"omitempty" validateCreate:"required" validateUpdate:"required"
+	Configurations       map[int32]string `protobuf:"bytes,2,rep,name=configurations,proto3" json:"configurations,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validateGeneric:"omitempty" validateCreate:"required" validateUpdate:"required"`
+	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
+	XXX_unrecognized     []byte           `json:"-"`
+	XXX_sizecache        int32            `json:"-"`
 }
 
-func (m *Integration) Reset()         { *m = Integration{} }
-func (m *Integration) String() string { return proto.CompactTextString(m) }
-func (*Integration) ProtoMessage()    {}
-func (*Integration) Descriptor() ([]byte, []int) {
+func (m *IntegrationConfigs) Reset()         { *m = IntegrationConfigs{} }
+func (m *IntegrationConfigs) String() string { return proto.CompactTextString(m) }
+func (*IntegrationConfigs) ProtoMessage()    {}
+func (*IntegrationConfigs) Descriptor() ([]byte, []int) {
 	return fileDescriptor_de96aa3e87c64e2a, []int{0}
 }
 
-func (m *Integration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Integration.Unmarshal(m, b)
+func (m *IntegrationConfigs) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IntegrationConfigs.Unmarshal(m, b)
 }
-func (m *Integration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Integration.Marshal(b, m, deterministic)
+func (m *IntegrationConfigs) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IntegrationConfigs.Marshal(b, m, deterministic)
 }
-func (m *Integration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Integration.Merge(m, src)
+func (m *IntegrationConfigs) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IntegrationConfigs.Merge(m, src)
 }
-func (m *Integration) XXX_Size() int {
-	return xxx_messageInfo_Integration.Size(m)
+func (m *IntegrationConfigs) XXX_Size() int {
+	return xxx_messageInfo_IntegrationConfigs.Size(m)
 }
-func (m *Integration) XXX_DiscardUnknown() {
-	xxx_messageInfo_Integration.DiscardUnknown(m)
+func (m *IntegrationConfigs) XXX_DiscardUnknown() {
+	xxx_messageInfo_IntegrationConfigs.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Integration proto.InternalMessageInfo
+var xxx_messageInfo_IntegrationConfigs proto.InternalMessageInfo
 
-func (m *Integration) GetName() string {
+func (m *IntegrationConfigs) GetClassId() string {
 	if m != nil {
-		return m.Name
+		return m.ClassId
 	}
 	return ""
 }
 
-func (m *Integration) GetStatus() IntegrationStatus {
+func (m *IntegrationConfigs) GetConfigurations() map[int32]string {
 	if m != nil {
-		return m.Status
-	}
-	return IntegrationStatus_INTEGRATION_DISABLED
-}
-
-type isIntegration_Configuration interface {
-	isIntegration_Configuration()
-}
-
-type Integration_SqlConfiguration struct {
-	SqlConfiguration *SqlConfiguration `protobuf:"bytes,3,opt,name=sqlConfiguration,proto3,oneof"`
-}
-
-func (*Integration_SqlConfiguration) isIntegration_Configuration() {}
-
-func (m *Integration) GetConfiguration() isIntegration_Configuration {
-	if m != nil {
-		return m.Configuration
+		return m.Configurations
 	}
 	return nil
 }
 
-func (m *Integration) GetSqlConfiguration() *SqlConfiguration {
-	if x, ok := m.GetConfiguration().(*Integration_SqlConfiguration); ok {
-		return x.SqlConfiguration
-	}
-	return nil
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*Integration) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*Integration_SqlConfiguration)(nil),
-	}
-}
-
-type SqlConfiguration struct {
-	ServerId             string   `protobuf:"bytes,1,opt,name=serverId,proto3" json:"serverId,omitempty"`
-	ServerName           string   `protobuf:"bytes,2,opt,name=serverName,proto3" json:"serverName,omitempty"`
-	Host                 string   `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
-	Port                 uint32   `protobuf:"varint,4,opt,name=port,proto3" json:"port,omitempty"`
-	User                 string   `protobuf:"bytes,5,opt,name=user,proto3" json:"user,omitempty"`
-	Password             string   `protobuf:"bytes,6,opt,name=password,proto3" json:"password,omitempty"`
-	DbName               string   `protobuf:"bytes,7,opt,name=dbName,proto3" json:"dbName,omitempty"`
-	TableName            string   `protobuf:"bytes,8,opt,name=tableName,proto3" json:"tableName,omitempty"`
-	PrimaryKeyColumn     string   `protobuf:"bytes,9,opt,name=primaryKeyColumn,proto3" json:"primaryKeyColumn,omitempty"`
+type IntegrationsRequest struct {
+	// The protocol which the class object belongs to.
+	// @tag: validateGeneric:"required" validateUpdate:"required"
+	Protocol PassProtocol `protobuf:"varint,1,opt,name=protocol,proto3,enum=io.PassProtocol" json:"protocol,omitempty" validateGeneric:"required" validateUpdate:"required"`
+	// The class object Id which integration belongs to.
+	// @tag: validateGeneric:"required" validateUpdate:"required"
+	ClassId              string   `protobuf:"bytes,2,opt,name=classId,proto3" json:"classId,omitempty" validateGeneric:"required" validateUpdate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *SqlConfiguration) Reset()         { *m = SqlConfiguration{} }
-func (m *SqlConfiguration) String() string { return proto.CompactTextString(m) }
-func (*SqlConfiguration) ProtoMessage()    {}
-func (*SqlConfiguration) Descriptor() ([]byte, []int) {
+func (m *IntegrationsRequest) Reset()         { *m = IntegrationsRequest{} }
+func (m *IntegrationsRequest) String() string { return proto.CompactTextString(m) }
+func (*IntegrationsRequest) ProtoMessage()    {}
+func (*IntegrationsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_de96aa3e87c64e2a, []int{1}
 }
 
-func (m *SqlConfiguration) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_SqlConfiguration.Unmarshal(m, b)
+func (m *IntegrationsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_IntegrationsRequest.Unmarshal(m, b)
 }
-func (m *SqlConfiguration) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_SqlConfiguration.Marshal(b, m, deterministic)
+func (m *IntegrationsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_IntegrationsRequest.Marshal(b, m, deterministic)
 }
-func (m *SqlConfiguration) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_SqlConfiguration.Merge(m, src)
+func (m *IntegrationsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_IntegrationsRequest.Merge(m, src)
 }
-func (m *SqlConfiguration) XXX_Size() int {
-	return xxx_messageInfo_SqlConfiguration.Size(m)
+func (m *IntegrationsRequest) XXX_Size() int {
+	return xxx_messageInfo_IntegrationsRequest.Size(m)
 }
-func (m *SqlConfiguration) XXX_DiscardUnknown() {
-	xxx_messageInfo_SqlConfiguration.DiscardUnknown(m)
+func (m *IntegrationsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_IntegrationsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_SqlConfiguration proto.InternalMessageInfo
+var xxx_messageInfo_IntegrationsRequest proto.InternalMessageInfo
 
-func (m *SqlConfiguration) GetServerId() string {
+func (m *IntegrationsRequest) GetProtocol() PassProtocol {
 	if m != nil {
-		return m.ServerId
+		return m.Protocol
 	}
-	return ""
+	return PassProtocol_RAW_PROTOCOL
 }
 
-func (m *SqlConfiguration) GetServerName() string {
+func (m *IntegrationsRequest) GetClassId() string {
 	if m != nil {
-		return m.ServerName
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetHost() string {
-	if m != nil {
-		return m.Host
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetPort() uint32 {
-	if m != nil {
-		return m.Port
-	}
-	return 0
-}
-
-func (m *SqlConfiguration) GetUser() string {
-	if m != nil {
-		return m.User
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetPassword() string {
-	if m != nil {
-		return m.Password
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetDbName() string {
-	if m != nil {
-		return m.DbName
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetTableName() string {
-	if m != nil {
-		return m.TableName
-	}
-	return ""
-}
-
-func (m *SqlConfiguration) GetPrimaryKeyColumn() string {
-	if m != nil {
-		return m.PrimaryKeyColumn
+		return m.ClassId
 	}
 	return ""
 }
 
 func init() {
 	proto.RegisterEnum("io.IntegrationStatus", IntegrationStatus_name, IntegrationStatus_value)
+	proto.RegisterEnum("io.ConfigurationType", ConfigurationType_name, ConfigurationType_value)
 	proto.RegisterEnum("io.IntegrationType", IntegrationType_name, IntegrationType_value)
-	proto.RegisterType((*Integration)(nil), "io.Integration")
-	proto.RegisterType((*SqlConfiguration)(nil), "io.SqlConfiguration")
+	proto.RegisterType((*IntegrationConfigs)(nil), "io.IntegrationConfigs")
+	proto.RegisterMapType((map[int32]string)(nil), "io.IntegrationConfigs.ConfigurationsEntry")
+	proto.RegisterType((*IntegrationsRequest)(nil), "io.IntegrationsRequest")
 }
 
 func init() { proto.RegisterFile("io/common/integration.proto", fileDescriptor_de96aa3e87c64e2a) }
 
 var fileDescriptor_de96aa3e87c64e2a = []byte{
-	// 430 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x52, 0xdd, 0x6e, 0xd3, 0x30,
-	0x14, 0x6e, 0x42, 0x29, 0xeb, 0x99, 0x46, 0x33, 0x6b, 0x9b, 0xa2, 0x81, 0x50, 0x35, 0x71, 0x11,
-	0x55, 0x34, 0x96, 0xc6, 0x3d, 0x52, 0xdb, 0x55, 0x10, 0x75, 0x94, 0x91, 0x56, 0x48, 0x70, 0x83,
-	0xdc, 0xc6, 0x64, 0xd6, 0x1a, 0x9f, 0x60, 0xbb, 0x4c, 0x7d, 0x03, 0x5e, 0x84, 0x1b, 0x9e, 0x12,
-	0xd9, 0x29, 0x5b, 0xb6, 0xde, 0x7d, 0xe7, 0xfb, 0x39, 0x3f, 0x96, 0xe1, 0x85, 0x40, 0xba, 0xc4,
-	0xa2, 0x40, 0x49, 0x85, 0x34, 0x3c, 0x57, 0xcc, 0x08, 0x94, 0x71, 0xa9, 0xd0, 0x20, 0xf1, 0x05,
-	0x9e, 0xbe, 0x71, 0x70, 0xd9, 0xcf, 0xb9, 0xec, 0xeb, 0x5b, 0x96, 0xe7, 0x5c, 0x51, 0x2c, 0xad,
-	0x49, 0x53, 0x26, 0x25, 0x1a, 0x17, 0xd0, 0x55, 0xe2, 0xec, 0x8f, 0x07, 0xfb, 0xc9, 0x7d, 0x1f,
-	0x42, 0xa0, 0x29, 0x59, 0xc1, 0x43, 0xaf, 0xeb, 0x45, 0xed, 0xd4, 0x61, 0xd2, 0x87, 0x96, 0x36,
-	0xcc, 0xac, 0x75, 0xe8, 0x77, 0xbd, 0xe8, 0xf9, 0xf9, 0x71, 0x2c, 0x30, 0xae, 0x85, 0x66, 0x4e,
-	0x4c, 0xb7, 0x26, 0x32, 0x84, 0x40, 0xff, 0x5c, 0x8d, 0x50, 0xfe, 0x10, 0xf9, 0xba, 0x72, 0x84,
-	0x4f, 0xba, 0x5e, 0xb4, 0x7f, 0x7e, 0x64, 0x83, 0xb3, 0x47, 0xda, 0x87, 0x46, 0xba, 0xe3, 0x1f,
-	0x76, 0xe0, 0xe0, 0x01, 0x71, 0xf6, 0xdb, 0x87, 0xe0, 0x71, 0x92, 0x9c, 0xc2, 0x9e, 0xe6, 0xea,
-	0x17, 0x57, 0x49, 0xb6, 0x5d, 0xf8, 0xae, 0x26, 0xaf, 0x00, 0x2a, 0x3c, 0xb5, 0xe7, 0xf8, 0x4e,
-	0xad, 0x31, 0xf6, 0xd0, 0x6b, 0xd4, 0xc6, 0x6d, 0xd6, 0x4e, 0x1d, 0xb6, 0x5c, 0x89, 0xca, 0x84,
-	0xcd, 0xae, 0x17, 0x1d, 0xa4, 0x0e, 0x5b, 0x6e, 0xad, 0xb9, 0x0a, 0x9f, 0x56, 0x3e, 0x8b, 0xed,
-	0xdc, 0x92, 0x69, 0x7d, 0x8b, 0x2a, 0x0b, 0x5b, 0xd5, 0xdc, 0xff, 0x35, 0x39, 0x81, 0x56, 0xb6,
-	0x70, 0x33, 0x9f, 0x39, 0x65, 0x5b, 0x91, 0x97, 0xd0, 0x36, 0x6c, 0xb1, 0xe2, 0x4e, 0xda, 0x73,
-	0xd2, 0x3d, 0x41, 0x7a, 0x10, 0x94, 0x4a, 0x14, 0x4c, 0x6d, 0x26, 0x7c, 0x33, 0xc2, 0xd5, 0xba,
-	0x90, 0x61, 0xdb, 0x99, 0x76, 0xf8, 0xde, 0x18, 0x0e, 0x77, 0x1e, 0x9f, 0x84, 0x70, 0x94, 0x4c,
-	0xe7, 0xe3, 0xf7, 0xe9, 0x60, 0x9e, 0x7c, 0x9a, 0x7e, 0xbf, 0x48, 0x66, 0x83, 0xe1, 0xe5, 0xf8,
-	0x22, 0x68, 0x90, 0x13, 0x20, 0x75, 0x65, 0x30, 0x9a, 0x27, 0x5f, 0xc6, 0x81, 0xd7, 0x8b, 0xa0,
-	0x53, 0x6b, 0x33, 0xdf, 0x94, 0x9c, 0x1c, 0xc3, 0x61, 0xdd, 0xfa, 0xf1, 0xeb, 0xec, 0xf3, 0x65,
-	0xd0, 0x18, 0xbe, 0x83, 0x8e, 0xc0, 0xd8, 0x5e, 0x78, 0x23, 0x4c, 0x7c, 0x35, 0x11, 0xf8, 0xed,
-	0xb5, 0x36, 0x4c, 0x5f, 0xdf, 0x71, 0x4b, 0x2c, 0xa8, 0x40, 0x5a, 0x60, 0xc6, 0x57, 0x54, 0x67,
-	0x37, 0x34, 0x47, 0x2a, 0xf0, 0xaf, 0xdf, 0xbc, 0x9a, 0x24, 0xb8, 0x68, 0xb9, 0xaf, 0xf6, 0xf6,
-	0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x22, 0x86, 0xb7, 0x1c, 0xbb, 0x02, 0x00, 0x00,
+	// 629 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x93, 0xe1, 0x6e, 0xd2, 0x50,
+	0x18, 0x86, 0x6d, 0xc7, 0x1c, 0x7e, 0x33, 0xdb, 0xd9, 0xb7, 0x89, 0x8c, 0xe9, 0x44, 0xb6, 0x99,
+	0x85, 0x6c, 0x34, 0xce, 0x3f, 0xc6, 0x1f, 0x66, 0xa5, 0x9c, 0x6d, 0x15, 0x6c, 0x6b, 0x5b, 0x34,
+	0x5b, 0x62, 0x9a, 0x0e, 0x2a, 0x36, 0x83, 0x1e, 0xe4, 0x14, 0xcd, 0xfe, 0xed, 0x7a, 0xbc, 0x03,
+	0x2f, 0xc0, 0xfb, 0x32, 0x2d, 0x85, 0x15, 0x90, 0x7f, 0xe7, 0x9c, 0xf7, 0xf9, 0xde, 0xef, 0x7d,
+	0x21, 0x85, 0x1d, 0x9f, 0x49, 0x2d, 0xd6, 0xeb, 0xb1, 0x40, 0xf2, 0x83, 0xd0, 0xeb, 0x0c, 0xdc,
+	0xd0, 0x67, 0x41, 0xa5, 0x3f, 0x60, 0x21, 0x43, 0xd1, 0x67, 0x85, 0xa3, 0xf8, 0xd8, 0x3a, 0xee,
+	0x78, 0xc1, 0x31, 0xff, 0xe5, 0x76, 0x3a, 0xde, 0x40, 0x62, 0xfd, 0x08, 0xe2, 0x92, 0x1b, 0x04,
+	0x2c, 0x8c, 0x07, 0xf8, 0x68, 0xa2, 0xb0, 0x7d, 0x6f, 0x37, 0x9a, 0x63, 0xdd, 0x44, 0x2a, 0xfd,
+	0x15, 0x00, 0xd5, 0xfb, 0x15, 0x0a, 0x0b, 0xbe, 0xf9, 0x1d, 0x8e, 0x79, 0x58, 0x69, 0x75, 0x5d,
+	0xce, 0xd5, 0x76, 0x5e, 0x28, 0x0a, 0x87, 0x8f, 0xcc, 0xf1, 0x15, 0x4d, 0x58, 0x6b, 0xc5, 0xd0,
+	0x70, 0x34, 0xc1, 0xf3, 0x62, 0x71, 0xe9, 0x70, 0xf5, 0xa4, 0x5c, 0xf1, 0x59, 0x65, 0xde, 0xa9,
+	0xa2, 0x4c, 0xc1, 0x34, 0x08, 0x07, 0xb7, 0xe6, 0x8c, 0x43, 0x41, 0x86, 0xcd, 0xff, 0x60, 0x48,
+	0x60, 0xe9, 0xc6, 0xbb, 0x8d, 0x03, 0x2c, 0x9b, 0xd1, 0x11, 0xb7, 0x60, 0xf9, 0xa7, 0xdb, 0x1d,
+	0x7a, 0x79, 0x31, 0x0e, 0x35, 0xba, 0xbc, 0x13, 0xdf, 0x0a, 0xa5, 0xaf, 0xb0, 0x99, 0x5a, 0xce,
+	0x4d, 0xef, 0xc7, 0xd0, 0xe3, 0x21, 0x1e, 0x41, 0x76, 0xdc, 0x38, 0xf6, 0x59, 0x3b, 0x21, 0x51,
+	0x4e, 0xc3, 0xe5, 0xdc, 0x48, 0xde, 0xcd, 0x09, 0x91, 0x6e, 0x2d, 0x4e, 0xb5, 0x2e, 0x5f, 0xc3,
+	0x46, 0xca, 0xde, 0x0a, 0xdd, 0x70, 0xc8, 0x71, 0x07, 0x9e, 0xaa, 0x9a, 0x4d, 0xcf, 0x4d, 0xd9,
+	0x56, 0x75, 0xcd, 0xb1, 0x6c, 0xd9, 0x6e, 0x5a, 0x8e, 0xa6, 0x6b, 0x94, 0x3c, 0xc0, 0x3c, 0x6c,
+	0xa5, 0xc5, 0x9a, 0x6a, 0xc9, 0xd5, 0x06, 0xad, 0x11, 0x01, 0x73, 0x80, 0x69, 0x45, 0x56, 0x6c,
+	0xf5, 0x33, 0x25, 0x62, 0xb9, 0x0d, 0x1b, 0x53, 0xbf, 0x82, 0x7d, 0xdb, 0xf7, 0x22, 0x58, 0xd1,
+	0xb5, 0x33, 0xf5, 0xbc, 0x99, 0xe0, 0x89, 0xfd, 0x2a, 0xac, 0x7c, 0xa1, 0xd5, 0x0b, 0x5d, 0xaf,
+	0x13, 0x01, 0x1f, 0x43, 0xb6, 0x56, 0x75, 0x3e, 0x5e, 0x5a, 0x9f, 0x1a, 0x44, 0xc4, 0x2c, 0x64,
+	0xae, 0xf4, 0x0b, 0x9d, 0x2c, 0x21, 0xc2, 0x9a, 0x33, 0x9a, 0x76, 0xec, 0x4b, 0x83, 0x3a, 0xaf,
+	0x49, 0xbb, 0xfc, 0x27, 0x03, 0xeb, 0xa9, 0x2a, 0xf1, 0x92, 0x6d, 0x78, 0x92, 0x4e, 0x14, 0xb3,
+	0xc9, 0x9e, 0x1c, 0xa0, 0xa5, 0x37, 0x4d, 0x85, 0x3a, 0x29, 0x82, 0x08, 0xb8, 0x05, 0xc4, 0x52,
+	0xb5, 0xfa, 0xd4, 0xab, 0x88, 0xaf, 0xa0, 0x14, 0x45, 0x72, 0xaa, 0xf4, 0x4c, 0x37, 0xa9, 0xa3,
+	0x57, 0x3f, 0x50, 0xc5, 0x76, 0x4c, 0xaa, 0xe8, 0x66, 0xcd, 0x51, 0x4c, 0x3a, 0xe2, 0x32, 0x78,
+	0x00, 0x2f, 0x63, 0x4e, 0x3e, 0xb3, 0xa9, 0xb9, 0x08, 0xcb, 0x62, 0x01, 0x72, 0x69, 0x3b, 0x43,
+	0xb6, 0x2c, 0x47, 0xb5, 0xac, 0x26, 0x25, 0x24, 0xca, 0x9c, 0xb2, 0x48, 0x49, 0xc5, 0xe8, 0x7f,
+	0x99, 0x93, 0x34, 0xcb, 0x96, 0x1b, 0x0d, 0x72, 0x8a, 0xbb, 0xb0, 0x3d, 0x2b, 0x36, 0xb5, 0xb1,
+	0x7c, 0x27, 0xe0, 0x01, 0x14, 0x17, 0x57, 0x68, 0x1a, 0x35, 0xd9, 0xa6, 0xe4, 0x4e, 0xc4, 0x7d,
+	0x78, 0xb1, 0xb0, 0xc1, 0x98, 0xca, 0xe0, 0x1e, 0xec, 0xce, 0x15, 0x98, 0x81, 0xb2, 0x58, 0x82,
+	0xe7, 0xb3, 0x89, 0x66, 0x18, 0x82, 0xcf, 0x92, 0x4a, 0x69, 0xa3, 0xb1, 0x1a, 0x15, 0xce, 0xcd,
+	0x75, 0x4a, 0xc4, 0x53, 0xdc, 0x5f, 0x9c, 0xa1, 0x46, 0x1b, 0x34, 0x82, 0xee, 0x04, 0xdc, 0x5b,
+	0x18, 0x62, 0x02, 0x89, 0xd5, 0xf7, 0xb0, 0xee, 0xb3, 0x4a, 0xdf, 0xe5, 0xfc, 0xc6, 0x0f, 0x2b,
+	0x46, 0xdd, 0x67, 0x57, 0xfb, 0x3c, 0x74, 0xf9, 0xf7, 0xc9, 0x5b, 0x8b, 0xf5, 0x24, 0x9f, 0x49,
+	0x3d, 0xd6, 0xf6, 0xba, 0x12, 0x6f, 0xdf, 0x48, 0x1d, 0x26, 0xf9, 0xec, 0xb7, 0x98, 0x31, 0xea,
+	0x2a, 0xbb, 0x7e, 0x18, 0x7f, 0x69, 0x6f, 0xfe, 0x05, 0x00, 0x00, 0xff, 0xff, 0x99, 0x96, 0xa9,
+	0x70, 0xdf, 0x04, 0x00, 0x00,
 }
