@@ -13,7 +13,6 @@ import (
 	"io"
 	"net/http"
 
-	io_0 "github.com/PassKit/passkit-golang-sdk/io"
 	"github.com/golang/protobuf/descriptor"
 	"github.com/golang/protobuf/proto"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -22,6 +21,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/status"
+	io_0 "github.com/PassKit/passkit-golang-sdk/io"
 )
 
 // Suppress "imported and not used" errors
@@ -355,7 +355,7 @@ func local_request_Members_UpdateTier_0(ctx context.Context, marshaler runtime.M
 }
 
 func request_Members_GetTier_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TierRecordByIdRequest
+	var protoReq TierRequestInput
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -393,7 +393,7 @@ func request_Members_GetTier_0(ctx context.Context, marshaler runtime.Marshaler,
 }
 
 func local_request_Members_GetTier_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq TierRecordByIdRequest
+	var protoReq TierRequestInput
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -431,7 +431,7 @@ func local_request_Members_GetTier_0(ctx context.Context, marshaler runtime.Mars
 }
 
 func request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
+	var protoReq TierRequestInput
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -449,15 +449,26 @@ func request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.Marshal
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["programId"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programId")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.ProgramId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
+	}
+
+	val, ok = pathParams["tierId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tierId")
+	}
+
+	protoReq.TierId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tierId", err)
 	}
 
 	msg, err := client.DeleteTier(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -466,7 +477,7 @@ func request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
+	var protoReq TierRequestInput
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -484,15 +495,26 @@ func local_request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.M
 		_   = err
 	)
 
-	val, ok = pathParams["id"]
+	val, ok = pathParams["programId"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programId")
 	}
 
-	protoReq.Id, err = runtime.String(val)
+	protoReq.ProgramId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
+	}
+
+	val, ok = pathParams["tierId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "tierId")
+	}
+
+	protoReq.TierId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "tierId", err)
 	}
 
 	msg, err := server.DeleteTier(ctx, &protoReq)
@@ -875,7 +897,7 @@ func local_request_Members_UpdateMember_0(ctx context.Context, marshaler runtime
 }
 
 func request_Members_EarnPoints_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MemberPointsRequest
+	var protoReq EarnBurnPointsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -892,7 +914,7 @@ func request_Members_EarnPoints_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_Members_EarnPoints_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MemberPointsRequest
+	var protoReq EarnBurnPointsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -909,7 +931,7 @@ func local_request_Members_EarnPoints_0(ctx context.Context, marshaler runtime.M
 }
 
 func request_Members_BurnPoints_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MemberPointsRequest
+	var protoReq EarnBurnPointsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -926,7 +948,7 @@ func request_Members_BurnPoints_0(ctx context.Context, marshaler runtime.Marshal
 }
 
 func local_request_Members_BurnPoints_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq MemberPointsRequest
+	var protoReq EarnBurnPointsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -938,6 +960,40 @@ func local_request_Members_BurnPoints_0(ctx context.Context, marshaler runtime.M
 	}
 
 	msg, err := server.BurnPoints(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Members_SetPoints_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SetPointsRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.SetPoints(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Members_SetPoints_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq SetPointsRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.SetPoints(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1191,6 +1247,40 @@ func local_request_Members_GetMetaKeysForProgram_0(ctx context.Context, marshale
 	}
 
 	msg, err := server.GetMetaKeysForProgram(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Members_RenewMembersExpiry_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateExpiryRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.RenewMembersExpiry(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Members_RenewMembersExpiry_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateExpiryRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.RenewMembersExpiry(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1581,6 +1671,26 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 
 	})
 
+	mux.Handle("PUT", pattern_Members_SetPoints_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Members_SetPoints_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_SetPoints_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("PUT", pattern_Members_UpdateMembersBySegment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1685,6 +1795,26 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 		}
 
 		forward_Members_GetMetaKeysForProgram_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_Members_RenewMembersExpiry_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Members_RenewMembersExpiry_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_RenewMembersExpiry_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -2149,6 +2279,26 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
+	mux.Handle("PUT", pattern_Members_SetPoints_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_SetPoints_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_SetPoints_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("PUT", pattern_Members_UpdateMembersBySegment_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2269,6 +2419,26 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
+	mux.Handle("PUT", pattern_Members_RenewMembersExpiry_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_RenewMembersExpiry_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_RenewMembersExpiry_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -2291,7 +2461,7 @@ var (
 
 	pattern_Members_GetTier_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "tier", "programId", "tierId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Members_DeleteTier_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"members", "tier", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Members_DeleteTier_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "tier", "programId", "tierId"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_ListTiers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "tiers"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -2315,6 +2485,8 @@ var (
 
 	pattern_Members_BurnPoints_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"members", "member", "points", "burn"}, "", runtime.AssumeColonVerbOpt(true)))
 
+	pattern_Members_SetPoints_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"members", "member", "points", "set"}, "", runtime.AssumeColonVerbOpt(true)))
+
 	pattern_Members_UpdateMembersBySegment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "segment"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_DeleteMembersBySegment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "segment"}, "", runtime.AssumeColonVerbOpt(true)))
@@ -2326,6 +2498,8 @@ var (
 	pattern_Members_GetMessageHistoryForMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "messages"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_GetMetaKeysForProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "member", "meta", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Members_RenewMembersExpiry_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "expiry"}, "", runtime.AssumeColonVerbOpt(true)))
 )
 
 var (
@@ -2371,6 +2545,8 @@ var (
 
 	forward_Members_BurnPoints_0 = runtime.ForwardResponseMessage
 
+	forward_Members_SetPoints_0 = runtime.ForwardResponseMessage
+
 	forward_Members_UpdateMembersBySegment_0 = runtime.ForwardResponseMessage
 
 	forward_Members_DeleteMembersBySegment_0 = runtime.ForwardResponseMessage
@@ -2382,4 +2558,6 @@ var (
 	forward_Members_GetMessageHistoryForMember_0 = runtime.ForwardResponseStream
 
 	forward_Members_GetMetaKeysForProgram_0 = runtime.ForwardResponseMessage
+
+	forward_Members_RenewMembersExpiry_0 = runtime.ForwardResponseMessage
 )
