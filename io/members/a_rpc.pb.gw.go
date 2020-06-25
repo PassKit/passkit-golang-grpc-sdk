@@ -21,7 +21,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/status"
-	io_0 "github.com/PassKit/passkit-golang-sdk/io"
+	io_0 "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Suppress "imported and not used" errors
@@ -259,17 +259,42 @@ func local_request_Members_DeleteProgram_0(ctx context.Context, marshaler runtim
 }
 
 var (
-	filter_Members_ListPrograms_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_Members_ListProgramsDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_Members_ListPrograms_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListProgramsClient, runtime.ServerMetadata, error) {
+func request_Members_ListProgramsDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListProgramsDeprecatedClient, runtime.ServerMetadata, error) {
 	var protoReq io_0.Pagination
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListPrograms_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListProgramsDeprecated_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	stream, err := client.ListProgramsDeprecated(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
+func request_Members_ListPrograms_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListProgramsClient, runtime.ServerMetadata, error) {
+	var protoReq io_0.Filters
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -523,17 +548,42 @@ func local_request_Members_DeleteTier_0(ctx context.Context, marshaler runtime.M
 }
 
 var (
-	filter_Members_ListTiers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_Members_ListTiersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_Members_ListTiers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListTiersClient, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
+func request_Members_ListTiersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListTiersDeprecatedClient, runtime.ServerMetadata, error) {
+	var protoReq ListRequestDeprecated
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListTiers_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListTiersDeprecated_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	stream, err := client.ListTiersDeprecated(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
+func request_Members_ListTiers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListTiersClient, runtime.ServerMetadata, error) {
+	var protoReq ListRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -817,11 +867,11 @@ func local_request_Members_CheckOutMember_0(ctx context.Context, marshaler runti
 }
 
 var (
-	filter_Members_ListMembers_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_Members_ListMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
-func request_Members_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListMembersClient, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
+func request_Members_ListMembersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListMembersDeprecatedClient, runtime.ServerMetadata, error) {
+	var protoReq ListRequestDeprecated
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -845,8 +895,51 @@ func request_Members_ListMembers_0(ctx context.Context, marshaler runtime.Marsha
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListMembers_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_ListMembersDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	stream, err := client.ListMembersDeprecated(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
+func request_Members_ListMembers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListMembersClient, runtime.ServerMetadata, error) {
+	var protoReq ListRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["programId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programId")
+	}
+
+	protoReq.ProgramId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
 	}
 
 	stream, err := client.ListMembers(ctx, &protoReq)
@@ -1101,11 +1194,11 @@ func local_request_Members_DeleteMember_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_Members_CountMembers_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_Members_CountMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
-func request_Members_CountMembers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
+func request_Members_CountMembersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListRequestDeprecated
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1129,17 +1222,17 @@ func request_Members_CountMembers_0(ctx context.Context, marshaler runtime.Marsh
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_CountMembers_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Members_CountMembersDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.CountMembers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CountMembersDeprecated(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_Members_CountMembers_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
+func local_request_Members_CountMembersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListRequestDeprecated
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1160,8 +1253,78 @@ func local_request_Members_CountMembers_0(ctx context.Context, marshaler runtime
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
 	}
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_Members_CountMembers_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_Members_CountMembersDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.CountMembersDeprecated(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Members_CountMembers_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["programId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programId")
+	}
+
+	protoReq.ProgramId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
+	}
+
+	msg, err := client.CountMembers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Members_CountMembers_0(ctx context.Context, marshaler runtime.Marshaler, server MembersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["programId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "programId")
+	}
+
+	protoReq.ProgramId, err = runtime.String(val)
+
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "programId", err)
 	}
 
 	msg, err := server.CountMembers(ctx, &protoReq)
@@ -1390,7 +1553,14 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListProgramsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	mux.Handle("POST", pattern_Members_ListPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1477,7 +1647,14 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListTiers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListTiersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	mux.Handle("POST", pattern_Members_ListTiers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1604,7 +1781,14 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListMembersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	mux.Handle("POST", pattern_Members_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1751,7 +1935,27 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 
 	})
 
-	mux.Handle("GET", pattern_Members_CountMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_CountMembersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Members_CountMembersDeprecated_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_CountMembersDeprecated_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Members_CountMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1959,7 +2163,27 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListProgramsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_ListProgramsDeprecated_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_ListProgramsDeprecated_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Members_ListPrograms_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -2059,7 +2283,27 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListTiers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListTiersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_ListTiersDeprecated_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_ListTiersDeprecated_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Members_ListTiers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -2199,7 +2443,27 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
-	mux.Handle("GET", pattern_Members_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_ListMembersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_ListMembersDeprecated_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_ListMembersDeprecated_0(ctx, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Members_ListMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -2359,7 +2623,27 @@ func RegisterMembersHandlerClient(ctx context.Context, mux *runtime.ServeMux, cl
 
 	})
 
-	mux.Handle("GET", pattern_Members_CountMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_Members_CountMembersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Members_CountMembersDeprecated_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Members_CountMembersDeprecated_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Members_CountMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -2453,7 +2737,9 @@ var (
 
 	pattern_Members_DeleteProgram_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"members", "program", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Members_ListPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "programs"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Members_ListProgramsDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "programs"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Members_ListPrograms_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "programs", "list"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_CreateTier_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "tier"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -2463,7 +2749,9 @@ var (
 
 	pattern_Members_DeleteTier_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "tier", "programId", "tierId"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_Members_ListTiers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "tiers"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_Members_ListTiersDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "tiers"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Members_ListTiers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "tiers", "list"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_EnrolMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "member"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -2476,6 +2764,8 @@ var (
 	pattern_Members_CheckInMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "checkIn"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_CheckOutMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "checkOut"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Members_ListMembersDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "member", "list", "programId"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_ListMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"members", "member", "list", "programId"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -2492,6 +2782,8 @@ var (
 	pattern_Members_DeleteMembersBySegment_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"members", "member", "segment"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_DeleteMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"members", "member"}, "", runtime.AssumeColonVerbOpt(true)))
+
+	pattern_Members_CountMembersDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"members", "count", "programId"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_Members_CountMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"members", "count", "programId"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -2513,6 +2805,8 @@ var (
 
 	forward_Members_DeleteProgram_0 = runtime.ForwardResponseMessage
 
+	forward_Members_ListProgramsDeprecated_0 = runtime.ForwardResponseStream
+
 	forward_Members_ListPrograms_0 = runtime.ForwardResponseStream
 
 	forward_Members_CreateTier_0 = runtime.ForwardResponseMessage
@@ -2522,6 +2816,8 @@ var (
 	forward_Members_GetTier_0 = runtime.ForwardResponseMessage
 
 	forward_Members_DeleteTier_0 = runtime.ForwardResponseMessage
+
+	forward_Members_ListTiersDeprecated_0 = runtime.ForwardResponseStream
 
 	forward_Members_ListTiers_0 = runtime.ForwardResponseStream
 
@@ -2536,6 +2832,8 @@ var (
 	forward_Members_CheckInMember_0 = runtime.ForwardResponseMessage
 
 	forward_Members_CheckOutMember_0 = runtime.ForwardResponseMessage
+
+	forward_Members_ListMembersDeprecated_0 = runtime.ForwardResponseStream
 
 	forward_Members_ListMembers_0 = runtime.ForwardResponseStream
 
@@ -2552,6 +2850,8 @@ var (
 	forward_Members_DeleteMembersBySegment_0 = runtime.ForwardResponseMessage
 
 	forward_Members_DeleteMember_0 = runtime.ForwardResponseMessage
+
+	forward_Members_CountMembersDeprecated_0 = runtime.ForwardResponseMessage
 
 	forward_Members_CountMembers_0 = runtime.ForwardResponseMessage
 

@@ -6,6 +6,7 @@ package io
 import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
+	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	math "math"
 )
@@ -21,24 +22,31 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+// Turn on and off the integration.
 type IntegrationStatus int32
 
 const (
 	IntegrationStatus_INTEGRATION_STATUS_NONE IntegrationStatus = 0
-	IntegrationStatus_INTEGRATION_DISABLED    IntegrationStatus = 1
-	IntegrationStatus_INTEGRATION_ACTIVE      IntegrationStatus = 2
+	// Turn off the integration.
+	IntegrationStatus_INTEGRATION_DISABLED IntegrationStatus = 1
+	// Turn on the integration.
+	IntegrationStatus_INTEGRATION_ACTIVE IntegrationStatus = 2
+	// The status assigned by PassKit when the account or record is not satisfying the requirements to conduct integration process.
+	IntegrationStatus_INTEGRATION_SUSPENDED IntegrationStatus = 3
 )
 
 var IntegrationStatus_name = map[int32]string{
 	0: "INTEGRATION_STATUS_NONE",
 	1: "INTEGRATION_DISABLED",
 	2: "INTEGRATION_ACTIVE",
+	3: "INTEGRATION_SUSPENDED",
 }
 
 var IntegrationStatus_value = map[string]int32{
 	"INTEGRATION_STATUS_NONE": 0,
 	"INTEGRATION_DISABLED":    1,
 	"INTEGRATION_ACTIVE":      2,
+	"INTEGRATION_SUSPENDED":   3,
 }
 
 func (x IntegrationStatus) String() string {
@@ -49,6 +57,7 @@ func (IntegrationStatus) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_de96aa3e87c64e2a, []int{0}
 }
 
+// Configuration of the third party app which can be integrated with PassKit.
 type ConfigurationType int32
 
 const (
@@ -56,6 +65,7 @@ const (
 	ConfigurationType_WEBHOOK            ConfigurationType = 1
 	ConfigurationType_DB_MYSQL           ConfigurationType = 2
 	ConfigurationType_ZOHO               ConfigurationType = 3
+	ConfigurationType_BRAZE              ConfigurationType = 4
 	ConfigurationType__CONFIG_TYPE_1     ConfigurationType = 100
 )
 
@@ -64,6 +74,7 @@ var ConfigurationType_name = map[int32]string{
 	1:   "WEBHOOK",
 	2:   "DB_MYSQL",
 	3:   "ZOHO",
+	4:   "BRAZE",
 	100: "_CONFIG_TYPE_1",
 }
 
@@ -72,6 +83,7 @@ var ConfigurationType_value = map[string]int32{
 	"WEBHOOK":            1,
 	"DB_MYSQL":           2,
 	"ZOHO":               3,
+	"BRAZE":              4,
 	"_CONFIG_TYPE_1":     100,
 }
 
@@ -90,8 +102,6 @@ const (
 	IntegrationType_INTEGRATION_TYPE_NONE IntegrationType = 0
 	// Trigger event occurs on a third party platform which triggers action (chain of events) inside the PassKit. E.g. Database update triggers PassKit to issue a pass.
 	IntegrationType_SOURCE_INTEGRATION IntegrationType = 1
-	// An integration event happens after all chain of events finished inside PassKit. E.g. Create a pass holder record and issue a pass, then create a record on a third party platform.
-	IntegrationType_SINK_INTEGRATION IntegrationType = 2
 	// Pass holder data is processed by a third party application first then its outcome and original data are stored in PassKit.
 	IntegrationType_HOOK_BEFORE_OBJECT_RECORD_CREATION IntegrationType = 4
 	// A hook event occurs after pass holder's data is created on PassKit.
@@ -125,7 +135,6 @@ const (
 var IntegrationType_name = map[int32]string{
 	0:     "INTEGRATION_TYPE_NONE",
 	1:     "SOURCE_INTEGRATION",
-	2:     "SINK_INTEGRATION",
 	4:     "HOOK_BEFORE_OBJECT_RECORD_CREATION",
 	8:     "HOOK_AFTER_OBJECT_RECORD_CREATION",
 	16:    "HOOK_BEFORE_PASS_ISSUE",
@@ -145,7 +154,6 @@ var IntegrationType_name = map[int32]string{
 var IntegrationType_value = map[string]int32{
 	"INTEGRATION_TYPE_NONE":              0,
 	"SOURCE_INTEGRATION":                 1,
-	"SINK_INTEGRATION":                   2,
 	"HOOK_BEFORE_OBJECT_RECORD_CREATION": 4,
 	"HOOK_AFTER_OBJECT_RECORD_CREATION":  8,
 	"HOOK_BEFORE_PASS_ISSUE":             16,
@@ -170,14 +178,248 @@ func (IntegrationType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_de96aa3e87c64e2a, []int{2}
 }
 
+// Name of pass event the third part app can subscribe to.
+type PassEventId int32
+
+const (
+	// The pass payload will not be sent.
+	PassEventId_PASS_EVENT_NONE PassEventId = 0
+	// The pass payload will be sent to destination when pass record is created and issued.
+	PassEventId_PASS_EVENT_RECORD_CREATED PassEventId = 1
+	// The pass payload will be sent to destination when pass is installed on a mobile device.
+	PassEventId_PASS_EVENT_INSTALLED PassEventId = 2
+	// The pass payload will be sent to destination when pass record or contents have been updated.
+	PassEventId_PASS_EVENT_RECORD_UPDATED PassEventId = 4
+	// The pass payload will be sent to destination when pass is uninstalled from a mobile device.
+	PassEventId_PASS_EVENT_UNINSTALLED PassEventId = 8
+	// The pass payload will be sent to destination when pass is invalidated or expired. When pass is invalidated or expired, a pass will lose its barcode and pass content cannot be updated anymore.
+	PassEventId_PASS_EVENT_INVALIDATED PassEventId = 16
+	// The pass payload will be sent to destination when pass record is deleted from the PassKit database.
+	PassEventId_PASS_EVENT_RECORD_DELETED PassEventId = 32
+)
+
+var PassEventId_name = map[int32]string{
+	0:  "PASS_EVENT_NONE",
+	1:  "PASS_EVENT_RECORD_CREATED",
+	2:  "PASS_EVENT_INSTALLED",
+	4:  "PASS_EVENT_RECORD_UPDATED",
+	8:  "PASS_EVENT_UNINSTALLED",
+	16: "PASS_EVENT_INVALIDATED",
+	32: "PASS_EVENT_RECORD_DELETED",
+}
+
+var PassEventId_value = map[string]int32{
+	"PASS_EVENT_NONE":           0,
+	"PASS_EVENT_RECORD_CREATED": 1,
+	"PASS_EVENT_INSTALLED":      2,
+	"PASS_EVENT_RECORD_UPDATED": 4,
+	"PASS_EVENT_UNINSTALLED":    8,
+	"PASS_EVENT_INVALIDATED":    16,
+	"PASS_EVENT_RECORD_DELETED": 32,
+}
+
+func (x PassEventId) String() string {
+	return proto.EnumName(PassEventId_name, int32(x))
+}
+
+func (PassEventId) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{3}
+}
+
+// Protocol specific events for the Membership protocol.
+type MembershipEventId int32
+
+const (
+	MembershipEventId_MEMBER_EVENT_NONE MembershipEventId = 0
+	// The member payload will be sent to destination when member record is created.
+	MembershipEventId_MEMBER_EVENT_ENROLLED MembershipEventId = 1
+	// The member payload will be sent to destination when any of member field is updated.
+	MembershipEventId_MEMBER_EVENT_UPDATED MembershipEventId = 2
+)
+
+var MembershipEventId_name = map[int32]string{
+	0: "MEMBER_EVENT_NONE",
+	1: "MEMBER_EVENT_ENROLLED",
+	2: "MEMBER_EVENT_UPDATED",
+}
+
+var MembershipEventId_value = map[string]int32{
+	"MEMBER_EVENT_NONE":     0,
+	"MEMBER_EVENT_ENROLLED": 1,
+	"MEMBER_EVENT_UPDATED":  2,
+}
+
+func (x MembershipEventId) String() string {
+	return proto.EnumName(MembershipEventId_name, int32(x))
+}
+
+func (MembershipEventId) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{4}
+}
+
+// Protocol specific events for the Single Use Coupon protocol.
+type CouponEventId int32
+
+const (
+	CouponEventId_COUPON_EVENT_NONE CouponEventId = 0
+	// Triggered when coupon is issued.
+	CouponEventId_COUPON_EVENT_CREATED CouponEventId = 1
+	// Triggered when coupon is redeemed.
+	CouponEventId_COUPON_EVENT_REDEEMED CouponEventId = 2
+	// Triggered when any of coupon field is updated.
+	CouponEventId_COUPON_EVENT_UPDATED CouponEventId = 4
+	// Triggered when coupon record is deleted.
+	CouponEventId_COUPON_EVENT_DELETED CouponEventId = 8
+)
+
+var CouponEventId_name = map[int32]string{
+	0: "COUPON_EVENT_NONE",
+	1: "COUPON_EVENT_CREATED",
+	2: "COUPON_EVENT_REDEEMED",
+	4: "COUPON_EVENT_UPDATED",
+	8: "COUPON_EVENT_DELETED",
+}
+
+var CouponEventId_value = map[string]int32{
+	"COUPON_EVENT_NONE":     0,
+	"COUPON_EVENT_CREATED":  1,
+	"COUPON_EVENT_REDEEMED": 2,
+	"COUPON_EVENT_UPDATED":  4,
+	"COUPON_EVENT_DELETED":  8,
+}
+
+func (x CouponEventId) String() string {
+	return proto.EnumName(CouponEventId_name, int32(x))
+}
+
+func (CouponEventId) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{5}
+}
+
+// Action method is an api call method (post, put, delete) used when data get integrated with the third party application.
+// This enum will be useful if topic is not directly produced by debezium and want to know the original debezium event operation.
+type ActionMethod int32
+
+const (
+	ActionMethod_METHOD_NONE ActionMethod = 0
+	// Invokes POST request to create a record the third party app.
+	ActionMethod_METHOD_POST ActionMethod = 1
+	// Invokes PUT request to update existing record on the third party app.
+	ActionMethod_METHOD_PUT ActionMethod = 2
+	// Invokes DELETE request to delete existing record on the third party app.
+	ActionMethod_METHOD_DELETE ActionMethod = 3
+)
+
+var ActionMethod_name = map[int32]string{
+	0: "METHOD_NONE",
+	1: "METHOD_POST",
+	2: "METHOD_PUT",
+	3: "METHOD_DELETE",
+}
+
+var ActionMethod_value = map[string]int32{
+	"METHOD_NONE":   0,
+	"METHOD_POST":   1,
+	"METHOD_PUT":    2,
+	"METHOD_DELETE": 3,
+}
+
+func (x ActionMethod) String() string {
+	return proto.EnumName(ActionMethod_name, int32(x))
+}
+
+func (ActionMethod) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{6}
+}
+
+// Array of subscribing membership protocol events.
+type MembershipEventIds struct {
+	Ids                  []MembershipEventId `protobuf:"varint,1,rep,packed,name=ids,proto3,enum=io.MembershipEventId" json:"ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
+}
+
+func (m *MembershipEventIds) Reset()         { *m = MembershipEventIds{} }
+func (m *MembershipEventIds) String() string { return proto.CompactTextString(m) }
+func (*MembershipEventIds) ProtoMessage()    {}
+func (*MembershipEventIds) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{0}
+}
+
+func (m *MembershipEventIds) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_MembershipEventIds.Unmarshal(m, b)
+}
+func (m *MembershipEventIds) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_MembershipEventIds.Marshal(b, m, deterministic)
+}
+func (m *MembershipEventIds) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MembershipEventIds.Merge(m, src)
+}
+func (m *MembershipEventIds) XXX_Size() int {
+	return xxx_messageInfo_MembershipEventIds.Size(m)
+}
+func (m *MembershipEventIds) XXX_DiscardUnknown() {
+	xxx_messageInfo_MembershipEventIds.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MembershipEventIds proto.InternalMessageInfo
+
+func (m *MembershipEventIds) GetIds() []MembershipEventId {
+	if m != nil {
+		return m.Ids
+	}
+	return nil
+}
+
+// Array of subscribing coupon protocol events.
+type CouponEventIds struct {
+	Ids                  []CouponEventId `protobuf:"varint,1,rep,packed,name=ids,proto3,enum=io.CouponEventId" json:"ids,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
+	XXX_unrecognized     []byte          `json:"-"`
+	XXX_sizecache        int32           `json:"-"`
+}
+
+func (m *CouponEventIds) Reset()         { *m = CouponEventIds{} }
+func (m *CouponEventIds) String() string { return proto.CompactTextString(m) }
+func (*CouponEventIds) ProtoMessage()    {}
+func (*CouponEventIds) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{1}
+}
+
+func (m *CouponEventIds) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CouponEventIds.Unmarshal(m, b)
+}
+func (m *CouponEventIds) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CouponEventIds.Marshal(b, m, deterministic)
+}
+func (m *CouponEventIds) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CouponEventIds.Merge(m, src)
+}
+func (m *CouponEventIds) XXX_Size() int {
+	return xxx_messageInfo_CouponEventIds.Size(m)
+}
+func (m *CouponEventIds) XXX_DiscardUnknown() {
+	xxx_messageInfo_CouponEventIds.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CouponEventIds proto.InternalMessageInfo
+
+func (m *CouponEventIds) GetIds() []CouponEventId {
+	if m != nil {
+		return m.Ids
+	}
+	return nil
+}
+
 // Integration object contains configuration data to integrate PassKit application with third party application.
 type IntegrationConfigs struct {
 	// The uuid for the class object.
 	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
-	ClassId string `protobuf:"bytes,1,opt,name=classId,proto3" json:"classId,omitempty"`
+	ClassId string `protobuf:"bytes,1,opt,name=classId,proto3" json:"classId,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
 	// Key string is enum of ConfigurationType (e.g. WEBHOOK, DB_MYSQL, ZOHO). Value string is a json string of configuration object.
 	// @tag: validateGeneric:"omitempty" validateCreate:"required" validateUpdate:"required"
-	Configurations       map[int32]string `protobuf:"bytes,2,rep,name=configurations,proto3" json:"configurations,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3"`
+	Configurations       map[int32]string `protobuf:"bytes,2,rep,name=configurations,proto3" json:"configurations,omitempty" protobuf_key:"varint,1,opt,name=key,proto3" protobuf_val:"bytes,2,opt,name=value,proto3" validateGeneric:"omitempty" validateCreate:"required" validateUpdate:"required"`
 	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
 	XXX_unrecognized     []byte           `json:"-"`
 	XXX_sizecache        int32            `json:"-"`
@@ -187,7 +429,7 @@ func (m *IntegrationConfigs) Reset()         { *m = IntegrationConfigs{} }
 func (m *IntegrationConfigs) String() string { return proto.CompactTextString(m) }
 func (*IntegrationConfigs) ProtoMessage()    {}
 func (*IntegrationConfigs) Descriptor() ([]byte, []int) {
-	return fileDescriptor_de96aa3e87c64e2a, []int{0}
+	return fileDescriptor_de96aa3e87c64e2a, []int{2}
 }
 
 func (m *IntegrationConfigs) XXX_Unmarshal(b []byte) error {
@@ -222,108 +464,570 @@ func (m *IntegrationConfigs) GetConfigurations() map[int32]string {
 	return nil
 }
 
-type IntegrationsRequest struct {
+type ProtocolIdInput struct {
 	// The protocol which the class object belongs to.
 	// @tag: validateGeneric:"required" validateUpdate:"required"
-	Protocol PassProtocol `protobuf:"varint,1,opt,name=protocol,proto3,enum=io.PassProtocol" json:"protocol,omitempty"`
+	Protocol PassProtocol `protobuf:"varint,1,opt,name=protocol,proto3,enum=io.PassProtocol" json:"protocol,omitempty" validateGeneric:"required" validateUpdate:"required"`
 	// The class object Id which integration belongs to.
 	// @tag: validateGeneric:"required" validateUpdate:"required"
-	ClassId              string   `protobuf:"bytes,2,opt,name=classId,proto3" json:"classId,omitempty"`
+	ClassId              string   `protobuf:"bytes,2,opt,name=classId,proto3" json:"classId,omitempty" validateGeneric:"required" validateUpdate:"required"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *IntegrationsRequest) Reset()         { *m = IntegrationsRequest{} }
-func (m *IntegrationsRequest) String() string { return proto.CompactTextString(m) }
-func (*IntegrationsRequest) ProtoMessage()    {}
-func (*IntegrationsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_de96aa3e87c64e2a, []int{1}
+func (m *ProtocolIdInput) Reset()         { *m = ProtocolIdInput{} }
+func (m *ProtocolIdInput) String() string { return proto.CompactTextString(m) }
+func (*ProtocolIdInput) ProtoMessage()    {}
+func (*ProtocolIdInput) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{3}
 }
 
-func (m *IntegrationsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_IntegrationsRequest.Unmarshal(m, b)
+func (m *ProtocolIdInput) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_ProtocolIdInput.Unmarshal(m, b)
 }
-func (m *IntegrationsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_IntegrationsRequest.Marshal(b, m, deterministic)
+func (m *ProtocolIdInput) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_ProtocolIdInput.Marshal(b, m, deterministic)
 }
-func (m *IntegrationsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_IntegrationsRequest.Merge(m, src)
+func (m *ProtocolIdInput) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProtocolIdInput.Merge(m, src)
 }
-func (m *IntegrationsRequest) XXX_Size() int {
-	return xxx_messageInfo_IntegrationsRequest.Size(m)
+func (m *ProtocolIdInput) XXX_Size() int {
+	return xxx_messageInfo_ProtocolIdInput.Size(m)
 }
-func (m *IntegrationsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_IntegrationsRequest.DiscardUnknown(m)
+func (m *ProtocolIdInput) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProtocolIdInput.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_IntegrationsRequest proto.InternalMessageInfo
+var xxx_messageInfo_ProtocolIdInput proto.InternalMessageInfo
 
-func (m *IntegrationsRequest) GetProtocol() PassProtocol {
+func (m *ProtocolIdInput) GetProtocol() PassProtocol {
 	if m != nil {
 		return m.Protocol
 	}
-	return PassProtocol_RAW_PROTOCOL
+	return PassProtocol_PASS_PROTOCOL_DO_NOT_USE
 }
 
-func (m *IntegrationsRequest) GetClassId() string {
+func (m *ProtocolIdInput) GetClassId() string {
 	if m != nil {
 		return m.ClassId
 	}
 	return ""
 }
 
+type SubscriptionRequest struct {
+	// The protocol which the class object belongs to.
+	// @tag: validateGeneric:"required" validateUpdate:"required"
+	Protocol PassProtocol `protobuf:"varint,1,opt,name=protocol,proto3,enum=io.PassProtocol" json:"protocol,omitempty" validateGeneric:"required" validateUpdate:"required"`
+	// The class object Id which integration belongs to.
+	// @tag: validateGeneric:"required" validateUpdate:"required"
+	SubscriptionId       string   `protobuf:"bytes,2,opt,name=subscriptionId,proto3" json:"subscriptionId,omitempty" validateGeneric:"required" validateUpdate:"required"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SubscriptionRequest) Reset()         { *m = SubscriptionRequest{} }
+func (m *SubscriptionRequest) String() string { return proto.CompactTextString(m) }
+func (*SubscriptionRequest) ProtoMessage()    {}
+func (*SubscriptionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{4}
+}
+
+func (m *SubscriptionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SubscriptionRequest.Unmarshal(m, b)
+}
+func (m *SubscriptionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SubscriptionRequest.Marshal(b, m, deterministic)
+}
+func (m *SubscriptionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SubscriptionRequest.Merge(m, src)
+}
+func (m *SubscriptionRequest) XXX_Size() int {
+	return xxx_messageInfo_SubscriptionRequest.Size(m)
+}
+func (m *SubscriptionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SubscriptionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SubscriptionRequest proto.InternalMessageInfo
+
+func (m *SubscriptionRequest) GetProtocol() PassProtocol {
+	if m != nil {
+		return m.Protocol
+	}
+	return PassProtocol_PASS_PROTOCOL_DO_NOT_USE
+}
+
+func (m *SubscriptionRequest) GetSubscriptionId() string {
+	if m != nil {
+		return m.SubscriptionId
+	}
+	return ""
+}
+
+// Sets up source and destination field
+type FieldMapping struct {
+	// Field string key of destination data field.
+	// @tag: validateGeneric:"required"
+	DestinationFieldKey string `protobuf:"bytes,1,opt,name=destinationFieldKey,proto3" json:"destinationFieldKey,omitempty" validateGeneric:"required"`
+	// Field string key of destination data field.
+	// @tag: validateGeneric:"required"
+	DestinationFieldDataType DataType `protobuf:"varint,2,opt,name=destinationFieldDataType,proto3,enum=io.DataType" json:"destinationFieldDataType,omitempty" validateGeneric:"required"`
+	// If true, when value is empty default data will be used.
+	// @tag: validateGeneric:"omitempty"
+	IsRequired bool `protobuf:"varint,3,opt,name=isRequired,proto3" json:"isRequired,omitempty" validateGeneric:"omitempty"`
+	// Unique name of data field which becomes the data source.
+	// @tag: validateGeneric:"required"
+	SourceFieldUniqueName string   `protobuf:"bytes,4,opt,name=sourceFieldUniqueName,proto3" json:"sourceFieldUniqueName,omitempty" validateGeneric:"required"`
+	XXX_NoUnkeyedLiteral  struct{} `json:"-"`
+	XXX_unrecognized      []byte   `json:"-"`
+	XXX_sizecache         int32    `json:"-"`
+}
+
+func (m *FieldMapping) Reset()         { *m = FieldMapping{} }
+func (m *FieldMapping) String() string { return proto.CompactTextString(m) }
+func (*FieldMapping) ProtoMessage()    {}
+func (*FieldMapping) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{5}
+}
+
+func (m *FieldMapping) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FieldMapping.Unmarshal(m, b)
+}
+func (m *FieldMapping) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FieldMapping.Marshal(b, m, deterministic)
+}
+func (m *FieldMapping) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FieldMapping.Merge(m, src)
+}
+func (m *FieldMapping) XXX_Size() int {
+	return xxx_messageInfo_FieldMapping.Size(m)
+}
+func (m *FieldMapping) XXX_DiscardUnknown() {
+	xxx_messageInfo_FieldMapping.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FieldMapping proto.InternalMessageInfo
+
+func (m *FieldMapping) GetDestinationFieldKey() string {
+	if m != nil {
+		return m.DestinationFieldKey
+	}
+	return ""
+}
+
+func (m *FieldMapping) GetDestinationFieldDataType() DataType {
+	if m != nil {
+		return m.DestinationFieldDataType
+	}
+	return DataType_DATA_TYPE_NONE
+}
+
+func (m *FieldMapping) GetIsRequired() bool {
+	if m != nil {
+		return m.IsRequired
+	}
+	return false
+}
+
+func (m *FieldMapping) GetSourceFieldUniqueName() string {
+	if m != nil {
+		return m.SourceFieldUniqueName
+	}
+	return ""
+}
+
+type WebhookConfig struct {
+	// The destination url for PassKit backend to send the data to.
+	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
+	TargetUrl    string       `protobuf:"bytes,1,opt,name=targetUrl,proto3" json:"targetUrl,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
+	ActionMethod ActionMethod `protobuf:"varint,2,opt,name=actionMethod,proto3,enum=io.ActionMethod" json:"actionMethod,omitempty"`
+	// Set source fields (fields used within the PassKit platform) and destination fields (fields set on the third party app).
+	FieldMapping         *FieldMapping `protobuf:"bytes,3,opt,name=fieldMapping,proto3" json:"fieldMapping,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
+	XXX_unrecognized     []byte        `json:"-"`
+	XXX_sizecache        int32         `json:"-"`
+}
+
+func (m *WebhookConfig) Reset()         { *m = WebhookConfig{} }
+func (m *WebhookConfig) String() string { return proto.CompactTextString(m) }
+func (*WebhookConfig) ProtoMessage()    {}
+func (*WebhookConfig) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{6}
+}
+
+func (m *WebhookConfig) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_WebhookConfig.Unmarshal(m, b)
+}
+func (m *WebhookConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_WebhookConfig.Marshal(b, m, deterministic)
+}
+func (m *WebhookConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_WebhookConfig.Merge(m, src)
+}
+func (m *WebhookConfig) XXX_Size() int {
+	return xxx_messageInfo_WebhookConfig.Size(m)
+}
+func (m *WebhookConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_WebhookConfig.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_WebhookConfig proto.InternalMessageInfo
+
+func (m *WebhookConfig) GetTargetUrl() string {
+	if m != nil {
+		return m.TargetUrl
+	}
+	return ""
+}
+
+func (m *WebhookConfig) GetActionMethod() ActionMethod {
+	if m != nil {
+		return m.ActionMethod
+	}
+	return ActionMethod_METHOD_NONE
+}
+
+func (m *WebhookConfig) GetFieldMapping() *FieldMapping {
+	if m != nil {
+		return m.FieldMapping
+	}
+	return nil
+}
+
+type SinkSubscriptionPayload struct {
+	// PassEventId enum string to identify trigger event type
+	Event                string   `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	Pass                 *Pass    `protobuf:"bytes,2,opt,name=pass,proto3" json:"pass,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SinkSubscriptionPayload) Reset()         { *m = SinkSubscriptionPayload{} }
+func (m *SinkSubscriptionPayload) String() string { return proto.CompactTextString(m) }
+func (*SinkSubscriptionPayload) ProtoMessage()    {}
+func (*SinkSubscriptionPayload) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{7}
+}
+
+func (m *SinkSubscriptionPayload) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SinkSubscriptionPayload.Unmarshal(m, b)
+}
+func (m *SinkSubscriptionPayload) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SinkSubscriptionPayload.Marshal(b, m, deterministic)
+}
+func (m *SinkSubscriptionPayload) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SinkSubscriptionPayload.Merge(m, src)
+}
+func (m *SinkSubscriptionPayload) XXX_Size() int {
+	return xxx_messageInfo_SinkSubscriptionPayload.Size(m)
+}
+func (m *SinkSubscriptionPayload) XXX_DiscardUnknown() {
+	xxx_messageInfo_SinkSubscriptionPayload.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SinkSubscriptionPayload proto.InternalMessageInfo
+
+func (m *SinkSubscriptionPayload) GetEvent() string {
+	if m != nil {
+		return m.Event
+	}
+	return ""
+}
+
+func (m *SinkSubscriptionPayload) GetPass() *Pass {
+	if m != nil {
+		return m.Pass
+	}
+	return nil
+}
+
+type SinkSubscription struct {
+	// The uuid for the sink subscription config.
+	// @tag: validateGeneric:"required" validateCreate:"-" validateUpdate:"required"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" validateGeneric:"required" validateCreate:"-" validateUpdate:"required"`
+	// The uuid for the class object.
+	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
+	ClassId string `protobuf:"bytes,2,opt,name=classId,proto3" json:"classId,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
+	// The protocol of class object which owns this sink subscription.
+	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
+	Protocol PassProtocol `protobuf:"varint,3,opt,name=protocol,proto3,enum=io.PassProtocol" json:"protocol,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
+	// Identifies pass event type you are subscribing to.
+	// @tag: validateGeneric:"omitempty" validateCreate:"omitempty" validateUpdate:"omitempty"
+	PassEventId []PassEventId `protobuf:"varint,4,rep,packed,name=passEventId,proto3,enum=io.PassEventId" json:"passEventId,omitempty" validateGeneric:"omitempty" validateCreate:"omitempty" validateUpdate:"omitempty"`
+	// @tag: validateGeneric:"omitempty" validateCreate:"omitempty" validateUpdate:"omitempty"
+	Status IntegrationStatus `protobuf:"varint,5,opt,name=status,proto3,enum=io.IntegrationStatus" json:"status,omitempty" validateGeneric:"omitempty" validateCreate:"omitempty" validateUpdate:"omitempty"`
+	// @tag: validateGeneric:"required" validateCreate:"required" validateUpdate:"required"
+	ConfigType ConfigurationType `protobuf:"varint,6,opt,name=configType,proto3,enum=io.ConfigurationType" json:"configType,omitempty" validateGeneric:"required" validateCreate:"required" validateUpdate:"required"`
+	// Configuration details for the integration.
+	Configuration string `protobuf:"bytes,7,opt,name=configuration,proto3" json:"configuration,omitempty"`
+	// @tag: validateGeneric:"-" validateCreate:"-" validateUpdate:"-"
+	CreatedAt *timestamp.Timestamp `protobuf:"bytes,8,opt,name=createdAt,proto3" json:"createdAt,omitempty" validateGeneric:"-" validateCreate:"-" validateUpdate:"-"`
+	// @tag: validateGeneric:"-" validateCreate:"-" validateUpdate:"-"
+	UpdatedAt *timestamp.Timestamp `protobuf:"bytes,9,opt,name=updatedAt,proto3" json:"updatedAt,omitempty" validateGeneric:"-" validateCreate:"-" validateUpdate:"-"`
+	// Identifies protocol specific event type you are subscribing to.
+	//
+	// Types that are valid to be assigned to ProtocolEventId:
+	//	*SinkSubscription_MembershipEvents
+	//	*SinkSubscription_CouponEvents
+	ProtocolEventId      isSinkSubscription_ProtocolEventId `protobuf_oneof:"protocolEventId"`
+	XXX_NoUnkeyedLiteral struct{}                           `json:"-"`
+	XXX_unrecognized     []byte                             `json:"-"`
+	XXX_sizecache        int32                              `json:"-"`
+}
+
+func (m *SinkSubscription) Reset()         { *m = SinkSubscription{} }
+func (m *SinkSubscription) String() string { return proto.CompactTextString(m) }
+func (*SinkSubscription) ProtoMessage()    {}
+func (*SinkSubscription) Descriptor() ([]byte, []int) {
+	return fileDescriptor_de96aa3e87c64e2a, []int{8}
+}
+
+func (m *SinkSubscription) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SinkSubscription.Unmarshal(m, b)
+}
+func (m *SinkSubscription) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SinkSubscription.Marshal(b, m, deterministic)
+}
+func (m *SinkSubscription) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SinkSubscription.Merge(m, src)
+}
+func (m *SinkSubscription) XXX_Size() int {
+	return xxx_messageInfo_SinkSubscription.Size(m)
+}
+func (m *SinkSubscription) XXX_DiscardUnknown() {
+	xxx_messageInfo_SinkSubscription.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SinkSubscription proto.InternalMessageInfo
+
+func (m *SinkSubscription) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *SinkSubscription) GetClassId() string {
+	if m != nil {
+		return m.ClassId
+	}
+	return ""
+}
+
+func (m *SinkSubscription) GetProtocol() PassProtocol {
+	if m != nil {
+		return m.Protocol
+	}
+	return PassProtocol_PASS_PROTOCOL_DO_NOT_USE
+}
+
+func (m *SinkSubscription) GetPassEventId() []PassEventId {
+	if m != nil {
+		return m.PassEventId
+	}
+	return nil
+}
+
+func (m *SinkSubscription) GetStatus() IntegrationStatus {
+	if m != nil {
+		return m.Status
+	}
+	return IntegrationStatus_INTEGRATION_STATUS_NONE
+}
+
+func (m *SinkSubscription) GetConfigType() ConfigurationType {
+	if m != nil {
+		return m.ConfigType
+	}
+	return ConfigurationType_CONFIGURATION_NONE
+}
+
+func (m *SinkSubscription) GetConfiguration() string {
+	if m != nil {
+		return m.Configuration
+	}
+	return ""
+}
+
+func (m *SinkSubscription) GetCreatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.CreatedAt
+	}
+	return nil
+}
+
+func (m *SinkSubscription) GetUpdatedAt() *timestamp.Timestamp {
+	if m != nil {
+		return m.UpdatedAt
+	}
+	return nil
+}
+
+type isSinkSubscription_ProtocolEventId interface {
+	isSinkSubscription_ProtocolEventId()
+}
+
+type SinkSubscription_MembershipEvents struct {
+	MembershipEvents *MembershipEventIds `protobuf:"bytes,10,opt,name=membershipEvents,proto3,oneof"`
+}
+
+type SinkSubscription_CouponEvents struct {
+	CouponEvents *CouponEventIds `protobuf:"bytes,11,opt,name=couponEvents,proto3,oneof"`
+}
+
+func (*SinkSubscription_MembershipEvents) isSinkSubscription_ProtocolEventId() {}
+
+func (*SinkSubscription_CouponEvents) isSinkSubscription_ProtocolEventId() {}
+
+func (m *SinkSubscription) GetProtocolEventId() isSinkSubscription_ProtocolEventId {
+	if m != nil {
+		return m.ProtocolEventId
+	}
+	return nil
+}
+
+func (m *SinkSubscription) GetMembershipEvents() *MembershipEventIds {
+	if x, ok := m.GetProtocolEventId().(*SinkSubscription_MembershipEvents); ok {
+		return x.MembershipEvents
+	}
+	return nil
+}
+
+func (m *SinkSubscription) GetCouponEvents() *CouponEventIds {
+	if x, ok := m.GetProtocolEventId().(*SinkSubscription_CouponEvents); ok {
+		return x.CouponEvents
+	}
+	return nil
+}
+
+// XXX_OneofWrappers is for the internal use of the proto package.
+func (*SinkSubscription) XXX_OneofWrappers() []interface{} {
+	return []interface{}{
+		(*SinkSubscription_MembershipEvents)(nil),
+		(*SinkSubscription_CouponEvents)(nil),
+	}
+}
+
 func init() {
 	proto.RegisterEnum("io.IntegrationStatus", IntegrationStatus_name, IntegrationStatus_value)
 	proto.RegisterEnum("io.ConfigurationType", ConfigurationType_name, ConfigurationType_value)
 	proto.RegisterEnum("io.IntegrationType", IntegrationType_name, IntegrationType_value)
+	proto.RegisterEnum("io.PassEventId", PassEventId_name, PassEventId_value)
+	proto.RegisterEnum("io.MembershipEventId", MembershipEventId_name, MembershipEventId_value)
+	proto.RegisterEnum("io.CouponEventId", CouponEventId_name, CouponEventId_value)
+	proto.RegisterEnum("io.ActionMethod", ActionMethod_name, ActionMethod_value)
+	proto.RegisterType((*MembershipEventIds)(nil), "io.MembershipEventIds")
+	proto.RegisterType((*CouponEventIds)(nil), "io.CouponEventIds")
 	proto.RegisterType((*IntegrationConfigs)(nil), "io.IntegrationConfigs")
 	proto.RegisterMapType((map[int32]string)(nil), "io.IntegrationConfigs.ConfigurationsEntry")
-	proto.RegisterType((*IntegrationsRequest)(nil), "io.IntegrationsRequest")
+	proto.RegisterType((*ProtocolIdInput)(nil), "io.ProtocolIdInput")
+	proto.RegisterType((*SubscriptionRequest)(nil), "io.SubscriptionRequest")
+	proto.RegisterType((*FieldMapping)(nil), "io.FieldMapping")
+	proto.RegisterType((*WebhookConfig)(nil), "io.WebhookConfig")
+	proto.RegisterType((*SinkSubscriptionPayload)(nil), "io.SinkSubscriptionPayload")
+	proto.RegisterType((*SinkSubscription)(nil), "io.SinkSubscription")
 }
 
-func init() { proto.RegisterFile("io/common/integration.proto", fileDescriptor_de96aa3e87c64e2a) }
+func init() {
+	proto.RegisterFile("io/common/integration.proto", fileDescriptor_de96aa3e87c64e2a)
+}
 
 var fileDescriptor_de96aa3e87c64e2a = []byte{
-	// 634 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x93, 0xe1, 0x4e, 0xd3, 0x5e,
-	0x18, 0xc6, 0xff, 0x2d, 0xe3, 0xcf, 0x7c, 0x31, 0x70, 0x78, 0xc1, 0x39, 0x86, 0xe2, 0x1c, 0x60,
-	0xc8, 0xc2, 0xb6, 0x88, 0x5f, 0x8c, 0x9f, 0x68, 0xbb, 0x03, 0xd4, 0xcd, 0xb6, 0xb6, 0x9d, 0x06,
-	0x12, 0xd3, 0x94, 0xad, 0xd6, 0x86, 0xd1, 0x33, 0x77, 0x3a, 0x0d, 0xdf, 0xb8, 0x1e, 0xef, 0xc0,
-	0x0b, 0xf0, 0xbe, 0x4c, 0xbb, 0x0e, 0xba, 0xcd, 0x7d, 0xeb, 0x39, 0xcf, 0xef, 0x7d, 0xde, 0xe7,
-	0xd9, 0x72, 0x60, 0x27, 0x60, 0x8d, 0x2e, 0xbb, 0xb9, 0x61, 0x61, 0x23, 0x08, 0x23, 0xcf, 0x1f,
-	0xba, 0x51, 0xc0, 0xc2, 0xfa, 0x60, 0xc8, 0x22, 0x86, 0x62, 0xc0, 0x4a, 0x47, 0xc9, 0x67, 0xb7,
-	0xe6, 0x7b, 0x61, 0x8d, 0xff, 0x74, 0x7d, 0xdf, 0x1b, 0x36, 0xd8, 0x20, 0x86, 0x78, 0xc3, 0x0d,
-	0x43, 0x16, 0x25, 0x03, 0x7c, 0x3c, 0x51, 0xda, 0x7e, 0xb0, 0x1b, 0xcf, 0xb1, 0x7e, 0x2a, 0x55,
-	0xfe, 0x08, 0x80, 0xea, 0xc3, 0x0a, 0x85, 0x85, 0x5f, 0x03, 0x9f, 0x63, 0x11, 0x56, 0xba, 0x7d,
-	0x97, 0x73, 0xb5, 0x57, 0x14, 0xca, 0xc2, 0xe1, 0x23, 0x73, 0x72, 0x44, 0x13, 0xd6, 0xba, 0x09,
-	0x34, 0x1a, 0x4f, 0xf0, 0xa2, 0x58, 0x5e, 0x3a, 0x5c, 0x3d, 0xae, 0xd6, 0x03, 0x56, 0x9f, 0x77,
-	0xaa, 0x2b, 0x53, 0x30, 0x0d, 0xa3, 0xe1, 0xad, 0x39, 0xe3, 0x50, 0x92, 0x60, 0xf3, 0x1f, 0x18,
-	0x12, 0x58, 0xba, 0xf6, 0x6e, 0x93, 0x00, 0xcb, 0x66, 0xfc, 0x89, 0x5b, 0xb0, 0xfc, 0xc3, 0xed,
-	0x8f, 0xbc, 0xa2, 0x98, 0x84, 0x1a, 0x1f, 0xde, 0x89, 0x6f, 0x85, 0xca, 0x17, 0xd8, 0xcc, 0x2c,
-	0xe7, 0xa6, 0xf7, 0x7d, 0xe4, 0xf1, 0x08, 0x8f, 0x20, 0x3f, 0x69, 0x9c, 0xf8, 0xac, 0x1d, 0x93,
-	0x38, 0xa7, 0xe1, 0x72, 0x6e, 0xa4, 0xf7, 0xe6, 0x3d, 0x91, 0x6d, 0x2d, 0x4e, 0xb5, 0xae, 0x5e,
-	0xc1, 0x46, 0xc6, 0xde, 0x8a, 0xdc, 0x68, 0xc4, 0x71, 0x07, 0x9e, 0xaa, 0x9a, 0x4d, 0xcf, 0x4c,
-	0xc9, 0x56, 0x75, 0xcd, 0xb1, 0x6c, 0xc9, 0xee, 0x58, 0x8e, 0xa6, 0x6b, 0x94, 0xfc, 0x87, 0x45,
-	0xd8, 0xca, 0x8a, 0x4d, 0xd5, 0x92, 0xe4, 0x36, 0x6d, 0x12, 0x01, 0x0b, 0x80, 0x59, 0x45, 0x52,
-	0x6c, 0xf5, 0x13, 0x25, 0x62, 0xb5, 0x07, 0x1b, 0x53, 0xbf, 0x82, 0x7d, 0x3b, 0xf0, 0x62, 0x58,
-	0xd1, 0xb5, 0x53, 0xf5, 0xac, 0x93, 0xe2, 0xa9, 0xfd, 0x2a, 0xac, 0x7c, 0xa6, 0xf2, 0xb9, 0xae,
-	0xb7, 0x88, 0x80, 0x8f, 0x21, 0xdf, 0x94, 0x9d, 0x0f, 0x17, 0xd6, 0xc7, 0x36, 0x11, 0x31, 0x0f,
-	0xb9, 0x4b, 0xfd, 0x5c, 0x27, 0x4b, 0x88, 0xb0, 0xe6, 0x8c, 0xa7, 0x1d, 0xfb, 0xc2, 0xa0, 0xce,
-	0x6b, 0xd2, 0xab, 0xfe, 0xce, 0xc1, 0x7a, 0xa6, 0x4a, 0xb2, 0x64, 0x1b, 0x9e, 0x64, 0x13, 0x25,
-	0x6c, 0xba, 0xa7, 0x00, 0x68, 0xe9, 0x1d, 0x53, 0xa1, 0x4e, 0x86, 0x20, 0x02, 0x6e, 0x01, 0xb1,
-	0x54, 0xad, 0x35, 0x75, 0x2b, 0xe2, 0x2b, 0xa8, 0xc4, 0x91, 0x1c, 0x99, 0x9e, 0xea, 0x26, 0x75,
-	0x74, 0xf9, 0x3d, 0x55, 0x6c, 0xc7, 0xa4, 0x8a, 0x6e, 0x36, 0x1d, 0xc5, 0xa4, 0x63, 0x2e, 0x87,
-	0x07, 0xf0, 0x32, 0xe1, 0xa4, 0x53, 0x9b, 0x9a, 0x8b, 0xb0, 0x3c, 0x96, 0xa0, 0x90, 0xb5, 0x33,
-	0x24, 0xcb, 0x72, 0x54, 0xcb, 0xea, 0x50, 0x42, 0xe2, 0xcc, 0x19, 0x8b, 0x8c, 0x54, 0x8e, 0xff,
-	0x97, 0x39, 0x49, 0xb3, 0x6c, 0xa9, 0xdd, 0x26, 0x27, 0xb8, 0x0b, 0xdb, 0xb3, 0x62, 0x47, 0x9b,
-	0xc8, 0x77, 0x02, 0x1e, 0x40, 0x79, 0x71, 0x85, 0x8e, 0xd1, 0x94, 0x6c, 0x4a, 0xee, 0x44, 0xdc,
-	0x87, 0x17, 0x0b, 0x1b, 0x4c, 0xa8, 0x1c, 0xee, 0xc1, 0xee, 0x5c, 0x81, 0x19, 0x28, 0x8f, 0x15,
-	0x78, 0x3e, 0x9b, 0x68, 0x86, 0x21, 0xf8, 0x2c, 0xad, 0x94, 0x35, 0x9a, 0xa8, 0x71, 0xe1, 0xc2,
-	0x5c, 0xa7, 0x54, 0x3c, 0xc1, 0xfd, 0xc5, 0x19, 0x9a, 0xb4, 0x4d, 0x63, 0xe8, 0x4e, 0xc0, 0xbd,
-	0x85, 0x21, 0xee, 0x21, 0x51, 0x96, 0x61, 0x3d, 0x60, 0xf5, 0x81, 0xcb, 0xf9, 0x75, 0x10, 0xd5,
-	0x8d, 0x56, 0xc0, 0x2e, 0x0f, 0xfd, 0x20, 0xfa, 0x36, 0xba, 0xaa, 0x77, 0xd9, 0x4d, 0x23, 0x7e,
-	0x55, 0xad, 0x20, 0x6a, 0xa4, 0x40, 0xcd, 0x67, 0x7d, 0x37, 0xf4, 0x6b, 0xbc, 0x77, 0xdd, 0x08,
-	0xd8, 0x2f, 0x31, 0x67, 0xb4, 0x54, 0x76, 0xf5, 0x7f, 0xf2, 0xda, 0xde, 0xfc, 0x0d, 0x00, 0x00,
-	0xff, 0xff, 0xb0, 0xd7, 0x2e, 0x01, 0xe3, 0x04, 0x00, 0x00,
+	// 1488 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x56, 0x5f, 0x6f, 0xdb, 0xd6,
+	0x15, 0x2f, 0x29, 0x25, 0x91, 0x8f, 0x1d, 0x89, 0xba, 0xb1, 0x5d, 0xda, 0x4d, 0xd3, 0x3b, 0x25,
+	0xed, 0x02, 0x21, 0x91, 0x56, 0xaf, 0x05, 0x82, 0x02, 0x1b, 0x2a, 0x89, 0xd7, 0xb5, 0x66, 0x49,
+	0xd4, 0x48, 0x2a, 0x45, 0xf2, 0x22, 0xd0, 0xe2, 0x95, 0x74, 0x61, 0x89, 0x57, 0xe5, 0xa5, 0x3a,
+	0xf8, 0x61, 0x40, 0x1e, 0x07, 0xec, 0xa1, 0xc0, 0xde, 0xf6, 0xbc, 0xb7, 0x7d, 0x8c, 0x01, 0xfb,
+	0x00, 0xdb, 0x27, 0xe8, 0x47, 0x19, 0x78, 0x49, 0x5a, 0xa4, 0x64, 0xa3, 0xd8, 0x53, 0xc2, 0xf3,
+	0xfb, 0x73, 0xcf, 0x39, 0xf7, 0xdc, 0x23, 0xc3, 0x27, 0x8c, 0x37, 0x27, 0x7c, 0xb9, 0xe4, 0x7e,
+	0x93, 0xf9, 0x21, 0x9d, 0x05, 0x6e, 0xc8, 0xb8, 0xdf, 0x58, 0x05, 0x3c, 0xe4, 0x48, 0x65, 0xfc,
+	0xf4, 0x70, 0x43, 0x58, 0xb9, 0x42, 0xc4, 0xc8, 0xa9, 0xbe, 0x89, 0x86, 0x74, 0xb9, 0x5a, 0xb8,
+	0x21, 0x4d, 0x90, 0x57, 0xf2, 0x9f, 0xc9, 0xeb, 0x19, 0xf5, 0x5f, 0x8b, 0x3f, 0xb9, 0xb3, 0x19,
+	0x0d, 0x9a, 0x7c, 0x15, 0x99, 0x8a, 0xa6, 0xeb, 0xfb, 0x3c, 0x94, 0x07, 0xa4, 0x3e, 0x27, 0x19,
+	0x77, 0xa9, 0xe3, 0x8b, 0x14, 0xfa, 0x6c, 0xc6, 0xf9, 0x6c, 0x41, 0xe3, 0xf8, 0xd5, 0x7a, 0xda,
+	0x0c, 0xd9, 0x92, 0x8a, 0xd0, 0x5d, 0xae, 0x62, 0x42, 0xed, 0x77, 0x80, 0xfa, 0x74, 0x79, 0x45,
+	0x03, 0x31, 0x67, 0x2b, 0xf2, 0x23, 0xf5, 0xc3, 0xae, 0x27, 0xd0, 0xaf, 0xa1, 0xc0, 0x3c, 0xa1,
+	0x2b, 0xb8, 0xf0, 0xb2, 0x7c, 0x76, 0xd4, 0x60, 0xbc, 0xb1, 0x43, 0xb2, 0x22, 0x46, 0xed, 0x6b,
+	0x28, 0x77, 0xf8, 0x7a, 0xc5, 0xfd, 0x5b, 0xe9, 0xf3, 0xac, 0xb4, 0x1a, 0x49, 0x73, 0x84, 0x58,
+	0xf6, 0x6f, 0x05, 0x50, 0x77, 0xd3, 0xa9, 0x0e, 0xf7, 0xa7, 0x6c, 0x26, 0x90, 0x0e, 0x8f, 0x26,
+	0x0b, 0x57, 0x88, 0xae, 0xa7, 0x2b, 0x58, 0x79, 0xb9, 0x67, 0xa5, 0x9f, 0xc8, 0x82, 0xf2, 0x44,
+	0x92, 0xd6, 0xb1, 0x42, 0xe8, 0x2a, 0x2e, 0xbc, 0xdc, 0x3f, 0xab, 0x47, 0x07, 0xec, 0x3a, 0x35,
+	0x3a, 0x39, 0x32, 0xf1, 0xc3, 0xe0, 0xc6, 0xda, 0x72, 0x38, 0x6d, 0xc1, 0x93, 0x3b, 0x68, 0x48,
+	0x83, 0xc2, 0x35, 0xbd, 0x91, 0x09, 0x3c, 0xb0, 0xa2, 0xff, 0xa2, 0x43, 0x78, 0xf0, 0xa3, 0xbb,
+	0x58, 0x53, 0x5d, 0x95, 0x49, 0xc5, 0x1f, 0xdf, 0xa8, 0x6f, 0x94, 0xda, 0x3b, 0xa8, 0x0c, 0x93,
+	0x8e, 0x77, 0xbd, 0xae, 0xbf, 0x5a, 0x87, 0xe8, 0x15, 0x94, 0xd2, 0x4b, 0x90, 0x1e, 0xe5, 0x33,
+	0x2d, 0xca, 0x71, 0xe8, 0x0a, 0x91, 0x52, 0xad, 0x5b, 0x46, 0xb6, 0x62, 0x35, 0x57, 0x71, 0xed,
+	0x1a, 0x9e, 0xd8, 0xeb, 0x2b, 0x31, 0x09, 0x98, 0xbc, 0x77, 0x8b, 0xfe, 0xb0, 0xa6, 0xe2, 0xff,
+	0xb5, 0xff, 0x02, 0xca, 0x22, 0x63, 0x72, 0x7b, 0xca, 0x56, 0xb4, 0xf6, 0xb3, 0x02, 0x07, 0xe7,
+	0x8c, 0x2e, 0xbc, 0xbe, 0xbb, 0x5a, 0x31, 0x7f, 0x86, 0x7e, 0x03, 0x4f, 0x3c, 0x2a, 0x42, 0xe6,
+	0xcb, 0xce, 0x48, 0xe8, 0x32, 0x69, 0xca, 0x9e, 0x75, 0x17, 0x84, 0x2e, 0x40, 0xdf, 0x0e, 0x1b,
+	0x6e, 0xe8, 0x3a, 0x37, 0xab, 0xb8, 0x6f, 0xe5, 0xb3, 0x83, 0x28, 0xd1, 0x34, 0x66, 0xdd, 0xcb,
+	0x46, 0xcf, 0x00, 0x98, 0x88, 0xea, 0x65, 0x01, 0xf5, 0xf4, 0x02, 0x56, 0x5e, 0x96, 0xac, 0x4c,
+	0x04, 0x7d, 0x05, 0x47, 0x82, 0xaf, 0x83, 0x09, 0x95, 0xb2, 0x91, 0xcf, 0x7e, 0x58, 0xd3, 0x81,
+	0xbb, 0xa4, 0x7a, 0x51, 0x66, 0x77, 0x37, 0x58, 0xfb, 0xbb, 0x02, 0x8f, 0xbf, 0xa7, 0x57, 0x73,
+	0xce, 0xaf, 0xe3, 0x5b, 0x47, 0x4f, 0x61, 0x2f, 0x74, 0x83, 0x19, 0x0d, 0x47, 0xc1, 0x22, 0xa9,
+	0x6c, 0x13, 0x40, 0x5f, 0xc1, 0x81, 0x3b, 0x89, 0x92, 0xeb, 0xd3, 0x70, 0xce, 0xbd, 0xa4, 0x06,
+	0xd9, 0xec, 0x56, 0x26, 0x6e, 0xe5, 0x58, 0x91, 0x6a, 0x9a, 0xe9, 0xa3, 0xcc, 0x7e, 0x3f, 0x56,
+	0x65, 0xfb, 0x6b, 0xe5, 0x58, 0xb5, 0x3e, 0x7c, 0x6c, 0x33, 0xff, 0x3a, 0x7b, 0xdf, 0x43, 0xf7,
+	0x66, 0xc1, 0x5d, 0x2f, 0x9a, 0x3d, 0x1a, 0xbd, 0x9c, 0x24, 0xc1, 0xf8, 0x03, 0x3d, 0x85, 0x62,
+	0xb4, 0x47, 0x64, 0x52, 0xfb, 0x67, 0xa5, 0x74, 0x02, 0x2c, 0x19, 0xad, 0xfd, 0xeb, 0x21, 0x68,
+	0xdb, 0x7e, 0xa8, 0x0c, 0x2a, 0x4b, 0x9f, 0x95, 0xca, 0xbc, 0xfb, 0x27, 0x2f, 0x37, 0x62, 0x85,
+	0x5f, 0x1c, 0xb1, 0x2f, 0x61, 0x3f, 0x3a, 0x34, 0x79, 0xde, 0x7a, 0x51, 0xbe, 0xfb, 0x4a, 0x2a,
+	0x48, 0x5f, 0x7d, 0x96, 0x83, 0x5e, 0xc3, 0x43, 0x11, 0xba, 0xe1, 0x5a, 0xe8, 0x0f, 0xa4, 0xfd,
+	0xd1, 0xd6, 0x23, 0xb6, 0x25, 0x68, 0x25, 0x24, 0xf4, 0x35, 0x40, 0xfc, 0x72, 0xe5, 0x2c, 0x3d,
+	0xdc, 0x48, 0x72, 0xaf, 0x57, 0x0e, 0x55, 0x86, 0x88, 0x5e, 0xc0, 0xe3, 0xdc, 0x83, 0xd7, 0x1f,
+	0xc9, 0x32, 0xf3, 0x41, 0xf4, 0x06, 0xf6, 0x26, 0x01, 0x75, 0x43, 0xea, 0xb5, 0x42, 0xbd, 0x24,
+	0xdb, 0x79, 0xda, 0x88, 0x97, 0x66, 0x23, 0x5d, 0x9a, 0x0d, 0x27, 0x5d, 0x9a, 0xd6, 0x86, 0x1c,
+	0x29, 0xd7, 0x2b, 0x2f, 0x51, 0xee, 0xfd, 0xb2, 0xf2, 0x96, 0x8c, 0x0c, 0xd0, 0x96, 0xf9, 0x75,
+	0x2a, 0x74, 0x90, 0x06, 0xc7, 0x77, 0xae, 0x5a, 0x71, 0xf1, 0x91, 0xb5, 0xa3, 0x40, 0x6f, 0xe0,
+	0x60, 0xb2, 0xd9, 0xac, 0x42, 0xdf, 0x97, 0x0e, 0x68, 0x67, 0xe3, 0x46, 0xea, 0x1c, 0xf3, 0x9b,
+	0x9f, 0xd4, 0xbf, 0xb5, 0xfe, 0xaa, 0xc2, 0x5f, 0xd4, 0x7a, 0x35, 0x1a, 0x13, 0x9c, 0x9d, 0x93,
+	0xb3, 0x9f, 0x15, 0x9b, 0x86, 0x78, 0xbd, 0xc2, 0x2e, 0xce, 0x2e, 0x09, 0x3c, 0xe5, 0x01, 0x16,
+	0x11, 0x3b, 0xfb, 0x0b, 0x87, 0xa5, 0x3e, 0xc7, 0x63, 0x02, 0x87, 0x01, 0x8b, 0x7e, 0xb1, 0xa8,
+	0x87, 0xdd, 0x69, 0x48, 0x03, 0xec, 0x2e, 0x16, 0x78, 0x32, 0x77, 0x99, 0x8f, 0xf9, 0x14, 0xcb,
+	0x01, 0x16, 0x78, 0xca, 0x7c, 0x26, 0xe6, 0xd4, 0xc3, 0xcc, 0x17, 0xcc, 0xa3, 0x38, 0x1a, 0x96,
+	0x4b, 0x16, 0x36, 0x30, 0x69, 0xcc, 0x1a, 0xb8, 0x23, 0xbb, 0x8c, 0x5d, 0x1c, 0x8d, 0x0d, 0x9e,
+	0xf3, 0x85, 0x47, 0x03, 0x1c, 0xd0, 0x09, 0x0f, 0x3c, 0xec, 0xfa, 0x1e, 0x66, 0x42, 0xac, 0x53,
+	0xf8, 0x15, 0x0e, 0xe7, 0xd4, 0xc7, 0x93, 0x54, 0x92, 0xd0, 0xb8, 0x8f, 0x5d, 0x1c, 0xce, 0x59,
+	0xe0, 0xe1, 0x95, 0x1b, 0x84, 0x37, 0x38, 0xfa, 0x7d, 0x9d, 0xf2, 0x60, 0xd9, 0xf8, 0xaf, 0x52,
+	0xf1, 0xe8, 0xd4, 0x5d, 0x2f, 0xc2, 0x9e, 0xeb, 0xcf, 0xd6, 0xee, 0x8c, 0xb6, 0xab, 0x50, 0x49,
+	0x07, 0x3a, 0xe9, 0x5a, 0xfd, 0xcf, 0x50, 0xdd, 0x19, 0x49, 0xf4, 0x09, 0x7c, 0xdc, 0x1d, 0x38,
+	0xe4, 0x3b, 0xab, 0xe5, 0x74, 0xcd, 0xc1, 0xd8, 0x76, 0x5a, 0xce, 0xc8, 0x1e, 0x0f, 0xcc, 0x01,
+	0xd1, 0x3e, 0x42, 0x3a, 0x1c, 0x66, 0x41, 0xa3, 0x6b, 0xb7, 0xda, 0x3d, 0x62, 0x68, 0x0a, 0x3a,
+	0x06, 0x94, 0x45, 0x5a, 0x1d, 0xa7, 0xfb, 0x96, 0x68, 0x2a, 0x3a, 0x81, 0xa3, 0x9c, 0xdd, 0xc8,
+	0x1e, 0x92, 0x81, 0x41, 0x0c, 0xad, 0x50, 0xe7, 0x50, 0xdd, 0x19, 0xef, 0xc8, 0xa7, 0x63, 0x0e,
+	0xce, 0xbb, 0xdf, 0x8d, 0x12, 0x45, 0x72, 0xf2, 0x3e, 0x3c, 0xfa, 0x9e, 0xb4, 0x2f, 0x4c, 0xf3,
+	0x52, 0x53, 0xd0, 0x01, 0x94, 0x8c, 0xf6, 0xb8, 0xff, 0xce, 0xfe, 0x63, 0x4f, 0x53, 0x51, 0x09,
+	0x8a, 0xef, 0xcd, 0x0b, 0x53, 0x2b, 0xa0, 0x3d, 0x78, 0xd0, 0xb6, 0x5a, 0xef, 0x89, 0x56, 0x44,
+	0x08, 0xca, 0xe3, 0xd8, 0x68, 0xec, 0xbc, 0x1b, 0x92, 0xf1, 0x97, 0x9a, 0x57, 0xff, 0x47, 0x11,
+	0x2a, 0x99, 0x82, 0xe5, 0x79, 0x5b, 0xf9, 0x49, 0x6e, 0x72, 0xe4, 0x31, 0x20, 0xdb, 0x1c, 0x59,
+	0x1d, 0x32, 0xce, 0x30, 0x34, 0x05, 0x7d, 0x01, 0xb5, 0x28, 0x8f, 0x71, 0x9b, 0x9c, 0x9b, 0x16,
+	0x19, 0x9b, 0xed, 0x3f, 0x90, 0x8e, 0x33, 0xb6, 0x48, 0xc7, 0xb4, 0x8c, 0x71, 0xc7, 0x22, 0x31,
+	0xaf, 0x88, 0x3e, 0x87, 0x5f, 0x49, 0x5e, 0xeb, 0xdc, 0x21, 0xd6, 0x7d, 0xb4, 0x12, 0x3a, 0x85,
+	0xe3, 0xac, 0xdd, 0xb0, 0x65, 0xdb, 0xe3, 0xae, 0x6d, 0x8f, 0x88, 0xa6, 0x45, 0xd9, 0x65, 0x2c,
+	0x32, 0x10, 0x8e, 0xee, 0x69, 0x07, 0x1a, 0xd8, 0x4e, 0xab, 0xd7, 0xd3, 0xbe, 0x45, 0xcf, 0xe0,
+	0x64, 0x1b, 0x1c, 0x0d, 0x52, 0xf8, 0x83, 0x82, 0x3e, 0x07, 0x7c, 0x7f, 0x09, 0xa3, 0xa1, 0xd1,
+	0x72, 0x88, 0xf6, 0x41, 0x45, 0x2f, 0xe0, 0xb3, 0x7b, 0x2b, 0x48, 0x59, 0x45, 0xf4, 0x1c, 0x9e,
+	0xed, 0x14, 0xb0, 0x45, 0x2a, 0xa1, 0x1a, 0x7c, 0xba, 0x9d, 0xd1, 0x16, 0x47, 0x43, 0x4f, 0x93,
+	0x92, 0xb2, 0x46, 0x29, 0x1a, 0x15, 0x7c, 0xbc, 0x53, 0x53, 0x02, 0x7e, 0x8b, 0x5e, 0xdc, 0x9f,
+	0x83, 0x41, 0x7a, 0x24, 0x22, 0x7d, 0x50, 0xd0, 0xf3, 0x7b, 0x93, 0xb8, 0x25, 0xa9, 0xf5, 0xff,
+	0x28, 0xb0, 0x9f, 0xd9, 0xeb, 0xe8, 0x09, 0x54, 0x24, 0x93, 0xbc, 0x25, 0x03, 0x27, 0x9d, 0x8d,
+	0x4f, 0xe1, 0x24, 0x13, 0xcc, 0x5e, 0xaa, 0x7c, 0x0d, 0x3a, 0x1c, 0x66, 0xe0, 0xa4, 0xf1, 0xc4,
+	0xd0, 0xd4, 0xbb, 0x85, 0x71, 0x1d, 0x86, 0x56, 0x8c, 0x86, 0x21, 0x03, 0xdf, 0xde, 0x19, 0x31,
+	0xe2, 0x41, 0xc9, 0x99, 0xbe, 0x6d, 0xf5, 0xba, 0xb1, 0x4e, 0xbb, 0xdb, 0x36, 0x2e, 0xca, 0xd0,
+	0x70, 0x7d, 0x0c, 0xd5, 0x9d, 0x95, 0x8b, 0x8e, 0xa0, 0xda, 0x27, 0xfd, 0x36, 0xb1, 0xf2, 0xa5,
+	0x9d, 0xc0, 0x51, 0x2e, 0x4c, 0x06, 0x96, 0xd9, 0xeb, 0xa5, 0x65, 0xe5, 0xa0, 0x34, 0x6f, 0xb5,
+	0xfe, 0x93, 0x02, 0x8f, 0x73, 0x2b, 0x39, 0x72, 0xef, 0x98, 0xa3, 0xa1, 0x39, 0xc8, 0xbb, 0xeb,
+	0x70, 0x98, 0x0b, 0x6f, 0x7a, 0x76, 0x02, 0x47, 0x39, 0xc4, 0x22, 0x06, 0x21, 0x7d, 0xd9, 0xb4,
+	0x6d, 0xd1, 0xa6, 0x5f, 0xdb, 0x48, 0x5a, 0x72, 0xa9, 0x6e, 0xc3, 0x41, 0xf6, 0x8f, 0x18, 0x54,
+	0x81, 0xfd, 0x3e, 0x71, 0x2e, 0x4c, 0x23, 0xcd, 0x64, 0x13, 0x18, 0x9a, 0xb6, 0xa3, 0x29, 0xa8,
+	0x0c, 0x90, 0x06, 0x46, 0x8e, 0xa6, 0xa2, 0x2a, 0x3c, 0x4e, 0xbe, 0x93, 0xe9, 0x28, 0xb4, 0x7f,
+	0x0f, 0x15, 0xc6, 0x1b, 0xd1, 0x4a, 0xbe, 0x66, 0x61, 0x63, 0x78, 0xc9, 0xf8, 0xfb, 0x17, 0x22,
+	0x74, 0xc5, 0xfc, 0x36, 0x36, 0xe1, 0xcb, 0x26, 0xe3, 0xcd, 0x25, 0xf7, 0xe8, 0xa2, 0x29, 0xbc,
+	0xeb, 0xe6, 0x8c, 0x37, 0x19, 0xff, 0xa7, 0x5a, 0x1c, 0x5e, 0x76, 0xf9, 0xd5, 0x43, 0xb9, 0x82,
+	0x7f, 0xfb, 0xbf, 0x00, 0x00, 0x00, 0xff, 0xff, 0x0d, 0x02, 0x88, 0xee, 0x4e, 0x0d, 0x00, 0x00,
 }

@@ -9,7 +9,7 @@ import (
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	math "math"
-	io "github.com/PassKit/passkit-golang-sdk/io"
+	io "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
