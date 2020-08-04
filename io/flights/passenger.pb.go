@@ -8,7 +8,7 @@ import (
 	proto "github.com/golang/protobuf/proto"
 	_ "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger/options"
 	math "math"
-	io "stash.passkit.com/io/model/sdk/go/io"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
