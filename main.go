@@ -5,7 +5,7 @@ import (
 	"log"
 	"google.golang.org/grpc"
 	"io/ioutil"
-	"github.com/PassKit/passkit-golang-sdk/helpers/router"
+	"github.com/PassKit/passkit-golang-grpc-sdk/helpers/router"
 )
 
 const (
