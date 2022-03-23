@@ -1,4 +1,8 @@
-# passkit-golang-grpc-sdk
+PassKit Go gRPC SDK
+===================
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Go Reference](https://pkg.go.dev/badge/github.com/PassKit/passkit-golang-grpc-sdk.svg)](https://pkg.go.dev/github.com/PassKit/passkit-golang-grpc-sdk)
 
 The PassKit IO SDK makes it quick and easy to create and manage your branded Digital Membership Cards for Apple Wallet and Google Pay.
 
