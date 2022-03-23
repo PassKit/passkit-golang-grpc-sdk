@@ -3,7 +3,7 @@ module github.com/PassKit/passkit-golang-grpc-sdk
 go 1.18
 
 require (
-	github.com/PassKit/passkit-golang-sdk v0.0.0-20200825183225-a0bb08c40049
+	github.com/PassKit/passkit-golang-grpc-sdk v1.1.61
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.10.0
 	google.golang.org/genproto v0.0.0-20220322021311-435b647f9ef2
 	google.golang.org/grpc v1.45.0

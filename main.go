@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/PassKit/passkit-golang-sdk/helpers/router"
+	"github.com/PassKit/passkit-golang-grpc-sdk/helpers/router"
 	"google.golang.org/grpc"
 )
 
