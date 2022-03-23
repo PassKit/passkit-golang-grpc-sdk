@@ -2,27 +2,28 @@ package passkit_golang_sdk
 
 import (
 	"fmt"
-	"log"
-	"google.golang.org/grpc"
 	"io/ioutil"
+	"log"
+
 	"github.com/PassKit/passkit-golang-sdk/helpers/router"
+	"google.golang.org/grpc"
 )
 
 const (
 	// The address & port of the PassKit gRPC service.
-	gRPCHost = "grpc-dev.passkit.io"
+	gRPCHost = "grpc.pub1.passkit.io"
 	gRPCPort = "443"
 
 	// The location of your client certificates.
 	clientCertFile = "certs/certificate.pem" // [Required] Please store your certificate.pem at ./certs directory. Your client certificate you receive by email or on Settings > Developer Credential page (https://dev-app.passkit.io/login).
 	clientKeyFile  = "certs/key.pem"         // [Required] Please store your key.pem at ./certs directory. Your private key you receive by email or on Settings > Developer Credential page (https://dev-app.passkit.io/login). You need to decrypt the key before use. Check README.md for details.
 	clientCAFile   = "certs/ca-chain.pem"    // [Required] Please store your ca-chain.pem at ./certs directory. The certificate chain you receive by email or on Settings > Developer Credential page (https://dev-app.passkit.io/login)
-	 )
+)
 
 var conn *grpc.ClientConn
 
 // ConnectPasskitSdk takes your credentials and establish connection with PassKit SDK.
-func main(){
+func main() {
 	var err error
 
 	cert, err := ioutil.ReadFile(clientCertFile)
