@@ -17,10 +17,12 @@ The PassKit IO SDK makes it quick and easy to create and manage your branded Dig
 1. Create a PassKit account (Sign up for free [HERE](https://app.passkit.com/signup))
 2. Get credentials from your Profile Page.
 3. Choose a type of pass to create.
-   * Membership Cards
+   * Membership Cards 
    * Coupons
    * Boarding Passes
    * Event Tickets _coming soon_
+   
+Please refer to the golang quickstart for more information [HERE](https://github.com/PassKit/passkit-golang-members-grpc-quickstart)
 
 ## Documentation
 * [PassKit.IO Official Documentation](https://docs.passkit.io/)
