@@ -258,7 +258,7 @@ func request_SingleUseCoupons_ListCouponCampaigns_0(ctx context.Context, marshal
 }
 
 var (
-	filter_SingleUseCoupons_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_SingleUseCoupons_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_SingleUseCoupons_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -847,7 +847,7 @@ func local_request_SingleUseCoupons_VoidCoupon_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponsByCouponCampaignDeprecatedClient, runtime.ServerMetadata, error) {
@@ -934,7 +934,7 @@ func request_SingleUseCoupons_ListCouponsByCouponCampaign_0(ctx context.Context,
 }
 
 var (
-	filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1770,7 +1770,7 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 // RegisterSingleUseCouponsHandlerFromEndpoint is same as RegisterSingleUseCouponsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterSingleUseCouponsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

@@ -2312,7 +2312,7 @@ func RegisterIntegrationsHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterUsersHandlerFromEndpoint is same as RegisterUsersHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterUsersHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
@@ -3033,7 +3033,7 @@ var (
 // RegisterIntegrationsHandlerFromEndpoint is same as RegisterIntegrationsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterIntegrationsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

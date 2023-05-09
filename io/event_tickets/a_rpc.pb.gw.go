@@ -246,7 +246,7 @@ func request_EventTickets_ListProductions_0(ctx context.Context, marshaler runti
 }
 
 var (
-	filter_EventTickets_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_EventTickets_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_EventTickets_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, client EventTicketsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -2633,7 +2633,7 @@ func RegisterEventTicketsHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterEventTicketsHandlerFromEndpoint is same as RegisterEventTicketsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterEventTicketsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

@@ -399,7 +399,7 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterDistributionHandlerFromEndpoint is same as RegisterDistributionHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterDistributionHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

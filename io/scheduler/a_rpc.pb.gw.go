@@ -485,7 +485,7 @@ func RegisterSchedulerHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 // RegisterSchedulerHandlerFromEndpoint is same as RegisterSchedulerHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterSchedulerHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

@@ -568,7 +568,7 @@ func local_request_Flights_CreateFlight_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_Flights_GetFlight_0 = &utilities.DoubleArray{Encoding: map[string]int{"carrierCode": 0, "flightNumber": 1, "departureDate": 2, "year": 3, "month": 4, "day": 5, "boardingPoint": 6, "deplaningPoint": 7}, Base: []int{1, 1, 2, 1, 3, 4, 5, 6, 7, 0, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 4, 4, 4, 1, 1, 2, 3, 5, 6, 7, 8, 9}}
+	filter_Flights_GetFlight_0 = &utilities.DoubleArray{Encoding: map[string]int{"carrierCode": 0, "flightNumber": 1, "departureDate": 2, "year": 3, "month": 4, "day": 5, "boardingPoint": 6, "deplaningPoint": 7}, Base: []int{1, 2, 4, 12, 11, 12, 13, 15, 17, 0, 0, 0, 0, 6, 0, 8, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0}, Check: []int{0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 3, 3, 4, 14, 4, 16, 4, 18, 5, 6, 7, 8, 8, 9, 9}}
 )
 
 func request_Flights_GetFlight_0(ctx context.Context, marshaler runtime.Marshaler, client FlightsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -1532,7 +1532,7 @@ func RegisterFlightsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // RegisterFlightsHandlerFromEndpoint is same as RegisterFlightsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterFlightsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}

@@ -817,7 +817,7 @@ func local_request_Members_CheckOutMember_0(ctx context.Context, marshaler runti
 }
 
 var (
-	filter_Members_ListMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_Members_ListMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_Members_ListMembersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (Members_ListMembersDeprecatedClient, runtime.ServerMetadata, error) {
@@ -1176,7 +1176,7 @@ func local_request_Members_DeleteMember_0(ctx context.Context, marshaler runtime
 }
 
 var (
-	filter_Members_CountMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_Members_CountMembersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"programId": 0}, Base: []int{1, 2, 0, 0}, Check: []int{0, 1, 2, 2}}
 )
 
 func request_Members_CountMembersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client MembersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -2865,7 +2865,7 @@ func RegisterMembersHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // RegisterMembersHandlerFromEndpoint is same as RegisterMembersHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterMembersHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.Dial(endpoint, opts...)
+	conn, err := grpc.DialContext(ctx, endpoint, opts...)
 	if err != nil {
 		return err
 	}
