@@ -2,8 +2,8 @@ package passkit_golang_sdk
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
+	"os"
 
 	"github.com/PassKit/passkit-golang-grpc-sdk/helpers/router"
 	"google.golang.org/grpc"
@@ -26,19 +26,19 @@ var conn *grpc.ClientConn
 func main() {
 	var err error
 
-	cert, err := ioutil.ReadFile(clientCertFile)
+	cert, err := os.ReadFile(clientCertFile)
 
 	if err != nil {
 		log.Fatalf("could not load certificate file: %v", err)
 	}
 
-	key, err := ioutil.ReadFile(clientKeyFile)
+	key, err := os.ReadFile(clientKeyFile)
 
 	if err != nil {
 		log.Fatalf("could not load key file: %v", err)
 	}
 
-	ca, err := ioutil.ReadFile(clientCAFile)
+	ca, err := os.ReadFile(clientCAFile)
 
 	if err != nil {
 		log.Fatalf("could not load ca file: %v", err)
