@@ -20,7 +20,7 @@ The PassKit IO SDK makes it quick and easy to create and manage your branded Dig
    * Membership Cards 
    * Coupons
    * Boarding Passes
-   * Event Tickets _coming soon_
+   * Event Tickets
    
 Please refer to the golang quickstart for more information [HERE](https://github.com/PassKit/passkit-golang-grpc-quickstart)
 
