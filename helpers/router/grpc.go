@@ -12,7 +12,7 @@ import (
 	"google.golang.org/grpc/credentials"
 )
 
-// NewCertAuthTLSGRPCClient returns a secure gRPC client which will authenticate with the a certificate and key
+// NewCertAuthTLSGRPCClient returns a secure gRPC client which will authenticate with a certificate and key
 func NewCertAuthTLSGRPCClient(address, certFile, keyFile, caFile string) (*grpc.ClientConn, error) {
 
 	// Load the client certificates from disk
@@ -47,7 +47,7 @@ func NewCertAuthTLSGRPCClient(address, certFile, keyFile, caFile string) (*grpc.
 
 	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
 	if err != nil {
-		return nil, fmt.Errorf("Could not connect to gRPC Server: %v", err)
+		return nil, fmt.Errorf("could not connect to gRPC Server: %v", err)
 	}
 	return conn, nil
 }
