@@ -848,6 +848,252 @@ func local_request_Users_RevokeLegacyCredentials_0(ctx context.Context, marshale
 
 }
 
+func request_Users_CreateTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewTeamMember
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.CreateTeamMember(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_CreateTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq NewTeamMember
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.CreateTeamMember(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.CreatePermissionsForTeamMember(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.CreatePermissionsForTeamMember(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.UpdateTeamMemberPermissions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.UpdateTeamMemberPermissions(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_PatchTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.PatchTeamMemberPermissions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_PatchTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq TeamMemberPermissions
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.PatchTeamMemberPermissions(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_GetTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Id
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+	}
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+	}
+
+	msg, err := client.GetTeamMember(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_GetTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Id
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+	}
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+	}
+
+	msg, err := server.GetTeamMember(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_GetTeamMembers_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (Users_GetTeamMembersClient, runtime.ServerMetadata, error) {
+	var protoReq emptypb.Empty
+	var metadata runtime.ServerMetadata
+
+	stream, err := client.GetTeamMembers(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
+func request_Users_DeleteTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Id
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+	}
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+	}
+
+	msg, err := client.DeleteTeamMember(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_Users_DeleteTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq Id
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
+	}
+
+	protoReq.Id, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
+	}
+
+	msg, err := server.DeleteTeamMember(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_Users_GetTeamMemberLogs_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (Users_GetTeamMemberLogsClient, runtime.ServerMetadata, error) {
+	var protoReq AuditLogRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	stream, err := client.GetTeamMemberLogs(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+
+}
+
 func request_Integrations_CreateIntegrations_0(ctx context.Context, marshaler runtime.Marshaler, client IntegrationsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq IntegrationConfigs
 	var metadata runtime.ServerMetadata
@@ -1379,6 +1625,7 @@ func local_request_Integrations_CallDynamicApi_0(ctx context.Context, marshaler 
 // UnaryRPC     :call UsersServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterUsersHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, server UsersServer) error {
 
 	mux.Handle("POST", pattern_Users_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -1998,6 +2245,170 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 
 	})
 
+	mux.Handle("POST", pattern_Users_CreateTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/CreateTeamMember", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_CreateTeamMember_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_CreateTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Users_CreatePermissionsForTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/CreatePermissionsForTeamMember", runtime.WithHTTPPathPattern("/user/team/permissions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_CreatePermissionsForTeamMember_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_CreatePermissionsForTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_Users_UpdateTeamMemberPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/UpdateTeamMemberPermissions", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_UpdateTeamMemberPermissions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_UpdateTeamMemberPermissions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_Users_PatchTeamMemberPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/PatchTeamMemberPermissions", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_PatchTeamMemberPermissions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_PatchTeamMemberPermissions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Users_GetTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/GetTeamMember", runtime.WithHTTPPathPattern("/user/team/{id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_GetTeamMember_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_GetTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Users_GetTeamMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
+	mux.Handle("DELETE", pattern_Users_DeleteTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Users/DeleteTeamMember", runtime.WithHTTPPathPattern("/user/team/{id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Users_DeleteTeamMember_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_DeleteTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Users_GetTeamMemberLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
+	})
+
 	return nil
 }
 
@@ -2005,6 +2416,7 @@ func RegisterUsersHandlerServer(ctx context.Context, mux *runtime.ServeMux, serv
 // UnaryRPC     :call IntegrationsServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterIntegrationsHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterIntegrationsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server IntegrationsServer) error {
 
 	mux.Handle("POST", pattern_Integrations_CreateIntegrations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -2277,21 +2689,21 @@ func RegisterIntegrationsHandlerServer(ctx context.Context, mux *runtime.ServeMu
 // RegisterUsersHandlerFromEndpoint is same as RegisterUsersHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterUsersHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -2309,7 +2721,7 @@ func RegisterUsersHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "UsersClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "UsersClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "UsersClient" to call the correct interceptors.
+// "UsersClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, client UsersClient) error {
 
 	mux.Handle("POST", pattern_Users_CreateUser_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -2950,6 +3362,182 @@ func RegisterUsersHandlerClient(ctx context.Context, mux *runtime.ServeMux, clie
 
 	})
 
+	mux.Handle("POST", pattern_Users_CreateTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/CreateTeamMember", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_CreateTeamMember_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_CreateTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Users_CreatePermissionsForTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/CreatePermissionsForTeamMember", runtime.WithHTTPPathPattern("/user/team/permissions"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_CreatePermissionsForTeamMember_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_CreatePermissionsForTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PUT", pattern_Users_UpdateTeamMemberPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/UpdateTeamMemberPermissions", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_UpdateTeamMemberPermissions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_UpdateTeamMemberPermissions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_Users_PatchTeamMemberPermissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/PatchTeamMemberPermissions", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_PatchTeamMemberPermissions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_PatchTeamMemberPermissions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Users_GetTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/GetTeamMember", runtime.WithHTTPPathPattern("/user/team/{id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_GetTeamMember_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_GetTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("GET", pattern_Users_GetTeamMembers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/GetTeamMembers", runtime.WithHTTPPathPattern("/user/team"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_GetTeamMembers_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_GetTeamMembers_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("DELETE", pattern_Users_DeleteTeamMember_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/DeleteTeamMember", runtime.WithHTTPPathPattern("/user/team/{id}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_DeleteTeamMember_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_DeleteTeamMember_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_Users_GetTeamMemberLogs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Users/GetTeamMemberLogs", runtime.WithHTTPPathPattern("/user/team/logs"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Users_GetTeamMemberLogs_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_Users_GetTeamMemberLogs_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+
+	})
+
 	return nil
 }
 
@@ -3011,6 +3599,22 @@ var (
 	pattern_Users_DeleteAccount_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "account"}, ""))
 
 	pattern_Users_RevokeLegacyCredentials_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "credentials"}, ""))
+
+	pattern_Users_CreateTeamMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "team"}, ""))
+
+	pattern_Users_CreatePermissionsForTeamMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"user", "team", "permissions"}, ""))
+
+	pattern_Users_UpdateTeamMemberPermissions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "team"}, ""))
+
+	pattern_Users_PatchTeamMemberPermissions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "team"}, ""))
+
+	pattern_Users_GetTeamMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"user", "team", "id"}, ""))
+
+	pattern_Users_GetTeamMembers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"user", "team"}, ""))
+
+	pattern_Users_DeleteTeamMember_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"user", "team", "id"}, ""))
+
+	pattern_Users_GetTeamMemberLogs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"user", "team", "logs"}, ""))
 )
 
 var (
@@ -3071,26 +3675,42 @@ var (
 	forward_Users_DeleteAccount_0 = runtime.ForwardResponseMessage
 
 	forward_Users_RevokeLegacyCredentials_0 = runtime.ForwardResponseMessage
+
+	forward_Users_CreateTeamMember_0 = runtime.ForwardResponseMessage
+
+	forward_Users_CreatePermissionsForTeamMember_0 = runtime.ForwardResponseMessage
+
+	forward_Users_UpdateTeamMemberPermissions_0 = runtime.ForwardResponseMessage
+
+	forward_Users_PatchTeamMemberPermissions_0 = runtime.ForwardResponseMessage
+
+	forward_Users_GetTeamMember_0 = runtime.ForwardResponseMessage
+
+	forward_Users_GetTeamMembers_0 = runtime.ForwardResponseStream
+
+	forward_Users_DeleteTeamMember_0 = runtime.ForwardResponseMessage
+
+	forward_Users_GetTeamMemberLogs_0 = runtime.ForwardResponseStream
 )
 
 // RegisterIntegrationsHandlerFromEndpoint is same as RegisterIntegrationsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterIntegrationsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -3108,7 +3728,7 @@ func RegisterIntegrationsHandler(ctx context.Context, mux *runtime.ServeMux, con
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "IntegrationsClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "IntegrationsClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "IntegrationsClient" to call the correct interceptors.
+// "IntegrationsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterIntegrationsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client IntegrationsClient) error {
 
 	mux.Handle("POST", pattern_Integrations_CreateIntegrations_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

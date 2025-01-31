@@ -934,6 +934,7 @@ func local_request_Images_CountImagesForUser_0(ctx context.Context, marshaler ru
 // UnaryRPC     :call ImagesServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterImagesHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ImagesServer) error {
 
 	mux.Handle("POST", pattern_Images_SetProfileImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -1445,21 +1446,21 @@ func RegisterImagesHandlerServer(ctx context.Context, mux *runtime.ServeMux, ser
 // RegisterImagesHandlerFromEndpoint is same as RegisterImagesHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterImagesHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -1477,7 +1478,7 @@ func RegisterImagesHandler(ctx context.Context, mux *runtime.ServeMux, conn *grp
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "ImagesClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "ImagesClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "ImagesClient" to call the correct interceptors.
+// "ImagesClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterImagesHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ImagesClient) error {
 
 	mux.Handle("POST", pattern_Images_SetProfileImage_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {

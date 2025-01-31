@@ -766,6 +766,32 @@ func local_request_SingleUseCoupons_VoidCoupon_0(ctx context.Context, marshaler 
 
 }
 
+func request_SingleUseCoupons_BulkVoidCoupons_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq io_0.BulkPassActionRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.BulkVoidCoupons(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_SingleUseCoupons_BulkVoidCoupons_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq io_0.BulkPassActionRequest
+	var metadata runtime.ServerMetadata
+
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.BulkVoidCoupons(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 var (
 	filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
@@ -1087,6 +1113,7 @@ func local_request_SingleUseCoupons_GetMetaKeysForCampaign_0(ctx context.Context
 // UnaryRPC     :call SingleUseCouponsServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSingleUseCouponsHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SingleUseCouponsServer) error {
 
 	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -1517,6 +1544,31 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("DELETE", pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1662,21 +1714,21 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 // RegisterSingleUseCouponsHandlerFromEndpoint is same as RegisterSingleUseCouponsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterSingleUseCouponsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -1694,7 +1746,7 @@ func RegisterSingleUseCouponsHandler(ctx context.Context, mux *runtime.ServeMux,
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SingleUseCouponsClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SingleUseCouponsClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "SingleUseCouponsClient" to call the correct interceptors.
+// "SingleUseCouponsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SingleUseCouponsClient) error {
 
 	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -2137,6 +2189,28 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
+	mux.Handle("DELETE", pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2335,6 +2409,8 @@ var (
 
 	pattern_SingleUseCoupons_VoidCoupon_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
 
+	pattern_SingleUseCoupons_BulkVoidCoupons_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "coupons", "bulk"}, ""))
+
 	pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "coupons", "couponCampaignId"}, ""))
 
 	pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "list", "couponCampaignId"}, ""))
@@ -2390,6 +2466,8 @@ var (
 	forward_SingleUseCoupons_GetCouponByExternalId_0 = runtime.ForwardResponseMessage
 
 	forward_SingleUseCoupons_VoidCoupon_0 = runtime.ForwardResponseMessage
+
+	forward_SingleUseCoupons_BulkVoidCoupons_0 = runtime.ForwardResponseMessage
 
 	forward_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = runtime.ForwardResponseStream
 

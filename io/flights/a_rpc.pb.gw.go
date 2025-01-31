@@ -863,6 +863,7 @@ func local_request_Flights_DeleteBoardingPass_0(ctx context.Context, marshaler r
 // UnaryRPC     :call FlightsServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterFlightsHandlerFromEndpoint instead.
+// GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterFlightsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server FlightsServer) error {
 
 	mux.Handle("POST", pattern_Flights_CreatePort_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
@@ -1396,21 +1397,21 @@ func RegisterFlightsHandlerServer(ctx context.Context, mux *runtime.ServeMux, se
 // RegisterFlightsHandlerFromEndpoint is same as RegisterFlightsHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
 func RegisterFlightsHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
-	conn, err := grpc.DialContext(ctx, endpoint, opts...)
+	conn, err := grpc.NewClient(endpoint, opts...)
 	if err != nil {
 		return err
 	}
 	defer func() {
 		if err != nil {
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 			return
 		}
 		go func() {
 			<-ctx.Done()
 			if cerr := conn.Close(); cerr != nil {
-				grpclog.Infof("Failed to close conn to %s: %v", endpoint, cerr)
+				grpclog.Errorf("Failed to close conn to %s: %v", endpoint, cerr)
 			}
 		}()
 	}()
@@ -1428,7 +1429,7 @@ func RegisterFlightsHandler(ctx context.Context, mux *runtime.ServeMux, conn *gr
 // to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "FlightsClient".
 // Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "FlightsClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "FlightsClient" to call the correct interceptors.
+// "FlightsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterFlightsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client FlightsClient) error {
 
 	mux.Handle("POST", pattern_Flights_CreatePort_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
