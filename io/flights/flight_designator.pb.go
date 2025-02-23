@@ -12,13 +12,14 @@
 package flights
 
 import (
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
+
 	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
 )
 
 const (
@@ -1086,4 +1087,3 @@ func file_io_flights_flight_designator_proto_init() {
 	file_io_flights_flight_designator_proto_goTypes = nil
 	file_io_flights_flight_designator_proto_depIdxs = nil
 }
-
