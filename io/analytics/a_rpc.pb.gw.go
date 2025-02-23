@@ -10,6 +10,7 @@ package analytics
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -25,81 +26,64 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
-
 var (
-	filter_Analytics_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
 )
 
+var filter_Analytics_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+
 func request_Analytics_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, client AnalyticsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.AnalyticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.AnalyticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["classId"]
+	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")
 	}
-
 	protoReq.ClassId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Analytics_GetAnalytics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetAnalytics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Analytics_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, server AnalyticsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.AnalyticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.AnalyticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["classId"]
+	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")
 	}
-
 	protoReq.ClassId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Analytics_GetAnalytics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetAnalytics(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterAnalyticsHandlerServer registers the http handlers for service Analytics to "mux".
@@ -108,16 +92,13 @@ func local_request_Analytics_GetAnalytics_0(ctx context.Context, marshaler runti
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterAnalyticsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterAnalyticsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server AnalyticsServer) error {
-
-	mux.Handle("GET", pattern_Analytics_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Analytics_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/analytics.Analytics/GetAnalytics", runtime.WithHTTPPathPattern("/analytics/{classId}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/analytics.Analytics/GetAnalytics", runtime.WithHTTPPathPattern("/analytics/{classId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -129,9 +110,7 @@ func RegisterAnalyticsHandlerServer(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Analytics_GetAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -158,7 +137,6 @@ func RegisterAnalyticsHandlerFromEndpoint(ctx context.Context, mux *runtime.Serv
 			}
 		}()
 	}()
-
 	return RegisterAnalyticsHandler(ctx, mux, conn)
 }
 
@@ -174,14 +152,11 @@ func RegisterAnalyticsHandler(ctx context.Context, mux *runtime.ServeMux, conn *
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "AnalyticsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterAnalyticsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client AnalyticsClient) error {
-
-	mux.Handle("GET", pattern_Analytics_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Analytics_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/analytics.Analytics/GetAnalytics", runtime.WithHTTPPathPattern("/analytics/{classId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/analytics.Analytics/GetAnalytics", runtime.WithHTTPPathPattern("/analytics/{classId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -192,11 +167,8 @@ func RegisterAnalyticsHandlerClient(ctx context.Context, mux *runtime.ServeMux, 
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Analytics_GetAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 

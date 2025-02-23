@@ -10,6 +10,7 @@ package io
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -24,177 +25,166 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_Distribution_SendWelcomeEmail_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq EmailDistributionRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq EmailDistributionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.SendWelcomeEmail(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_SendWelcomeEmail_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq EmailDistributionRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq EmailDistributionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.SendWelcomeEmail(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Distribution_GetSmartPassLink_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SmartPassLinkRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SmartPassLinkRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetSmartPassLink(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_GetSmartPassLink_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SmartPassLinkRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SmartPassLinkRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetSmartPassLink(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_Distribution_GetDataCollectionPageFields_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_Distribution_GetDataCollectionPageFields_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_Distribution_GetDataCollectionPageFields_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassObjectInput
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ClassObjectInput
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Distribution_GetDataCollectionPageFields_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetDataCollectionPageFields(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_GetDataCollectionPageFields_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ClassObjectInput
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq ClassObjectInput
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_Distribution_GetDataCollectionPageFields_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetDataCollectionPageFields(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Distribution_UploadSmartPassCsv_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SmartPassCsvUploadRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SmartPassCsvUploadRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UploadSmartPassCsv(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_UploadSmartPassCsv_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq SmartPassCsvUploadRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq SmartPassCsvUploadRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UploadSmartPassCsv(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Distribution_ImportProtocolCsv_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ImportProtocolRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ImportProtocolRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ImportProtocolCsv(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_ImportProtocolCsv_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ImportProtocolRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ImportProtocolRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ImportProtocolCsv(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_Distribution_ValidateBarcode_0(ctx context.Context, marshaler runtime.Marshaler, client DistributionClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Payload
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Payload
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.ValidateBarcode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_Distribution_ValidateBarcode_0(ctx context.Context, marshaler runtime.Marshaler, server DistributionServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Payload
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Payload
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.ValidateBarcode(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterDistributionHandlerServer registers the http handlers for service Distribution to "mux".
@@ -203,16 +193,13 @@ func local_request_Distribution_ValidateBarcode_0(ctx context.Context, marshaler
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterDistributionHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMux, server DistributionServer) error {
-
-	mux.Handle("POST", pattern_Distribution_SendWelcomeEmail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_SendWelcomeEmail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/SendWelcomeEmail", runtime.WithHTTPPathPattern("/distribution/email"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/SendWelcomeEmail", runtime.WithHTTPPathPattern("/distribution/email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -224,20 +211,15 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_SendWelcomeEmail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_GetSmartPassLink_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_GetSmartPassLink_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/GetSmartPassLink", runtime.WithHTTPPathPattern("/distribution/smartpasslink"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/GetSmartPassLink", runtime.WithHTTPPathPattern("/distribution/smartpasslink"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -249,20 +231,15 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_GetSmartPassLink_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Distribution_GetDataCollectionPageFields_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Distribution_GetDataCollectionPageFields_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/GetDataCollectionPageFields", runtime.WithHTTPPathPattern("/distribution/fields"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/GetDataCollectionPageFields", runtime.WithHTTPPathPattern("/distribution/fields"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -274,20 +251,15 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_GetDataCollectionPageFields_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_UploadSmartPassCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_UploadSmartPassCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/UploadSmartPassCsv", runtime.WithHTTPPathPattern("/distribution/smartpass"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/UploadSmartPassCsv", runtime.WithHTTPPathPattern("/distribution/smartpass"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -299,20 +271,15 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_UploadSmartPassCsv_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_ImportProtocolCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_ImportProtocolCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/ImportProtocolCsv", runtime.WithHTTPPathPattern("/distribution/csv-import"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/ImportProtocolCsv", runtime.WithHTTPPathPattern("/distribution/csv-import"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -324,20 +291,15 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_ImportProtocolCsv_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_ValidateBarcode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_ValidateBarcode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/ValidateBarcode", runtime.WithHTTPPathPattern("/distribution/validateBarcode"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Distribution/ValidateBarcode", runtime.WithHTTPPathPattern("/distribution/validateBarcode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -349,9 +311,7 @@ func RegisterDistributionHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_ValidateBarcode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -378,7 +338,6 @@ func RegisterDistributionHandlerFromEndpoint(ctx context.Context, mux *runtime.S
 			}
 		}()
 	}()
-
 	return RegisterDistributionHandler(ctx, mux, conn)
 }
 
@@ -394,14 +353,11 @@ func RegisterDistributionHandler(ctx context.Context, mux *runtime.ServeMux, con
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "DistributionClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMux, client DistributionClient) error {
-
-	mux.Handle("POST", pattern_Distribution_SendWelcomeEmail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_SendWelcomeEmail_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/SendWelcomeEmail", runtime.WithHTTPPathPattern("/distribution/email"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/SendWelcomeEmail", runtime.WithHTTPPathPattern("/distribution/email"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -412,18 +368,13 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_SendWelcomeEmail_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_GetSmartPassLink_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_GetSmartPassLink_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/GetSmartPassLink", runtime.WithHTTPPathPattern("/distribution/smartpasslink"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/GetSmartPassLink", runtime.WithHTTPPathPattern("/distribution/smartpasslink"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -434,18 +385,13 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_GetSmartPassLink_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_Distribution_GetDataCollectionPageFields_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_Distribution_GetDataCollectionPageFields_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/GetDataCollectionPageFields", runtime.WithHTTPPathPattern("/distribution/fields"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/GetDataCollectionPageFields", runtime.WithHTTPPathPattern("/distribution/fields"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -456,18 +402,13 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_GetDataCollectionPageFields_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_UploadSmartPassCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_UploadSmartPassCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/UploadSmartPassCsv", runtime.WithHTTPPathPattern("/distribution/smartpass"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/UploadSmartPassCsv", runtime.WithHTTPPathPattern("/distribution/smartpass"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -478,18 +419,13 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_UploadSmartPassCsv_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_ImportProtocolCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_ImportProtocolCsv_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/ImportProtocolCsv", runtime.WithHTTPPathPattern("/distribution/csv-import"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/ImportProtocolCsv", runtime.WithHTTPPathPattern("/distribution/csv-import"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -500,18 +436,13 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_ImportProtocolCsv_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_Distribution_ValidateBarcode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_Distribution_ValidateBarcode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/ValidateBarcode", runtime.WithHTTPPathPattern("/distribution/validateBarcode"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Distribution/ValidateBarcode", runtime.WithHTTPPathPattern("/distribution/validateBarcode"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -522,38 +453,25 @@ func RegisterDistributionHandlerClient(ctx context.Context, mux *runtime.ServeMu
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_Distribution_ValidateBarcode_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_Distribution_SendWelcomeEmail_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "email"}, ""))
-
-	pattern_Distribution_GetSmartPassLink_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "smartpasslink"}, ""))
-
+	pattern_Distribution_SendWelcomeEmail_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "email"}, ""))
+	pattern_Distribution_GetSmartPassLink_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "smartpasslink"}, ""))
 	pattern_Distribution_GetDataCollectionPageFields_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "fields"}, ""))
-
-	pattern_Distribution_UploadSmartPassCsv_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "smartpass"}, ""))
-
-	pattern_Distribution_ImportProtocolCsv_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "csv-import"}, ""))
-
-	pattern_Distribution_ValidateBarcode_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "validateBarcode"}, ""))
+	pattern_Distribution_UploadSmartPassCsv_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "smartpass"}, ""))
+	pattern_Distribution_ImportProtocolCsv_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "csv-import"}, ""))
+	pattern_Distribution_ValidateBarcode_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"distribution", "validateBarcode"}, ""))
 )
 
 var (
-	forward_Distribution_SendWelcomeEmail_0 = runtime.ForwardResponseMessage
-
-	forward_Distribution_GetSmartPassLink_0 = runtime.ForwardResponseMessage
-
+	forward_Distribution_SendWelcomeEmail_0            = runtime.ForwardResponseMessage
+	forward_Distribution_GetSmartPassLink_0            = runtime.ForwardResponseMessage
 	forward_Distribution_GetDataCollectionPageFields_0 = runtime.ForwardResponseMessage
-
-	forward_Distribution_UploadSmartPassCsv_0 = runtime.ForwardResponseMessage
-
-	forward_Distribution_ImportProtocolCsv_0 = runtime.ForwardResponseMessage
-
-	forward_Distribution_ValidateBarcode_0 = runtime.ForwardResponseMessage
+	forward_Distribution_UploadSmartPassCsv_0          = runtime.ForwardResponseMessage
+	forward_Distribution_ImportProtocolCsv_0           = runtime.ForwardResponseMessage
+	forward_Distribution_ValidateBarcode_0             = runtime.ForwardResponseMessage
 )

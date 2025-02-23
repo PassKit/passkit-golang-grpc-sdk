@@ -10,6 +10,7 @@ package single_use_coupons
 
 import (
 	"context"
+	"errors"
 	"io"
 	"net/http"
 
@@ -25,184 +26,149 @@ import (
 )
 
 // Suppress "imported and not used" errors
-var _ codes.Code
-var _ io.Reader
-var _ status.Status
-var _ = runtime.String
-var _ = utilities.NewDoubleArray
-var _ = metadata.Join
+var (
+	_ codes.Code
+	_ io.Reader
+	_ status.Status
+	_ = errors.New
+	_ = runtime.String
+	_ = utilities.NewDoubleArray
+	_ = metadata.Join
+)
 
 func request_SingleUseCoupons_CreateCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponCampaign
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponCampaign
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.CreateCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CreateCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponCampaign
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponCampaign
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CreateCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_UpdateCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponCampaign
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponCampaign
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpdateCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_UpdateCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponCampaign
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponCampaign
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpdateCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_GetCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.GetCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.GetCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_DeleteCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.DeleteCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_DeleteCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.DeleteCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_SingleUseCoupons_ListCouponCampaignsDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_SingleUseCoupons_ListCouponCampaignsDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_SingleUseCoupons_ListCouponCampaignsDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponCampaignsDeprecatedClient, runtime.ServerMetadata, error) {
-	var protoReq io_0.Pagination
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq io_0.Pagination
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_ListCouponCampaignsDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	stream, err := client.ListCouponCampaignsDeprecated(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -213,17 +179,16 @@ func request_SingleUseCoupons_ListCouponCampaignsDeprecated_0(ctx context.Contex
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
 func request_SingleUseCoupons_ListCouponCampaigns_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponCampaignsClient, runtime.ServerMetadata, error) {
-	var protoReq io_0.Filters
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq io_0.Filters
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	stream, err := client.ListCouponCampaigns(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -234,250 +199,191 @@ func request_SingleUseCoupons_ListCouponCampaigns_0(ctx context.Context, marshal
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
-var (
-	filter_SingleUseCoupons_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_SingleUseCoupons_GetAnalytics_0 = &utilities.DoubleArray{Encoding: map[string]int{"classId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_SingleUseCoupons_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.AnalyticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.AnalyticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["classId"]
+	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")
 	}
-
 	protoReq.ClassId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_GetAnalytics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.GetAnalytics(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetAnalytics_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.AnalyticsRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.AnalyticsRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["classId"]
+	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")
 	}
-
 	protoReq.ClassId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "classId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_GetAnalytics_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.GetAnalytics(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_CreateCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponOffer
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponOffer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.CreateCouponOffer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CreateCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponOffer
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponOffer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CreateCouponOffer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_UpdateCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponOffer
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponOffer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpdateCouponOffer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_UpdateCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponOffer
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponOffer
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpdateCouponOffer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_GetCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.GetCouponOffer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.GetCouponOffer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_DeleteCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.DeleteCouponOffer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_DeleteCouponOffer_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.DeleteCouponOffer(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_SingleUseCoupons_ListCouponOffersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+var filter_SingleUseCoupons_ListCouponOffersDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 
 func request_SingleUseCoupons_ListCouponOffersDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponOffersDeprecatedClient, runtime.ServerMetadata, error) {
-	var protoReq CouponOffersListRequestDeprecated
-	var metadata runtime.ServerMetadata
-
+	var (
+		protoReq CouponOffersListRequestDeprecated
+		metadata runtime.ServerMetadata
+	)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_ListCouponOffersDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	stream, err := client.ListCouponOffersDeprecated(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -488,17 +394,16 @@ func request_SingleUseCoupons_ListCouponOffersDeprecated_0(ctx context.Context, 
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
 func request_SingleUseCoupons_ListCouponOffers_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponOffersClient, runtime.ServerMetadata, error) {
-	var protoReq CouponOffersListRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponOffersListRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	stream, err := client.ListCouponOffers(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -509,321 +414,262 @@ func request_SingleUseCoupons_ListCouponOffers_0(ctx context.Context, marshaler 
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
 func request_SingleUseCoupons_CreateCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.CreateCoupon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CreateCoupon_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CreateCoupon(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_UpdateCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpdateCoupon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_UpdateCoupon_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpdateCoupon(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_RedeemCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.RedeemCoupon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_RedeemCoupon_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.RedeemCoupon(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_UpdateCouponExternalId_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponNewExternalIdRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponNewExternalIdRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.UpdateCouponExternalId(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_UpdateCouponExternalId_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CouponNewExternalIdRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CouponNewExternalIdRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.UpdateCouponExternalId(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_GetCouponById_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.GetCouponById(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetCouponById_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.GetCouponById(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_GetCouponByExternalId_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ExternalIdRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq ExternalIdRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	val, ok = pathParams["externalId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "externalId")
 	}
-
 	protoReq.ExternalId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "externalId", err)
 	}
-
 	msg, err := client.GetCouponByExternalId(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetCouponByExternalId_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ExternalIdRequest
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq ExternalIdRequest
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	val, ok = pathParams["externalId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "externalId")
 	}
-
 	protoReq.ExternalId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "externalId", err)
 	}
-
 	msg, err := server.GetCouponByExternalId(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_VoidCoupon_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.VoidCoupon(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_VoidCoupon_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq Coupon
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq Coupon
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.VoidCoupon(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_BulkVoidCoupons_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.BulkPassActionRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq io_0.BulkPassActionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.BulkVoidCoupons(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_BulkVoidCoupons_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.BulkPassActionRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq io_0.BulkPassActionRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.BulkVoidCoupons(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
-var (
-	filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponsByCouponCampaignDeprecatedClient, runtime.ServerMetadata, error) {
-	var protoReq ListRequestDeprecated
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq ListRequestDeprecated
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	stream, err := client.ListCouponsByCouponCampaignDeprecated(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -834,34 +680,25 @@ func request_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0(ctx contex
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
 func request_SingleUseCoupons_ListCouponsByCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (SingleUseCoupons_ListCouponsByCouponCampaignClient, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	stream, err := client.ListCouponsByCouponCampaign(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -872,241 +709,182 @@ func request_SingleUseCoupons_ListCouponsByCouponCampaign_0(ctx context.Context,
 	}
 	metadata.HeaderMD = header
 	return stream, metadata, nil
-
 }
 
-var (
-	filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
-)
+var filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = &utilities.DoubleArray{Encoding: map[string]int{"couponCampaignId": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 
 func request_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequestDeprecated
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq ListRequestDeprecated
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.CountCouponsByCouponCampaignDeprecated(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequestDeprecated
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq ListRequestDeprecated
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CountCouponsByCouponCampaignDeprecated(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_CountCouponsByCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	msg, err := client.CountCouponsByCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CountCouponsByCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq ListRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["couponCampaignId"]
+	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
 	}
-
 	protoReq.CouponCampaignId, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "couponCampaignId", err)
 	}
-
 	msg, err := server.CountCouponsByCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_PatchPerson_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.PersonRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq io_0.PersonRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.PatchPerson(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_PatchPerson_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.PersonRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq io_0.PersonRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.PatchPerson(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_CopyCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CampaignCopyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CampaignCopyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := client.CopyCouponCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_CopyCouponCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CampaignCopyRequest
-	var metadata runtime.ServerMetadata
-
-	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
+	var (
+		protoReq CampaignCopyRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-
 	msg, err := server.CopyCouponCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 func request_SingleUseCoupons_GetMetaKeysForCampaign_0(ctx context.Context, marshaler runtime.Marshaler, client SingleUseCouponsClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := client.GetMetaKeysForCampaign(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
-
 }
 
 func local_request_SingleUseCoupons_GetMetaKeysForCampaign_0(ctx context.Context, marshaler runtime.Marshaler, server SingleUseCouponsServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq io_0.Id
-	var metadata runtime.ServerMetadata
-
 	var (
-		val string
-		ok  bool
-		err error
-		_   = err
+		protoReq io_0.Id
+		metadata runtime.ServerMetadata
+		err      error
 	)
-
-	val, ok = pathParams["id"]
+	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
 	}
-
 	protoReq.Id, err = runtime.String(val)
 	if err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
-
 	msg, err := server.GetMetaKeysForCampaign(ctx, &protoReq)
 	return msg, metadata, err
-
 }
 
 // RegisterSingleUseCouponsHandlerServer registers the http handlers for service SingleUseCoupons to "mux".
@@ -1115,16 +893,13 @@ func local_request_SingleUseCoupons_GetMetaKeysForCampaign_0(ctx context.Context
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterSingleUseCouponsHandlerFromEndpoint instead.
 // GRPC interceptors will not work for this type of registration. To use interceptors, you must use the "runtime.WithMiddlewares" option in the "runtime.NewServeMux" call.
 func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.ServeMux, server SingleUseCouponsServer) error {
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1136,20 +911,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1161,20 +931,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1186,20 +951,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_DeleteCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_DeleteCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1211,34 +971,29 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_DeleteCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponCampaigns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponCampaigns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetAnalytics", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{classId}/analytics"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetAnalytics", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{classId}/analytics"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1250,20 +1005,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1275,20 +1025,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1300,20 +1045,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1325,20 +1065,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_DeleteCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_DeleteCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1350,34 +1085,29 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_DeleteCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponOffersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponOffersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1389,20 +1119,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1414,20 +1139,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_RedeemCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_RedeemCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/RedeemCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/redeem"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/RedeemCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/redeem"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1439,20 +1159,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_RedeemCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1464,20 +1179,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponExternalId_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponById_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponById_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponById", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponById", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1489,20 +1199,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponById_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponByExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponByExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponByExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId/{couponCampaignId}/{externalId}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponByExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId/{couponCampaignId}/{externalId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1514,20 +1219,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponByExternalId_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_VoidCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_VoidCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/VoidCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/VoidCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1539,20 +1239,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_VoidCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1564,34 +1259,29 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
 
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
 		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 		return
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1603,20 +1293,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1628,20 +1313,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CountCouponsByCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PATCH", pattern_SingleUseCoupons_PatchPerson_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_SingleUseCoupons_PatchPerson_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/PatchPerson", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/person"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/PatchPerson", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/person"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1653,20 +1333,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_PatchPerson_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CopyCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CopyCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CopyCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/copy"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CopyCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/copy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1678,20 +1353,15 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CopyCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetMetaKeysForCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetMetaKeysForCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetMetaKeysForCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/meta/{id}"))
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetMetaKeysForCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/meta/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1703,9 +1373,7 @@ func RegisterSingleUseCouponsHandlerServer(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetMetaKeysForCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
 
 	return nil
@@ -1732,7 +1400,6 @@ func RegisterSingleUseCouponsHandlerFromEndpoint(ctx context.Context, mux *runti
 			}
 		}()
 	}()
-
 	return RegisterSingleUseCouponsHandler(ctx, mux, conn)
 }
 
@@ -1748,14 +1415,11 @@ func RegisterSingleUseCouponsHandler(ctx context.Context, mux *runtime.ServeMux,
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
 // "SingleUseCouponsClient" to call the correct interceptors. This client ignores the HTTP middlewares.
 func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SingleUseCouponsClient) error {
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1766,18 +1430,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1788,18 +1447,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1810,18 +1464,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_DeleteCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_DeleteCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1832,18 +1481,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_DeleteCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponCampaignsDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/campaigns"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponCampaignsDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/campaigns"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1854,18 +1498,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponCampaignsDeprecated_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponCampaigns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponCampaigns_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponCampaigns", runtime.WithHTTPPathPattern("/coupon/singleUse/campaigns/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponCampaigns", runtime.WithHTTPPathPattern("/coupon/singleUse/campaigns/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1876,18 +1515,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponCampaigns_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetAnalytics_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetAnalytics", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{classId}/analytics"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetAnalytics", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/{classId}/analytics"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1898,18 +1532,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetAnalytics_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1920,18 +1549,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1942,18 +1566,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1964,18 +1583,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_DeleteCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_DeleteCouponOffer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/DeleteCouponOffer", runtime.WithHTTPPathPattern("/coupon/singleUse/offer/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -1986,18 +1600,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_DeleteCouponOffer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponOffersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponOffersDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponOffersDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/offers"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponOffersDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/offers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2008,18 +1617,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponOffersDeprecated_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponOffers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponOffers", runtime.WithHTTPPathPattern("/coupon/singleUse/offers/list"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponOffers", runtime.WithHTTPPathPattern("/coupon/singleUse/offers/list"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2030,18 +1634,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponOffers_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CreateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CreateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2052,18 +1651,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CreateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2074,18 +1668,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_RedeemCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_RedeemCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/RedeemCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/redeem"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/RedeemCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/redeem"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2096,18 +1685,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_RedeemCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PUT", pattern_SingleUseCoupons_UpdateCouponExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPut, pattern_SingleUseCoupons_UpdateCouponExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/UpdateCouponExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2118,18 +1702,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_UpdateCouponExternalId_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponById_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponById_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponById", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponById", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2140,18 +1719,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponById_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetCouponByExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetCouponByExternalId_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponByExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId/{couponCampaignId}/{externalId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetCouponByExternalId", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/externalId/{couponCampaignId}/{externalId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2162,18 +1736,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetCouponByExternalId_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_VoidCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_VoidCoupon_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/VoidCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/VoidCoupon", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2184,18 +1753,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_VoidCoupon_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("DELETE", pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodDelete, pattern_SingleUseCoupons_BulkVoidCoupons_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/BulkVoidCoupons", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/bulk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2206,18 +1770,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_BulkVoidCoupons_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2228,18 +1787,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/list/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/ListCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/list/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2250,18 +1804,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_ListCouponsByCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaignDeprecated", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2272,18 +1821,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CountCouponsByCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/coupons/count/{couponCampaignId}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2294,18 +1838,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CountCouponsByCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("PATCH", pattern_SingleUseCoupons_PatchPerson_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPatch, pattern_SingleUseCoupons_PatchPerson_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/PatchPerson", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/person"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/PatchPerson", runtime.WithHTTPPathPattern("/coupon/singleUse/coupon/person"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2316,18 +1855,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_PatchPerson_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("POST", pattern_SingleUseCoupons_CopyCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodPost, pattern_SingleUseCoupons_CopyCouponCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CopyCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/copy"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/CopyCouponCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/copy"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2338,18 +1872,13 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_CopyCouponCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
-	mux.Handle("GET", pattern_SingleUseCoupons_GetMetaKeysForCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle(http.MethodGet, pattern_SingleUseCoupons_GetMetaKeysForCampaign_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		var err error
-		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetMetaKeysForCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/meta/{id}"))
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/single_use_coupons.SingleUseCoupons/GetMetaKeysForCampaign", runtime.WithHTTPPathPattern("/coupon/singleUse/campaign/meta/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -2360,126 +1889,69 @@ func RegisterSingleUseCouponsHandlerClient(ctx context.Context, mux *runtime.Ser
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
-
 		forward_SingleUseCoupons_GetMetaKeysForCampaign_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
 	})
-
 	return nil
 }
 
 var (
-	pattern_SingleUseCoupons_CreateCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaign"}, ""))
-
-	pattern_SingleUseCoupons_UpdateCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaign"}, ""))
-
-	pattern_SingleUseCoupons_GetCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "campaign", "id"}, ""))
-
-	pattern_SingleUseCoupons_DeleteCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "campaign", "id"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaigns"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponCampaigns_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "campaigns", "list"}, ""))
-
-	pattern_SingleUseCoupons_GetAnalytics_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"coupon", "singleUse", "campaign", "classId", "analytics"}, ""))
-
-	pattern_SingleUseCoupons_CreateCouponOffer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offer"}, ""))
-
-	pattern_SingleUseCoupons_UpdateCouponOffer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offer"}, ""))
-
-	pattern_SingleUseCoupons_GetCouponOffer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "offer", "id"}, ""))
-
-	pattern_SingleUseCoupons_DeleteCouponOffer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "offer", "id"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponOffersDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offers"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponOffers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "offers", "list"}, ""))
-
-	pattern_SingleUseCoupons_CreateCoupon_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
-
-	pattern_SingleUseCoupons_UpdateCoupon_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
-
-	pattern_SingleUseCoupons_RedeemCoupon_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "redeem"}, ""))
-
-	pattern_SingleUseCoupons_UpdateCouponExternalId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "externalId"}, ""))
-
-	pattern_SingleUseCoupons_GetCouponById_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 1, 0, 4, 1, 5, 2}, []string{"coupon", "singleUse", "id"}, ""))
-
-	pattern_SingleUseCoupons_GetCouponByExternalId_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 2}, []string{"coupon", "singleUse", "externalId", "couponCampaignId"}, ""))
-
-	pattern_SingleUseCoupons_VoidCoupon_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
-
-	pattern_SingleUseCoupons_BulkVoidCoupons_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "coupons", "bulk"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "coupons", "couponCampaignId"}, ""))
-
-	pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "list", "couponCampaignId"}, ""))
-
+	pattern_SingleUseCoupons_CreateCouponCampaign_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaign"}, ""))
+	pattern_SingleUseCoupons_UpdateCouponCampaign_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaign"}, ""))
+	pattern_SingleUseCoupons_GetCouponCampaign_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "campaign", "id"}, ""))
+	pattern_SingleUseCoupons_DeleteCouponCampaign_0                   = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "campaign", "id"}, ""))
+	pattern_SingleUseCoupons_ListCouponCampaignsDeprecated_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "campaigns"}, ""))
+	pattern_SingleUseCoupons_ListCouponCampaigns_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "campaigns", "list"}, ""))
+	pattern_SingleUseCoupons_GetAnalytics_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"coupon", "singleUse", "campaign", "classId", "analytics"}, ""))
+	pattern_SingleUseCoupons_CreateCouponOffer_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offer"}, ""))
+	pattern_SingleUseCoupons_UpdateCouponOffer_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offer"}, ""))
+	pattern_SingleUseCoupons_GetCouponOffer_0                         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "offer", "id"}, ""))
+	pattern_SingleUseCoupons_DeleteCouponOffer_0                      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "offer", "id"}, ""))
+	pattern_SingleUseCoupons_ListCouponOffersDeprecated_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"coupon", "singleUse", "offers"}, ""))
+	pattern_SingleUseCoupons_ListCouponOffers_0                       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "offers", "list"}, ""))
+	pattern_SingleUseCoupons_CreateCoupon_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
+	pattern_SingleUseCoupons_UpdateCoupon_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
+	pattern_SingleUseCoupons_RedeemCoupon_0                           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "redeem"}, ""))
+	pattern_SingleUseCoupons_UpdateCouponExternalId_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "externalId"}, ""))
+	pattern_SingleUseCoupons_GetCouponById_0                          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 1, 0, 4, 1, 5, 2}, []string{"coupon", "singleUse", "id"}, ""))
+	pattern_SingleUseCoupons_GetCouponByExternalId_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2, 1, 0, 4, 1, 5, 3, 1, 0, 4, 1, 5, 2}, []string{"coupon", "singleUse", "externalId", "couponCampaignId"}, ""))
+	pattern_SingleUseCoupons_VoidCoupon_0                             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0}, []string{"coupon", "singleUse"}, ""))
+	pattern_SingleUseCoupons_BulkVoidCoupons_0                        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "coupons", "bulk"}, ""))
+	pattern_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"coupon", "singleUse", "coupons", "couponCampaignId"}, ""))
+	pattern_SingleUseCoupons_ListCouponsByCouponCampaign_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "list", "couponCampaignId"}, ""))
 	pattern_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "count", "couponCampaignId"}, ""))
-
-	pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "count", "couponCampaignId"}, ""))
-
-	pattern_SingleUseCoupons_PatchPerson_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "person"}, ""))
-
-	pattern_SingleUseCoupons_CopyCouponCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "campaign", "copy"}, ""))
-
-	pattern_SingleUseCoupons_GetMetaKeysForCampaign_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "campaign", "meta", "id"}, ""))
+	pattern_SingleUseCoupons_CountCouponsByCouponCampaign_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "coupons", "count", "couponCampaignId"}, ""))
+	pattern_SingleUseCoupons_PatchPerson_0                            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 0, 2, 2}, []string{"coupon", "singleUse", "person"}, ""))
+	pattern_SingleUseCoupons_CopyCouponCampaign_0                     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"coupon", "singleUse", "campaign", "copy"}, ""))
+	pattern_SingleUseCoupons_GetMetaKeysForCampaign_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"coupon", "singleUse", "campaign", "meta", "id"}, ""))
 )
 
 var (
-	forward_SingleUseCoupons_CreateCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_UpdateCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_GetCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_DeleteCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_ListCouponCampaignsDeprecated_0 = runtime.ForwardResponseStream
-
-	forward_SingleUseCoupons_ListCouponCampaigns_0 = runtime.ForwardResponseStream
-
-	forward_SingleUseCoupons_GetAnalytics_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_CreateCouponOffer_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_UpdateCouponOffer_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_GetCouponOffer_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_DeleteCouponOffer_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_ListCouponOffersDeprecated_0 = runtime.ForwardResponseStream
-
-	forward_SingleUseCoupons_ListCouponOffers_0 = runtime.ForwardResponseStream
-
-	forward_SingleUseCoupons_CreateCoupon_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_UpdateCoupon_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_RedeemCoupon_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_UpdateCouponExternalId_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_GetCouponById_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_GetCouponByExternalId_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_VoidCoupon_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_BulkVoidCoupons_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0 = runtime.ForwardResponseStream
-
-	forward_SingleUseCoupons_ListCouponsByCouponCampaign_0 = runtime.ForwardResponseStream
-
+	forward_SingleUseCoupons_CreateCouponCampaign_0                   = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_UpdateCouponCampaign_0                   = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_GetCouponCampaign_0                      = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_DeleteCouponCampaign_0                   = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_ListCouponCampaignsDeprecated_0          = runtime.ForwardResponseStream
+	forward_SingleUseCoupons_ListCouponCampaigns_0                    = runtime.ForwardResponseStream
+	forward_SingleUseCoupons_GetAnalytics_0                           = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_CreateCouponOffer_0                      = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_UpdateCouponOffer_0                      = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_GetCouponOffer_0                         = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_DeleteCouponOffer_0                      = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_ListCouponOffersDeprecated_0             = runtime.ForwardResponseStream
+	forward_SingleUseCoupons_ListCouponOffers_0                       = runtime.ForwardResponseStream
+	forward_SingleUseCoupons_CreateCoupon_0                           = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_UpdateCoupon_0                           = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_RedeemCoupon_0                           = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_UpdateCouponExternalId_0                 = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_GetCouponById_0                          = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_GetCouponByExternalId_0                  = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_VoidCoupon_0                             = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_BulkVoidCoupons_0                        = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0  = runtime.ForwardResponseStream
+	forward_SingleUseCoupons_ListCouponsByCouponCampaign_0            = runtime.ForwardResponseStream
 	forward_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_CountCouponsByCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_PatchPerson_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_CopyCouponCampaign_0 = runtime.ForwardResponseMessage
-
-	forward_SingleUseCoupons_GetMetaKeysForCampaign_0 = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_CountCouponsByCouponCampaign_0           = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_PatchPerson_0                            = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_CopyCouponCampaign_0                     = runtime.ForwardResponseMessage
+	forward_SingleUseCoupons_GetMetaKeysForCampaign_0                 = runtime.ForwardResponseMessage
 )
