@@ -44,6 +44,7 @@ func request_Analytics_GetAnalytics_0(ctx context.Context, marshaler runtime.Mar
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")

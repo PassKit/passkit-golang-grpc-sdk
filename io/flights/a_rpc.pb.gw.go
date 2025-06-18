@@ -65,6 +65,7 @@ func request_Flights_GetPort_0(ctx context.Context, marshaler runtime.Marshaler,
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["airportCode"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "airportCode")
@@ -173,6 +174,7 @@ func request_Flights_GetCarrier_0(ctx context.Context, marshaler runtime.Marshal
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["carrierCode"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carrierCode")
@@ -281,6 +283,7 @@ func request_Flights_GetFlightDesignator_0(ctx context.Context, marshaler runtim
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["carrierCode"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carrierCode")
@@ -423,6 +426,7 @@ func request_Flights_GetFlight_0(ctx context.Context, marshaler runtime.Marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["carrierCode"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "carrierCode")

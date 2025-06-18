@@ -90,6 +90,7 @@ func request_Distribution_GetDataCollectionPageFields_0(ctx context.Context, mar
 		protoReq ClassObjectInput
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}

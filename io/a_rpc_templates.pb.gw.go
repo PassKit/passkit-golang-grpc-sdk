@@ -89,6 +89,7 @@ func request_Templates_GetTemplate_0(ctx context.Context, marshaler runtime.Mars
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -126,6 +127,7 @@ func request_Templates_GetDefaultTemplate_0(ctx context.Context, marshaler runti
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["protocol"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "protocol")
@@ -205,6 +207,7 @@ func request_Templates_DeleteTemplate_0(ctx context.Context, marshaler runtime.M
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -242,6 +245,7 @@ func request_Templates_ListTemplatesForUserDeprecated_0(ctx context.Context, mar
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -287,6 +291,7 @@ func request_Templates_ListTemplatesDeprecated_0(ctx context.Context, marshaler 
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -332,6 +337,7 @@ func request_Templates_CountTemplatesDeprecated_0(ctx context.Context, marshaler
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -388,6 +394,7 @@ func request_Templates_CountTemplatesForUserDeprecated_0(ctx context.Context, ma
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -491,6 +498,7 @@ func request_Templates_GetLocation_0(ctx context.Context, marshaler runtime.Mars
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -528,6 +536,7 @@ func request_Templates_ListLocationsDeprecated_0(ctx context.Context, marshaler 
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -596,6 +605,7 @@ func request_Templates_DeleteLocation_0(ctx context.Context, marshaler runtime.M
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -633,6 +643,7 @@ func request_Templates_CountLocationsDeprecated_0(ctx context.Context, marshaler
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -736,6 +747,7 @@ func request_Templates_GetBeacon_0(ctx context.Context, marshaler runtime.Marsha
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -773,6 +785,7 @@ func request_Templates_ListBeaconsDeprecated_0(ctx context.Context, marshaler ru
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -841,6 +854,7 @@ func request_Templates_DeleteBeacon_0(ctx context.Context, marshaler runtime.Mar
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -878,6 +892,7 @@ func request_Templates_CountBeaconsDeprecated_0(ctx context.Context, marshaler r
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -981,6 +996,7 @@ func request_Templates_GetLink_0(ctx context.Context, marshaler runtime.Marshale
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -1018,6 +1034,7 @@ func request_Templates_ListLinksDeprecated_0(ctx context.Context, marshaler runt
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -1086,6 +1103,7 @@ func request_Templates_DeleteLink_0(ctx context.Context, marshaler runtime.Marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -1123,6 +1141,7 @@ func request_Templates_CountLinksDeprecated_0(ctx context.Context, marshaler run
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}

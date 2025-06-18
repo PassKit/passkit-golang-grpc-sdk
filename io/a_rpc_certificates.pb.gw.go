@@ -42,6 +42,7 @@ func request_Certificates_GetAppleCertificateData_0(ctx context.Context, marshal
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["passTypeId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "passTypeId")
@@ -77,6 +78,7 @@ func request_Certificates_GetCertificateSigningRequest_0(ctx context.Context, ma
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	msg, err := client.GetCertificateSigningRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -145,6 +147,7 @@ func request_Certificates_ListAppleCertificatesDeprecated_0(ctx context.Context,
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -190,6 +193,7 @@ func request_Certificates_CountAppleCertificatesDeprecated_0(ctx context.Context
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}

@@ -90,6 +90,7 @@ func request_SingleUseCoupons_GetCouponCampaign_0(ctx context.Context, marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -126,6 +127,7 @@ func request_SingleUseCoupons_DeleteCouponCampaign_0(ctx context.Context, marsha
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -163,6 +165,7 @@ func request_SingleUseCoupons_ListCouponCampaignsDeprecated_0(ctx context.Contex
 		protoReq io_0.Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -209,6 +212,7 @@ func request_SingleUseCoupons_GetAnalytics_0(ctx context.Context, marshaler runt
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["classId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "classId")
@@ -305,6 +309,7 @@ func request_SingleUseCoupons_GetCouponOffer_0(ctx context.Context, marshaler ru
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -341,6 +346,7 @@ func request_SingleUseCoupons_DeleteCouponOffer_0(ctx context.Context, marshaler
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -378,6 +384,7 @@ func request_SingleUseCoupons_ListCouponOffersDeprecated_0(ctx context.Context, 
 		protoReq CouponOffersListRequestDeprecated
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -518,6 +525,7 @@ func request_SingleUseCoupons_GetCouponById_0(ctx context.Context, marshaler run
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -554,6 +562,7 @@ func request_SingleUseCoupons_GetCouponByExternalId_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
@@ -656,6 +665,7 @@ func request_SingleUseCoupons_ListCouponsByCouponCampaignDeprecated_0(ctx contex
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
@@ -719,6 +729,7 @@ func request_SingleUseCoupons_CountCouponsByCouponCampaignDeprecated_0(ctx conte
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["couponCampaignId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "couponCampaignId")
@@ -857,6 +868,7 @@ func request_SingleUseCoupons_GetMetaKeysForCampaign_0(ctx context.Context, mars
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")

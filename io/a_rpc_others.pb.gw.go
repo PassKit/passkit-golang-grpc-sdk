@@ -137,6 +137,7 @@ func request_Users_GetUser_0(ctx context.Context, marshaler runtime.Marshaler, c
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	msg, err := client.GetUser(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -179,6 +180,7 @@ func request_Users_Get2FaBarcode_0(ctx context.Context, marshaler runtime.Marsha
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	msg, err := client.Get2FaBarcode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -343,6 +345,7 @@ func request_Users_GetProjectsForUserQueryDeprecated_0(ctx context.Context, mars
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -368,6 +371,7 @@ func request_Users_GetProjectsQueryDeprecated_0(ctx context.Context, marshaler r
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -432,6 +436,7 @@ func request_Users_GetProjectByUuid_0(ctx context.Context, marshaler runtime.Mar
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -468,6 +473,7 @@ func request_Users_GetProjectAndTemplateByShortCode_0(ctx context.Context, marsh
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -505,6 +511,7 @@ func request_Users_GetProjectsForUser_0(ctx context.Context, marshaler runtime.M
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["status"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "status")
@@ -533,6 +540,7 @@ func request_Users_GetProjects_0(ctx context.Context, marshaler runtime.Marshale
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["status"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "status")
@@ -559,6 +567,7 @@ func request_Users_GetScannerConfig_0(ctx context.Context, marshaler runtime.Mar
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	msg, err := client.GetScannerConfig(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -650,6 +659,7 @@ func request_Users_DeleteAuthorizationResource_0(ctx context.Context, marshaler 
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -685,6 +695,7 @@ func request_Users_RefreshApiSecret_0(ctx context.Context, marshaler runtime.Mar
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	msg, err := client.RefreshApiSecret(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -848,6 +859,7 @@ func request_Users_GetTeamMember_0(ctx context.Context, marshaler runtime.Marsha
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -883,6 +895,7 @@ func request_Users_GetTeamMembers_0(ctx context.Context, marshaler runtime.Marsh
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	stream, err := client.GetTeamMembers(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -901,6 +914,7 @@ func request_Users_DeleteTeamMember_0(ctx context.Context, marshaler runtime.Mar
 		metadata runtime.ServerMetadata
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "id")
@@ -982,6 +996,7 @@ func request_Integrations_GetIntegrations_0(ctx context.Context, marshaler runti
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["protocol"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "protocol")
@@ -1062,6 +1077,7 @@ func request_Integrations_DeleteIntegrations_0(ctx context.Context, marshaler ru
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["protocol"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "protocol")
@@ -1142,6 +1158,7 @@ func request_Integrations_GetSinkSubscription_0(ctx context.Context, marshaler r
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["protocol"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "protocol")
@@ -1198,6 +1215,7 @@ func request_Integrations_ListSinkSubscriptionsDeprecated_0(ctx context.Context,
 		protoReq ListRequestDeprecated
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -1267,6 +1285,7 @@ func request_Integrations_DeleteSinkSubscription_0(ctx context.Context, marshale
 		e        int32
 		err      error
 	)
+	io.Copy(io.Discard, req.Body)
 	val, ok := pathParams["protocol"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "protocol")
@@ -1323,6 +1342,7 @@ func request_Integrations_GetSampleSubscriptionEvent_0(ctx context.Context, mars
 		protoReq Id
 		metadata runtime.ServerMetadata
 	)
+	io.Copy(io.Discard, req.Body)
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
