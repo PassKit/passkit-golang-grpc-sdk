@@ -754,8 +754,8 @@ type FlightURLs struct {
 	// @tag: validate:"omitempty,url"
 	RegisterServiceAnimalURL string `protobuf:"bytes,12,opt,name=registerServiceAnimalURL,proto3" json:"registerServiceAnimalURL,omitempty" validate:"omitempty,url"`
 	// The email for the transit provider.
-	// @tag: validate:"email,url"
-	TransitProviderEmail string `protobuf:"bytes,13,opt,name=transitProviderEmail,proto3" json:"transitProviderEmail,omitempty" validate:"email,url"`
+	// @tag: validate:"omitempty,email"
+	TransitProviderEmail string `protobuf:"bytes,13,opt,name=transitProviderEmail,proto3" json:"transitProviderEmail,omitempty" validate:"omitempty,email"`
 	// A link for the transit provider.
 	// @tag: validate:"omitempty,url"
 	TransitProviderWebsiteURL string `protobuf:"bytes,14,opt,name=transitProviderWebsiteURL,proto3" json:"transitProviderWebsiteURL,omitempty" validate:"omitempty,url"`
