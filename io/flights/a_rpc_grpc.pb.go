@@ -13,7 +13,6 @@ package flights
 
 import (
 	context "context"
-
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -63,7 +62,7 @@ type FlightsClient interface {
 	UpdatePort(ctx context.Context, in *Port, opts ...grpc.CallOption) (*Port, error)
 	// Delete an airport record. Deleting a record will remove any custom data provided. A new Airport record may be automatically created for a flight departing, arriving or transiting an airport which does not have a record, using publicly available data. Required Fields: airportCode.
 	DeletePort(ctx context.Context, in *AirportCode, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a carrier record. All Flight Designations and Flights must have a carrier record. Required Fields: carrierCode, airlineName, passTypeIdentifier.
+	// Create a carrier record. All Flight Designators and Flights must have a carrier record. Required Fields: carrierCode, airlineName, passTypeIdentifier.
 	CreateCarrier(ctx context.Context, in *Carrier, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieve a carrier record. Required Fields: carrierCode.
 	GetCarrier(ctx context.Context, in *CarrierCode, opts ...grpc.CallOption) (*Carrier, error)
@@ -73,13 +72,13 @@ type FlightsClient interface {
 	DeleteCarrier(ctx context.Context, in *CarrierCode, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Create a flight designator record. As much default information as possible should be provided to facilitate the automatic generation of flight records. Required Fields: carrierCode, flightNumber, revision, schedule, origin, destination.
 	CreateFlightDesignator(ctx context.Context, in *FlightDesignator, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Retrieve a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Retrieve a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	GetFlightDesignator(ctx context.Context, in *FlightDesignatorRequest, opts ...grpc.CallOption) (*FlightDesignator, error)
-	// Update a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Update a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	UpdateFlightDesignator(ctx context.Context, in *FlightDesignator, opts ...grpc.CallOption) (*FlightDesignator, error)
-	// Delete a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Delete a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	DeleteFlightDesignator(ctx context.Context, in *FlightDesignatorRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Create a flight record. In practice, this method is not often used, since flight records can be automatically generated. Any information in the flight record will override information in the carrier and flight designation records. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
+	// Create a flight record. In practice, this method is not often used, since flight records can be automatically generated. Any information in the flight record will override information in the carrier and flight designator records. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 	CreateFlight(ctx context.Context, in *Flight, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieve a flight record. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 	GetFlight(ctx context.Context, in *FlightRequest, opts ...grpc.CallOption) (*Flight, error)
@@ -331,7 +330,7 @@ type FlightsServer interface {
 	UpdatePort(context.Context, *Port) (*Port, error)
 	// Delete an airport record. Deleting a record will remove any custom data provided. A new Airport record may be automatically created for a flight departing, arriving or transiting an airport which does not have a record, using publicly available data. Required Fields: airportCode.
 	DeletePort(context.Context, *AirportCode) (*emptypb.Empty, error)
-	// Create a carrier record. All Flight Designations and Flights must have a carrier record. Required Fields: carrierCode, airlineName, passTypeIdentifier.
+	// Create a carrier record. All Flight Designators and Flights must have a carrier record. Required Fields: carrierCode, airlineName, passTypeIdentifier.
 	CreateCarrier(context.Context, *Carrier) (*emptypb.Empty, error)
 	// Retrieve a carrier record. Required Fields: carrierCode.
 	GetCarrier(context.Context, *CarrierCode) (*Carrier, error)
@@ -341,13 +340,13 @@ type FlightsServer interface {
 	DeleteCarrier(context.Context, *CarrierCode) (*emptypb.Empty, error)
 	// Create a flight designator record. As much default information as possible should be provided to facilitate the automatic generation of flight records. Required Fields: carrierCode, flightNumber, revision, schedule, origin, destination.
 	CreateFlightDesignator(context.Context, *FlightDesignator) (*emptypb.Empty, error)
-	// Retrieve a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Retrieve a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	GetFlightDesignator(context.Context, *FlightDesignatorRequest) (*FlightDesignator, error)
-	// Update a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Update a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	UpdateFlightDesignator(context.Context, *FlightDesignator) (*FlightDesignator, error)
-	// Delete a flight designation record. Required Fields: carrierCode, flightNumber, revision.
+	// Delete a flight designator record. Required Fields: carrierCode, flightNumber, revision.
 	DeleteFlightDesignator(context.Context, *FlightDesignatorRequest) (*emptypb.Empty, error)
-	// Create a flight record. In practice, this method is not often used, since flight records can be automatically generated. Any information in the flight record will override information in the carrier and flight designation records. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
+	// Create a flight record. In practice, this method is not often used, since flight records can be automatically generated. Any information in the flight record will override information in the carrier and flight designator records. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 	CreateFlight(context.Context, *Flight) (*emptypb.Empty, error)
 	// Retrieve a flight record. Required Fields: carrierCode, flightNumber, departureDate, boardingPoint, deplaningPoint.
 	GetFlight(context.Context, *FlightRequest) (*Flight, error)

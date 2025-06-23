@@ -7,14 +7,13 @@
 package io
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	reflect "reflect"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -80,7 +79,7 @@ const (
 	ImageUse_secondaryLogo ImageUse = 22
 	// used in the background of Apple poster Event Tickets. Image should be a compelling visual representation of the event (1074px x 1344px).
 	ImageUse_artwork ImageUse = 23
-	// used in the top left hand corner for Apple poster style Event tickets, and Semantic Boarding Passes (<=378px x 30px).
+	// used in the top left hand corner for Apple poster style Event tickets, and Semantic Boarding Passes (<=378px x 90px).
 	ImageUse_primaryLogo ImageUse = 24
 	// used to present a venue map for an Apple poster style Event Ticket.  Width should be Ratio should be at least 1074px wide and have a 16:9 or 4:5 to avoid cropping.
 	ImageUse_venueMap ImageUse = 25

@@ -12,14 +12,13 @@
 package flights
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -58,7 +57,7 @@ type Port struct {
 	// @tag: validateGeneric:"omitempty"
 	SecurityPrograms []AirportSecurityPrograms `protobuf:"varint,9,rep,packed,name=securityPrograms,proto3,enum=flights.AirportSecurityPrograms" json:"securityPrograms,omitempty" validateGeneric:"omitempty"`
 	// A localizable value to show whe a passenger's international documents have been verified. Examples include "Docs OK", or "TravelReady". If the boarding pass conditionalItems -> InternationalDocVerification is COMPLETED, this value will show on the face of the pass.
-	DocumentsVerifiedText string `protobuf:"bytes,10,opt,name=DocumentsVerifiedText,proto3" json:"DocumentsVerifiedText,omitempty"`
+	DocumentsVerifiedText string `protobuf:"bytes,10,opt,name=documentsVerifiedText,proto3" json:"documentsVerifiedText,omitempty"`
 	// The localized documents verified text.
 	LocalizedDocumentsVerifiedText *io.LocalizedString `protobuf:"bytes,11,opt,name=localizedDocumentsVerifiedText,proto3" json:"localizedDocumentsVerifiedText,omitempty"`
 	// Apple Place ID for Airline lounge. Can be overridden at the boarding pass level by providing additional data items 'airport.loungeId'.
@@ -232,7 +231,7 @@ var File_io_flights_airport_proto protoreflect.FileDescriptor
 
 const file_io_flights_airport_proto_rawDesc = "" +
 	"\n" +
-	"\x18io/flights/airport.proto\x12\aflights\x1a\x1cio/common/localization.proto\x1a\x17io/flights/common.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x9e\x06\n" +
+	"\x18io/flights/airport.proto\x12\aflights\x1a\x1cio/common/localization.proto\x1a\x18io/flights/barcode.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\"\x9e\x06\n" +
 	"\x04Port\x12/\n" +
 	"\x0fiataAirportCode\x18\x01 \x01(\tB\x05\x92A\x02x\x03R\x0fiataAirportCode\x12/\n" +
 	"\x0ficaoAirportCode\x18\x02 \x01(\tB\x05\x92A\x02x\x04R\x0ficaoAirportCode\x12\x1a\n" +
@@ -243,8 +242,8 @@ const file_io_flights_airport_proto_rawDesc = "" +
 	"\vcountryCode\x18\a \x01(\tR\vcountryCode\x12\x1a\n" +
 	"\btimezone\x18\b \x01(\tR\btimezone\x12L\n" +
 	"\x10securityPrograms\x18\t \x03(\x0e2 .flights.AirportSecurityProgramsR\x10securityPrograms\x124\n" +
-	"\x15DocumentsVerifiedText\x18\n" +
-	" \x01(\tR\x15DocumentsVerifiedText\x12[\n" +
+	"\x15documentsVerifiedText\x18\n" +
+	" \x01(\tR\x15documentsVerifiedText\x12[\n" +
 	"\x1elocalizedDocumentsVerifiedText\x18\v \x01(\v2\x13.io.LocalizedStringR\x1elocalizedDocumentsVerifiedText\x12\x1a\n" +
 	"\bloungeId\x18\r \x01(\tR\bloungeId:\xae\x01\x92A\xaa\x01\n" +
 	"\xa7\x01*\x0eAirport Record2QAirport records are required for each port that a carrier operates in and out of.\xd2\x01\x0fiataAirportCode\xd2\x01\bcityName\xd2\x01\vairportName\xd2\x01\vcountryCode\xd2\x01\btimezone\"/\n" +
@@ -288,7 +287,7 @@ func file_io_flights_airport_proto_init() {
 	if File_io_flights_airport_proto != nil {
 		return
 	}
-	file_io_flights_common_proto_init()
+	file_io_flights_barcode_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

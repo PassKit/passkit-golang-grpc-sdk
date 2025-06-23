@@ -39,13 +39,13 @@ func NewCertAuthTLSGRPCClient(address, certFile, keyFile, caFile string) (*grpc.
 		return nil, err
 	}
 
-	creds := credentials.NewTLS(&tls.Config{
+	creds := credentials.NewTLS(&tls.Config{q
 		ServerName:   host,
 		Certificates: []tls.Certificate{certificate},
 		RootCAs:      certPool,
 	})
 
-	conn, err := grpc.Dial(address, grpc.WithTransportCredentials(creds))
+	conn, err := grpc.NewClient(address, grpc.WithTransportCredentials(creds))
 	if err != nil {
 		return nil, fmt.Errorf("could not connect to gRPC Server: %v", err)
 	}

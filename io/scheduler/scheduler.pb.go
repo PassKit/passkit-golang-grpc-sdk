@@ -12,13 +12,12 @@
 package scheduler
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (

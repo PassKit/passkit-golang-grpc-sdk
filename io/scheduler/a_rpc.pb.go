@@ -12,16 +12,15 @@
 package scheduler
 
 import (
-	reflect "reflect"
-	unsafe "unsafe"
-
-	ct "github.com/PassKit/passkit-golang-grpc-sdk/ct"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	reflect "reflect"
+	ct "github.com/PassKit/passkit-golang-grpc-sdk/ct"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	unsafe "unsafe"
 )
 
 const (

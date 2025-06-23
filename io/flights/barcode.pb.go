@@ -12,14 +12,13 @@
 package flights
 
 import (
-	reflect "reflect"
-	sync "sync"
-	unsafe "unsafe"
-
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	reflect "reflect"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	sync "sync"
+	unsafe "unsafe"
 )
 
 const (
@@ -573,6 +572,519 @@ func (FastTrack) EnumDescriptor() ([]byte, []int) {
 	return file_io_flights_barcode_proto_rawDescGZIP(), []int{7}
 }
 
+// A set of values that indicate the security programs and clearances that are supported by an airport and of which the passenger is eligible to be displayed on the boarding pass.
+type AirportSecurityPrograms int32
+
+const (
+	// Default, no programs available, or programs are unknown.
+	AirportSecurityPrograms_NO_SECURITY_PROGRAMS AirportSecurityPrograms = 0
+	// TSA PreCheck®.
+	AirportSecurityPrograms_TSA_PRE_CHECK AirportSecurityPrograms = 1
+	// TSA PreCheck® Touchless ID.
+	AirportSecurityPrograms_TSA_PRE_CHECK_TOUCHLESS_ID AirportSecurityPrograms = 2
+	// Transit Without Visa.
+	AirportSecurityPrograms_TWOV AirportSecurityPrograms = 3
+	// One Stop Security.
+	AirportSecurityPrograms_OSS AirportSecurityPrograms = 4
+	// International to International.
+	AirportSecurityPrograms_ITI AirportSecurityPrograms = 5
+	// International to Domestic.
+	AirportSecurityPrograms_ITD AirportSecurityPrograms = 6
+	// Global Entry.
+	AirportSecurityPrograms_GLOBAL_ENTRY AirportSecurityPrograms = 7
+	// CLEAR Secure.
+	AirportSecurityPrograms_CLEAR AirportSecurityPrograms = 8
+)
+
+// Enum value maps for AirportSecurityPrograms.
+var (
+	AirportSecurityPrograms_name = map[int32]string{
+		0: "NO_SECURITY_PROGRAMS",
+		1: "TSA_PRE_CHECK",
+		2: "TSA_PRE_CHECK_TOUCHLESS_ID",
+		3: "TWOV",
+		4: "OSS",
+		5: "ITI",
+		6: "ITD",
+		7: "GLOBAL_ENTRY",
+		8: "CLEAR",
+	}
+	AirportSecurityPrograms_value = map[string]int32{
+		"NO_SECURITY_PROGRAMS":       0,
+		"TSA_PRE_CHECK":              1,
+		"TSA_PRE_CHECK_TOUCHLESS_ID": 2,
+		"TWOV":                       3,
+		"OSS":                        4,
+		"ITI":                        5,
+		"ITD":                        6,
+		"GLOBAL_ENTRY":               7,
+		"CLEAR":                      8,
+	}
+)
+
+func (x AirportSecurityPrograms) Enum() *AirportSecurityPrograms {
+	p := new(AirportSecurityPrograms)
+	*p = x
+	return p
+}
+
+func (x AirportSecurityPrograms) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (AirportSecurityPrograms) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[8].Descriptor()
+}
+
+func (AirportSecurityPrograms) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[8]
+}
+
+func (x AirportSecurityPrograms) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use AirportSecurityPrograms.Descriptor instead.
+func (AirportSecurityPrograms) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{8}
+}
+
+// For customers subscribing to automatic updates, the flight status will be automatically updated. Status is also writable for manual updates.
+type FlightStatus int32
+
+const (
+	// No status is known, or flight is not yet scheduled.
+	FlightStatus_UNKNOWN FlightStatus = 0
+	// Flight is scheduled to depart.
+	FlightStatus_SCHEDULED FlightStatus = 1
+	// Flight has left the departure gate, but may not be airborne yet.
+	FlightStatus_DEPARTED FlightStatus = 2
+	// Flight is airborne.
+	FlightStatus_INAIR FlightStatus = 3
+	// Flight has landed, but may not yet be at the arrival gate.
+	FlightStatus_LANDED FlightStatus = 4
+	// Flight has arrived at the destination gate.
+	FlightStatus_ARRIVED FlightStatus = 5
+	// Flight has been cancelled.
+	FlightStatus_CANCELLED FlightStatus = 6
+	// Flight is delayed to depart by at least 15 minutes.
+	FlightStatus_DELAYED FlightStatus = 7
+	// Flight has been diverted from its scheduled destination and has left the departure gate.
+	FlightStatus_DEPARTED_DIVERTED FlightStatus = 8
+	// Flight has been diverted from its scheduled destination and is airborne.
+	FlightStatus_INAIR_DIVERTED FlightStatus = 9
+	// Flight has arrived at a location different to its scheduled destination.
+	FlightStatus_ARRIVED_DIVERTED FlightStatus = 10
+	// Flight has left its diverted destination en-route to its original destination.
+	FlightStatus_DEPARTED_RECOVERY FlightStatus = 11
+	// Flight has left its diverted destination airborne en-route to its original destination.
+	FlightStatus_INAIR_RECOVERY FlightStatus = 12
+	// Flight has landed at is original scheduled destination.
+	FlightStatus_ARRIVED_RECOVERY FlightStatus = 13
+)
+
+// Enum value maps for FlightStatus.
+var (
+	FlightStatus_name = map[int32]string{
+		0:  "UNKNOWN",
+		1:  "SCHEDULED",
+		2:  "DEPARTED",
+		3:  "INAIR",
+		4:  "LANDED",
+		5:  "ARRIVED",
+		6:  "CANCELLED",
+		7:  "DELAYED",
+		8:  "DEPARTED_DIVERTED",
+		9:  "INAIR_DIVERTED",
+		10: "ARRIVED_DIVERTED",
+		11: "DEPARTED_RECOVERY",
+		12: "INAIR_RECOVERY",
+		13: "ARRIVED_RECOVERY",
+	}
+	FlightStatus_value = map[string]int32{
+		"UNKNOWN":           0,
+		"SCHEDULED":         1,
+		"DEPARTED":          2,
+		"INAIR":             3,
+		"LANDED":            4,
+		"ARRIVED":           5,
+		"CANCELLED":         6,
+		"DELAYED":           7,
+		"DEPARTED_DIVERTED": 8,
+		"INAIR_DIVERTED":    9,
+		"ARRIVED_DIVERTED":  10,
+		"DEPARTED_RECOVERY": 11,
+		"INAIR_RECOVERY":    12,
+		"ARRIVED_RECOVERY":  13,
+	}
+)
+
+func (x FlightStatus) Enum() *FlightStatus {
+	p := new(FlightStatus)
+	*p = x
+	return p
+}
+
+func (x FlightStatus) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FlightStatus) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[9].Descriptor()
+}
+
+func (FlightStatus) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[9]
+}
+
+func (x FlightStatus) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FlightStatus.Descriptor instead.
+func (FlightStatus) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{9}
+}
+
+type FlightCreateMode int32
+
+const (
+	FlightCreateMode_DO_NOT_USE FlightCreateMode = 0
+	FlightCreateMode_MANUAL     FlightCreateMode = 1
+	FlightCreateMode_AUTOMATIC  FlightCreateMode = 2
+)
+
+// Enum value maps for FlightCreateMode.
+var (
+	FlightCreateMode_name = map[int32]string{
+		0: "DO_NOT_USE",
+		1: "MANUAL",
+		2: "AUTOMATIC",
+	}
+	FlightCreateMode_value = map[string]int32{
+		"DO_NOT_USE": 0,
+		"MANUAL":     1,
+		"AUTOMATIC":  2,
+	}
+)
+
+func (x FlightCreateMode) Enum() *FlightCreateMode {
+	p := new(FlightCreateMode)
+	*p = x
+	return p
+}
+
+func (x FlightCreateMode) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FlightCreateMode) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[10].Descriptor()
+}
+
+func (FlightCreateMode) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[10]
+}
+
+func (x FlightCreateMode) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FlightCreateMode.Descriptor instead.
+func (FlightCreateMode) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{10}
+}
+
+// Flight alerts automatically update boarding passes as information becomes available or changes. Note that these services may incur additional usage charges.
+type FlightAlerts int32
+
+const (
+	// Boarding passes will not automatically update.
+	FlightAlerts_NO_ALERTS FlightAlerts = 0
+	// Boarding passes will automatically update whenever a change to the departure gate/time, arrival gate/time or baggage belt information is detected.
+	FlightAlerts_ALL_ALERTS FlightAlerts = 1
+	// Boarding passes will automatically update whenever a change to the departure gate is detected.
+	FlightAlerts_DEPARTURE_GATE_ALERT FlightAlerts = 2
+	// Boarding passes will automatically update whenever a change to the estimated departure gate is detected.
+	FlightAlerts_DEPARTURE_TIME_ALERT FlightAlerts = 4
+	// Boarding passes will automatically update whenever a change to the arrival gate is detected.
+	FlightAlerts_ARRIVAL_GATE_ALERT FlightAlerts = 8
+	// Boarding passes will automatically update whenever a change to the estimated arrival time is detected.
+	FlightAlerts_ARRIVAL_TIME_ALERT FlightAlerts = 16
+	// Boarding passes will automatically update whenever the baggage collection belt or area is known or changes.
+	FlightAlerts_BAGGAGE_BELT_ALERT FlightAlerts = 32
+)
+
+// Enum value maps for FlightAlerts.
+var (
+	FlightAlerts_name = map[int32]string{
+		0:  "NO_ALERTS",
+		1:  "ALL_ALERTS",
+		2:  "DEPARTURE_GATE_ALERT",
+		4:  "DEPARTURE_TIME_ALERT",
+		8:  "ARRIVAL_GATE_ALERT",
+		16: "ARRIVAL_TIME_ALERT",
+		32: "BAGGAGE_BELT_ALERT",
+	}
+	FlightAlerts_value = map[string]int32{
+		"NO_ALERTS":            0,
+		"ALL_ALERTS":           1,
+		"DEPARTURE_GATE_ALERT": 2,
+		"DEPARTURE_TIME_ALERT": 4,
+		"ARRIVAL_GATE_ALERT":   8,
+		"ARRIVAL_TIME_ALERT":   16,
+		"BAGGAGE_BELT_ALERT":   32,
+	}
+)
+
+func (x FlightAlerts) Enum() *FlightAlerts {
+	p := new(FlightAlerts)
+	*p = x
+	return p
+}
+
+func (x FlightAlerts) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (FlightAlerts) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[11].Descriptor()
+}
+
+func (FlightAlerts) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[11]
+}
+
+func (x FlightAlerts) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use FlightAlerts.Descriptor instead.
+func (FlightAlerts) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{11}
+}
+
+// The Boarding Policy is used to determine informational labels on the pass.
+type BoardingPolicy int32
+
+const (
+	BoardingPolicy_BOARDING_POLICY_UNSPECIFIED BoardingPolicy = 0
+	// Boarding is managed by zone.
+	BoardingPolicy_ZONE_BASED BoardingPolicy = 1
+	// Boarding is managed by group.
+	BoardingPolicy_GROUP_BASED BoardingPolicy = 2
+	// Another, or No boarding policy is in place.
+	BoardingPolicy_BOARDING_POLICY_OTHER BoardingPolicy = 3
+)
+
+// Enum value maps for BoardingPolicy.
+var (
+	BoardingPolicy_name = map[int32]string{
+		0: "BOARDING_POLICY_UNSPECIFIED",
+		1: "ZONE_BASED",
+		2: "GROUP_BASED",
+		3: "BOARDING_POLICY_OTHER",
+	}
+	BoardingPolicy_value = map[string]int32{
+		"BOARDING_POLICY_UNSPECIFIED": 0,
+		"ZONE_BASED":                  1,
+		"GROUP_BASED":                 2,
+		"BOARDING_POLICY_OTHER":       3,
+	}
+)
+
+func (x BoardingPolicy) Enum() *BoardingPolicy {
+	p := new(BoardingPolicy)
+	*p = x
+	return p
+}
+
+func (x BoardingPolicy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BoardingPolicy) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[12].Descriptor()
+}
+
+func (BoardingPolicy) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[12]
+}
+
+func (x BoardingPolicy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BoardingPolicy.Descriptor instead.
+func (BoardingPolicy) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{12}
+}
+
+// The Seat Class Policy is used to determine informational labels on the pass.
+type SeatClassPolicy int32
+
+const (
+	SeatClassPolicy_SEAT_CLASS_POLICY_UNSPECIFIED SeatClassPolicy = 0
+	// Seats groups are determined by cabin. "Cabin" will be used as the label on the pass.
+	SeatClassPolicy_CABIN_BASED SeatClassPolicy = 1
+	// Seats groups are determined by class of travel. "Class" will be used as the label on the pass.
+	SeatClassPolicy_CLASS_BASED SeatClassPolicy = 2
+	// Seat groups are determined by tier. "Tier" will be used as the label on the pass.
+	SeatClassPolicy_TIER_BASED SeatClassPolicy = 3
+	// Another, or no seat policy is in place. No label will be used on the pass.
+	SeatClassPolicy_SEAT_CLASS_POLICY_OTHER SeatClassPolicy = 4
+)
+
+// Enum value maps for SeatClassPolicy.
+var (
+	SeatClassPolicy_name = map[int32]string{
+		0: "SEAT_CLASS_POLICY_UNSPECIFIED",
+		1: "CABIN_BASED",
+		2: "CLASS_BASED",
+		3: "TIER_BASED",
+		4: "SEAT_CLASS_POLICY_OTHER",
+	}
+	SeatClassPolicy_value = map[string]int32{
+		"SEAT_CLASS_POLICY_UNSPECIFIED": 0,
+		"CABIN_BASED":                   1,
+		"CLASS_BASED":                   2,
+		"TIER_BASED":                    3,
+		"SEAT_CLASS_POLICY_OTHER":       4,
+	}
+)
+
+func (x SeatClassPolicy) Enum() *SeatClassPolicy {
+	p := new(SeatClassPolicy)
+	*p = x
+	return p
+}
+
+func (x SeatClassPolicy) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SeatClassPolicy) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[13].Descriptor()
+}
+
+func (SeatClassPolicy) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[13]
+}
+
+func (x SeatClassPolicy) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SeatClassPolicy.Descriptor instead.
+func (SeatClassPolicy) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{13}
+}
+
+// The authority of an identifier (carrier code, airport code, etc.).
+type Authority int32
+
+const (
+	// International Air Transport Association (IATA).
+	Authority_IATA Authority = 0
+	// International Civil Aviation Organization (ICAO).
+	Authority_ICAO Authority = 1
+)
+
+// Enum value maps for Authority.
+var (
+	Authority_name = map[int32]string{
+		0: "IATA",
+		1: "ICAO",
+	}
+	Authority_value = map[string]int32{
+		"IATA": 0,
+		"ICAO": 1,
+	}
+)
+
+func (x Authority) Enum() *Authority {
+	p := new(Authority)
+	*p = x
+	return p
+}
+
+func (x Authority) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Authority) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[14].Descriptor()
+}
+
+func (Authority) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[14]
+}
+
+func (x Authority) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Authority.Descriptor instead.
+func (Authority) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{14}
+}
+
+// Passenger Capabilities are used with Apple Semantic boarding passes to visibly show information useful at the boarding gate.
+type PassengerCapabilities int32
+
+const (
+	PassengerCapabilities_NO_CAPABILITIES   PassengerCapabilities = 0
+	PassengerCapabilities_PRE_BOARDING      PassengerCapabilities = 1
+	PassengerCapabilities_PRIORITY_BOARDING PassengerCapabilities = 2
+	PassengerCapabilities_CARRY_ON          PassengerCapabilities = 3
+	PassengerCapabilities_PERSONAL_ITEM     PassengerCapabilities = 4
+)
+
+// Enum value maps for PassengerCapabilities.
+var (
+	PassengerCapabilities_name = map[int32]string{
+		0: "NO_CAPABILITIES",
+		1: "PRE_BOARDING",
+		2: "PRIORITY_BOARDING",
+		3: "CARRY_ON",
+		4: "PERSONAL_ITEM",
+	}
+	PassengerCapabilities_value = map[string]int32{
+		"NO_CAPABILITIES":   0,
+		"PRE_BOARDING":      1,
+		"PRIORITY_BOARDING": 2,
+		"CARRY_ON":          3,
+		"PERSONAL_ITEM":     4,
+	}
+)
+
+func (x PassengerCapabilities) Enum() *PassengerCapabilities {
+	p := new(PassengerCapabilities)
+	*p = x
+	return p
+}
+
+func (x PassengerCapabilities) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PassengerCapabilities) Descriptor() protoreflect.EnumDescriptor {
+	return file_io_flights_barcode_proto_enumTypes[15].Descriptor()
+}
+
+func (PassengerCapabilities) Type() protoreflect.EnumType {
+	return &file_io_flights_barcode_proto_enumTypes[15]
+}
+
+func (x PassengerCapabilities) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PassengerCapabilities.Descriptor instead.
+func (PassengerCapabilities) EnumDescriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{15}
+}
+
 // Conditional items for the flight segment as described in IATA PSC Resolution 792.  Note: items supplied or derived through other objects (E.g. Frequent Flyer information) are not supplied here.
 type ConditionalItems struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
@@ -720,6 +1232,365 @@ func (x *ConditionalItems) GetFastTrack() FastTrack {
 	return FastTrack_N
 }
 
+// If there are no departures on a given day (E.g. flight only operates on Tuesdays and Thursdays), the days with no departures should be nil.
+type FlightSchedule struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Saturday Sunday"
+	Monday *FlightTimes `protobuf:"bytes,1,opt,name=monday,proto3" json:"monday,omitempty" validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Saturday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Monday Wednesday Thursday Friday Saturday Sunday"
+	Tuesday *FlightTimes `protobuf:"bytes,2,opt,name=tuesday,proto3" json:"tuesday,omitempty" validateGeneric:"required_without_all=Monday Wednesday Thursday Friday Saturday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Monday Thursday Friday Saturday Sunday"
+	Wednesday *FlightTimes `protobuf:"bytes,3,opt,name=wednesday,proto3" json:"wednesday,omitempty" validateGeneric:"required_without_all=Tuesday Monday Thursday Friday Saturday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Wednesday Monday Friday Saturday Sunday"
+	Thursday *FlightTimes `protobuf:"bytes,4,opt,name=thursday,proto3" json:"thursday,omitempty" validateGeneric:"required_without_all=Tuesday Wednesday Monday Friday Saturday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Wednesday Thursday Monday Saturday Sunday"
+	Friday *FlightTimes `protobuf:"bytes,5,opt,name=friday,proto3" json:"friday,omitempty" validateGeneric:"required_without_all=Tuesday Wednesday Thursday Monday Saturday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Monday Sunday"
+	Saturday *FlightTimes `protobuf:"bytes,6,opt,name=saturday,proto3" json:"saturday,omitempty" validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Monday Sunday"`
+	// @tag: validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Saturday Monday"
+	Sunday        *FlightTimes `protobuf:"bytes,7,opt,name=sunday,proto3" json:"sunday,omitempty" validateGeneric:"required_without_all=Tuesday Wednesday Thursday Friday Saturday Monday"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *FlightSchedule) Reset() {
+	*x = FlightSchedule{}
+	mi := &file_io_flights_barcode_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FlightSchedule) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FlightSchedule) ProtoMessage() {}
+
+func (x *FlightSchedule) ProtoReflect() protoreflect.Message {
+	mi := &file_io_flights_barcode_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FlightSchedule.ProtoReflect.Descriptor instead.
+func (*FlightSchedule) Descriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *FlightSchedule) GetMonday() *FlightTimes {
+	if x != nil {
+		return x.Monday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetTuesday() *FlightTimes {
+	if x != nil {
+		return x.Tuesday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetWednesday() *FlightTimes {
+	if x != nil {
+		return x.Wednesday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetThursday() *FlightTimes {
+	if x != nil {
+		return x.Thursday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetFriday() *FlightTimes {
+	if x != nil {
+		return x.Friday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetSaturday() *FlightTimes {
+	if x != nil {
+		return x.Saturday
+	}
+	return nil
+}
+
+func (x *FlightSchedule) GetSunday() *FlightTimes {
+	if x != nil {
+		return x.Sunday
+	}
+	return nil
+}
+
+type FlightTimes struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// The published departure time.
+	// @tag: validateGeneric:"required"
+	ScheduledDepartureTime *io.Time `protobuf:"bytes,1,opt,name=scheduledDepartureTime,proto3" json:"scheduledDepartureTime,omitempty" validateGeneric:"required"`
+	// The published boarding time.
+	BoardingTime *io.Time `protobuf:"bytes,2,opt,name=boardingTime,proto3" json:"boardingTime,omitempty"`
+	// The point after which passengers will be denied boarding.
+	GateClosingTime *io.Time `protobuf:"bytes,3,opt,name=gateClosingTime,proto3" json:"gateClosingTime,omitempty"`
+	// The published, scheduled arrival time.
+	ScheduledArrivalTime *io.Time `protobuf:"bytes,4,opt,name=scheduledArrivalTime,proto3" json:"scheduledArrivalTime,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
+}
+
+func (x *FlightTimes) Reset() {
+	*x = FlightTimes{}
+	mi := &file_io_flights_barcode_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FlightTimes) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FlightTimes) ProtoMessage() {}
+
+func (x *FlightTimes) ProtoReflect() protoreflect.Message {
+	mi := &file_io_flights_barcode_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FlightTimes.ProtoReflect.Descriptor instead.
+func (*FlightTimes) Descriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *FlightTimes) GetScheduledDepartureTime() *io.Time {
+	if x != nil {
+		return x.ScheduledDepartureTime
+	}
+	return nil
+}
+
+func (x *FlightTimes) GetBoardingTime() *io.Time {
+	if x != nil {
+		return x.BoardingTime
+	}
+	return nil
+}
+
+func (x *FlightTimes) GetGateClosingTime() *io.Time {
+	if x != nil {
+		return x.GateClosingTime
+	}
+	return nil
+}
+
+func (x *FlightTimes) GetScheduledArrivalTime() *io.Time {
+	if x != nil {
+		return x.ScheduledArrivalTime
+	}
+	return nil
+}
+
+// FlightUrls add utility to Semantic Boarding Passes.
+type FlightURLs struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// A link to upgrade the flight.
+	// @tag: validate:"omitempty,url"
+	UpgradeURL string `protobuf:"bytes,1,opt,name=upgradeURL,proto3" json:"upgradeURL,omitempty" validate:"omitempty,url"`
+	// A link to order food, either before or during the flight.
+	// @tag: validate:"omitempty,url"
+	OrderFoodURL string `protobuf:"bytes,2,opt,name=orderFoodURL,proto3" json:"orderFoodURL,omitempty" validate:"omitempty,url"`
+	// A link to purchase in-flight wifi.
+	// @tag: validate:"omitempty,url"
+	PurchaseWifiURL string `protobuf:"bytes,3,opt,name=purchaseWifiURL,proto3" json:"purchaseWifiURL,omitempty" validate:"omitempty,url"`
+	// A link to change the seat for this ticket.
+	// @tag: validate:"omitempty,url"
+	ChangeSeatURL string `protobuf:"bytes,4,opt,name=changeSeatURL,proto3" json:"changeSeatURL,omitempty" validate:"omitempty,url"`
+	// A link to in-flight entertainment.
+	// @tag: validate:"omitempty,url"
+	EntertainmentURL string `protobuf:"bytes,5,opt,name=entertainmentURL,proto3" json:"entertainmentURL,omitempty" validate:"omitempty,url"`
+	// A link to the stand-by list for this flight.
+	// @tag: validate:"omitempty,url"
+	StandbyListURL string `protobuf:"bytes,6,opt,name=standbyListURL,proto3" json:"standbyListURL,omitempty" validate:"omitempty,url"`
+	// A link to add checked bags for this ticket.
+	// @tag: validate:"omitempty,url"
+	PurchaseAdditionalBaggageURL string `protobuf:"bytes,7,opt,name=purchaseAdditionalBaggageURL,proto3" json:"purchaseAdditionalBaggageURL,omitempty" validate:"omitempty,url"`
+	// A link to purchase lounge access
+	// @tag: validate:"omitempty,url"
+	PurchaseLoungeAccessURL string `protobuf:"bytes,8,opt,name=purchaseLoungeAccessURL,proto3" json:"purchaseLoungeAccessURL,omitempty" validate:"omitempty,url"`
+	// A link to report lost luggage.
+	// @tag: validate:"omitempty,url"
+	ReportLostBagURL string `protobuf:"bytes,9,opt,name=reportLostBagURL,proto3" json:"reportLostBagURL,omitempty" validate:"omitempty,url"`
+	// A link for managing the booking.
+	// @tag: validate:"omitempty,url"
+	ManagementURL string `protobuf:"bytes,10,opt,name=managementURL,proto3" json:"managementURL,omitempty" validate:"omitempty,url"`
+	// A link to request a wheel chair.
+	// @tag: validate:"omitempty,url"
+	RequestWheelchairURL string `protobuf:"bytes,11,opt,name=requestWheelchairURL,proto3" json:"requestWheelchairURL,omitempty" validate:"omitempty,url"`
+	// A link for registering a service animal.
+	// @tag: validate:"omitempty,url"
+	RegisterServiceAnimalURL string `protobuf:"bytes,12,opt,name=registerServiceAnimalURL,proto3" json:"registerServiceAnimalURL,omitempty" validate:"omitempty,url"`
+	// The email for the transit provider.
+	// @tag: validate:"omitempty,email"
+	TransitProviderEmail string `protobuf:"bytes,13,opt,name=transitProviderEmail,proto3" json:"transitProviderEmail,omitempty" validate:"omitempty,email"`
+	// A link for the transit provider.
+	// @tag: validate:"omitempty,url"
+	TransitProviderWebsiteURL string `protobuf:"bytes,14,opt,name=transitProviderWebsiteURL,proto3" json:"transitProviderWebsiteURL,omitempty" validate:"omitempty,url"`
+	// A phone number for the transit provider.
+	TransitProviderPhoneNumber string `protobuf:"bytes,15,opt,name=transitProviderPhoneNumber,proto3" json:"transitProviderPhoneNumber,omitempty"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
+}
+
+func (x *FlightURLs) Reset() {
+	*x = FlightURLs{}
+	mi := &file_io_flights_barcode_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FlightURLs) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FlightURLs) ProtoMessage() {}
+
+func (x *FlightURLs) ProtoReflect() protoreflect.Message {
+	mi := &file_io_flights_barcode_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FlightURLs.ProtoReflect.Descriptor instead.
+func (*FlightURLs) Descriptor() ([]byte, []int) {
+	return file_io_flights_barcode_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *FlightURLs) GetUpgradeURL() string {
+	if x != nil {
+		return x.UpgradeURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetOrderFoodURL() string {
+	if x != nil {
+		return x.OrderFoodURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetPurchaseWifiURL() string {
+	if x != nil {
+		return x.PurchaseWifiURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetChangeSeatURL() string {
+	if x != nil {
+		return x.ChangeSeatURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetEntertainmentURL() string {
+	if x != nil {
+		return x.EntertainmentURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetStandbyListURL() string {
+	if x != nil {
+		return x.StandbyListURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetPurchaseAdditionalBaggageURL() string {
+	if x != nil {
+		return x.PurchaseAdditionalBaggageURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetPurchaseLoungeAccessURL() string {
+	if x != nil {
+		return x.PurchaseLoungeAccessURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetReportLostBagURL() string {
+	if x != nil {
+		return x.ReportLostBagURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetManagementURL() string {
+	if x != nil {
+		return x.ManagementURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetRequestWheelchairURL() string {
+	if x != nil {
+		return x.RequestWheelchairURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetRegisterServiceAnimalURL() string {
+	if x != nil {
+		return x.RegisterServiceAnimalURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetTransitProviderEmail() string {
+	if x != nil {
+		return x.TransitProviderEmail
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetTransitProviderWebsiteURL() string {
+	if x != nil {
+		return x.TransitProviderWebsiteURL
+	}
+	return ""
+}
+
+func (x *FlightURLs) GetTransitProviderPhoneNumber() string {
+	if x != nil {
+		return x.TransitProviderPhoneNumber
+	}
+	return ""
+}
+
 var File_io_flights_barcode_proto protoreflect.FileDescriptor
 
 const file_io_flights_barcode_proto_rawDesc = "" +
@@ -743,7 +1614,40 @@ const file_io_flights_barcode_proto_rawDesc = "" +
 	"\x1cinternationalDocVerification\x18\t \x01(\x0e2%.flights.InternationalDocVerificationR\x1cinternationalDocVerification\x12<\n" +
 	"\ridadIndicator\x18\n" +
 	" \x01(\x0e2\x16.flights.IDADIndicatorR\ridadIndicator\x120\n" +
-	"\tfastTrack\x18\v \x01(\x0e2\x12.flights.FastTrackR\tfastTrack*\xef\x02\n" +
+	"\tfastTrack\x18\v \x01(\x0e2\x12.flights.FastTrackR\tfastTrack\"\xe2\x02\n" +
+	"\x0eFlightSchedule\x12,\n" +
+	"\x06monday\x18\x01 \x01(\v2\x14.flights.FlightTimesR\x06monday\x12.\n" +
+	"\atuesday\x18\x02 \x01(\v2\x14.flights.FlightTimesR\atuesday\x122\n" +
+	"\twednesday\x18\x03 \x01(\v2\x14.flights.FlightTimesR\twednesday\x120\n" +
+	"\bthursday\x18\x04 \x01(\v2\x14.flights.FlightTimesR\bthursday\x12,\n" +
+	"\x06friday\x18\x05 \x01(\v2\x14.flights.FlightTimesR\x06friday\x120\n" +
+	"\bsaturday\x18\x06 \x01(\v2\x14.flights.FlightTimesR\bsaturday\x12,\n" +
+	"\x06sunday\x18\a \x01(\v2\x14.flights.FlightTimesR\x06sunday\"\xef\x01\n" +
+	"\vFlightTimes\x12@\n" +
+	"\x16scheduledDepartureTime\x18\x01 \x01(\v2\b.io.TimeR\x16scheduledDepartureTime\x12,\n" +
+	"\fboardingTime\x18\x02 \x01(\v2\b.io.TimeR\fboardingTime\x122\n" +
+	"\x0fgateClosingTime\x18\x03 \x01(\v2\b.io.TimeR\x0fgateClosingTime\x12<\n" +
+	"\x14scheduledArrivalTime\x18\x04 \x01(\v2\b.io.TimeR\x14scheduledArrivalTime\"\xe6\x05\n" +
+	"\n" +
+	"FlightURLs\x12\x1e\n" +
+	"\n" +
+	"upgradeURL\x18\x01 \x01(\tR\n" +
+	"upgradeURL\x12\"\n" +
+	"\forderFoodURL\x18\x02 \x01(\tR\forderFoodURL\x12(\n" +
+	"\x0fpurchaseWifiURL\x18\x03 \x01(\tR\x0fpurchaseWifiURL\x12$\n" +
+	"\rchangeSeatURL\x18\x04 \x01(\tR\rchangeSeatURL\x12*\n" +
+	"\x10entertainmentURL\x18\x05 \x01(\tR\x10entertainmentURL\x12&\n" +
+	"\x0estandbyListURL\x18\x06 \x01(\tR\x0estandbyListURL\x12B\n" +
+	"\x1cpurchaseAdditionalBaggageURL\x18\a \x01(\tR\x1cpurchaseAdditionalBaggageURL\x128\n" +
+	"\x17purchaseLoungeAccessURL\x18\b \x01(\tR\x17purchaseLoungeAccessURL\x12*\n" +
+	"\x10reportLostBagURL\x18\t \x01(\tR\x10reportLostBagURL\x12$\n" +
+	"\rmanagementURL\x18\n" +
+	" \x01(\tR\rmanagementURL\x122\n" +
+	"\x14requestWheelchairURL\x18\v \x01(\tR\x14requestWheelchairURL\x12:\n" +
+	"\x18registerServiceAnimalURL\x18\f \x01(\tR\x18registerServiceAnimalURL\x122\n" +
+	"\x14transitProviderEmail\x18\r \x01(\tR\x14transitProviderEmail\x12<\n" +
+	"\x19transitProviderWebsiteURL\x18\x0e \x01(\tR\x19transitProviderWebsiteURL\x12>\n" +
+	"\x1atransitProviderPhoneNumber\x18\x0f \x01(\tR\x1atransitProviderPhoneNumber*\xef\x02\n" +
 	"\x0fPassengerStatus\x12\x19\n" +
 	"\x15ISSUED_NOT_CHECKED_IN\x10\x00\x12\x15\n" +
 	"\x11ISSUED_CHECKED_IN\x10\x01\x12,\n" +
@@ -809,7 +1713,71 @@ const file_io_flights_barcode_proto_rawDesc = "" +
 	"\fTSA_PRECHECK\x10\x03*\x19\n" +
 	"\tFastTrack\x12\x05\n" +
 	"\x01N\x10\x00\x12\x05\n" +
-	"\x01Y\x10\x01B_\n" +
+	"\x01Y\x10\x01*\xa8\x01\n" +
+	"\x17AirportSecurityPrograms\x12\x18\n" +
+	"\x14NO_SECURITY_PROGRAMS\x10\x00\x12\x11\n" +
+	"\rTSA_PRE_CHECK\x10\x01\x12\x1e\n" +
+	"\x1aTSA_PRE_CHECK_TOUCHLESS_ID\x10\x02\x12\b\n" +
+	"\x04TWOV\x10\x03\x12\a\n" +
+	"\x03OSS\x10\x04\x12\a\n" +
+	"\x03ITI\x10\x05\x12\a\n" +
+	"\x03ITD\x10\x06\x12\x10\n" +
+	"\fGLOBAL_ENTRY\x10\a\x12\t\n" +
+	"\x05CLEAR\x10\b*\xfa\x01\n" +
+	"\fFlightStatus\x12\v\n" +
+	"\aUNKNOWN\x10\x00\x12\r\n" +
+	"\tSCHEDULED\x10\x01\x12\f\n" +
+	"\bDEPARTED\x10\x02\x12\t\n" +
+	"\x05INAIR\x10\x03\x12\n" +
+	"\n" +
+	"\x06LANDED\x10\x04\x12\v\n" +
+	"\aARRIVED\x10\x05\x12\r\n" +
+	"\tCANCELLED\x10\x06\x12\v\n" +
+	"\aDELAYED\x10\a\x12\x15\n" +
+	"\x11DEPARTED_DIVERTED\x10\b\x12\x12\n" +
+	"\x0eINAIR_DIVERTED\x10\t\x12\x14\n" +
+	"\x10ARRIVED_DIVERTED\x10\n" +
+	"\x12\x15\n" +
+	"\x11DEPARTED_RECOVERY\x10\v\x12\x12\n" +
+	"\x0eINAIR_RECOVERY\x10\f\x12\x14\n" +
+	"\x10ARRIVED_RECOVERY\x10\r*=\n" +
+	"\x10FlightCreateMode\x12\x0e\n" +
+	"\n" +
+	"DO_NOT_USE\x10\x00\x12\n" +
+	"\n" +
+	"\x06MANUAL\x10\x01\x12\r\n" +
+	"\tAUTOMATIC\x10\x02*\xa9\x01\n" +
+	"\fFlightAlerts\x12\r\n" +
+	"\tNO_ALERTS\x10\x00\x12\x0e\n" +
+	"\n" +
+	"ALL_ALERTS\x10\x01\x12\x18\n" +
+	"\x14DEPARTURE_GATE_ALERT\x10\x02\x12\x18\n" +
+	"\x14DEPARTURE_TIME_ALERT\x10\x04\x12\x16\n" +
+	"\x12ARRIVAL_GATE_ALERT\x10\b\x12\x16\n" +
+	"\x12ARRIVAL_TIME_ALERT\x10\x10\x12\x16\n" +
+	"\x12BAGGAGE_BELT_ALERT\x10 *m\n" +
+	"\x0eBoardingPolicy\x12\x1f\n" +
+	"\x1bBOARDING_POLICY_UNSPECIFIED\x10\x00\x12\x0e\n" +
+	"\n" +
+	"ZONE_BASED\x10\x01\x12\x0f\n" +
+	"\vGROUP_BASED\x10\x02\x12\x19\n" +
+	"\x15BOARDING_POLICY_OTHER\x10\x03*\x83\x01\n" +
+	"\x0fSeatClassPolicy\x12!\n" +
+	"\x1dSEAT_CLASS_POLICY_UNSPECIFIED\x10\x00\x12\x0f\n" +
+	"\vCABIN_BASED\x10\x01\x12\x0f\n" +
+	"\vCLASS_BASED\x10\x02\x12\x0e\n" +
+	"\n" +
+	"TIER_BASED\x10\x03\x12\x1b\n" +
+	"\x17SEAT_CLASS_POLICY_OTHER\x10\x04*\x1f\n" +
+	"\tAuthority\x12\b\n" +
+	"\x04IATA\x10\x00\x12\b\n" +
+	"\x04ICAO\x10\x01*v\n" +
+	"\x15PassengerCapabilities\x12\x13\n" +
+	"\x0fNO_CAPABILITIES\x10\x00\x12\x10\n" +
+	"\fPRE_BOARDING\x10\x01\x12\x15\n" +
+	"\x11PRIORITY_BOARDING\x10\x02\x12\f\n" +
+	"\bCARRY_ON\x10\x03\x12\x11\n" +
+	"\rPERSONAL_ITEM\x10\x04B_\n" +
 	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
@@ -824,8 +1792,8 @@ func file_io_flights_barcode_proto_rawDescGZIP() []byte {
 	return file_io_flights_barcode_proto_rawDescData
 }
 
-var file_io_flights_barcode_proto_enumTypes = make([]protoimpl.EnumInfo, 8)
-var file_io_flights_barcode_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_io_flights_barcode_proto_enumTypes = make([]protoimpl.EnumInfo, 16)
+var file_io_flights_barcode_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_io_flights_barcode_proto_goTypes = []any{
 	(PassengerStatus)(0),              // 0: flights.PassengerStatus
 	(PassengerDescription)(0),         // 1: flights.PassengerDescription
@@ -835,24 +1803,47 @@ var file_io_flights_barcode_proto_goTypes = []any{
 	(IDADIndicator)(0),                // 5: flights.IDADIndicator
 	(SelecteeIndicator)(0),            // 6: flights.SelecteeIndicator
 	(FastTrack)(0),                    // 7: flights.FastTrack
-	(*ConditionalItems)(nil),          // 8: flights.ConditionalItems
-	(*io.Date)(nil),                   // 9: io.Date
+	(AirportSecurityPrograms)(0),      // 8: flights.AirportSecurityPrograms
+	(FlightStatus)(0),                 // 9: flights.FlightStatus
+	(FlightCreateMode)(0),             // 10: flights.FlightCreateMode
+	(FlightAlerts)(0),                 // 11: flights.FlightAlerts
+	(BoardingPolicy)(0),               // 12: flights.BoardingPolicy
+	(SeatClassPolicy)(0),              // 13: flights.SeatClassPolicy
+	(Authority)(0),                    // 14: flights.Authority
+	(PassengerCapabilities)(0),        // 15: flights.PassengerCapabilities
+	(*ConditionalItems)(nil),          // 16: flights.ConditionalItems
+	(*FlightSchedule)(nil),            // 17: flights.FlightSchedule
+	(*FlightTimes)(nil),               // 18: flights.FlightTimes
+	(*FlightURLs)(nil),                // 19: flights.FlightURLs
+	(*io.Date)(nil),                   // 20: io.Date
+	(*io.Time)(nil),                   // 21: io.Time
 }
 var file_io_flights_barcode_proto_depIdxs = []int32{
-	1, // 0: flights.ConditionalItems.passengerDescription:type_name -> flights.PassengerDescription
-	2, // 1: flights.ConditionalItems.checkInSource:type_name -> flights.Source
-	2, // 2: flights.ConditionalItems.boardingPassIssuanceSource:type_name -> flights.Source
-	9, // 3: flights.ConditionalItems.boardingPassIssueDate:type_name -> io.Date
-	3, // 4: flights.ConditionalItems.documentType:type_name -> flights.DocType
-	6, // 5: flights.ConditionalItems.selecteeIndicator:type_name -> flights.SelecteeIndicator
-	4, // 6: flights.ConditionalItems.internationalDocVerification:type_name -> flights.InternationalDocVerification
-	5, // 7: flights.ConditionalItems.idadIndicator:type_name -> flights.IDADIndicator
-	7, // 8: flights.ConditionalItems.fastTrack:type_name -> flights.FastTrack
-	9, // [9:9] is the sub-list for method output_type
-	9, // [9:9] is the sub-list for method input_type
-	9, // [9:9] is the sub-list for extension type_name
-	9, // [9:9] is the sub-list for extension extendee
-	0, // [0:9] is the sub-list for field type_name
+	1,  // 0: flights.ConditionalItems.passengerDescription:type_name -> flights.PassengerDescription
+	2,  // 1: flights.ConditionalItems.checkInSource:type_name -> flights.Source
+	2,  // 2: flights.ConditionalItems.boardingPassIssuanceSource:type_name -> flights.Source
+	20, // 3: flights.ConditionalItems.boardingPassIssueDate:type_name -> io.Date
+	3,  // 4: flights.ConditionalItems.documentType:type_name -> flights.DocType
+	6,  // 5: flights.ConditionalItems.selecteeIndicator:type_name -> flights.SelecteeIndicator
+	4,  // 6: flights.ConditionalItems.internationalDocVerification:type_name -> flights.InternationalDocVerification
+	5,  // 7: flights.ConditionalItems.idadIndicator:type_name -> flights.IDADIndicator
+	7,  // 8: flights.ConditionalItems.fastTrack:type_name -> flights.FastTrack
+	18, // 9: flights.FlightSchedule.monday:type_name -> flights.FlightTimes
+	18, // 10: flights.FlightSchedule.tuesday:type_name -> flights.FlightTimes
+	18, // 11: flights.FlightSchedule.wednesday:type_name -> flights.FlightTimes
+	18, // 12: flights.FlightSchedule.thursday:type_name -> flights.FlightTimes
+	18, // 13: flights.FlightSchedule.friday:type_name -> flights.FlightTimes
+	18, // 14: flights.FlightSchedule.saturday:type_name -> flights.FlightTimes
+	18, // 15: flights.FlightSchedule.sunday:type_name -> flights.FlightTimes
+	21, // 16: flights.FlightTimes.scheduledDepartureTime:type_name -> io.Time
+	21, // 17: flights.FlightTimes.boardingTime:type_name -> io.Time
+	21, // 18: flights.FlightTimes.gateClosingTime:type_name -> io.Time
+	21, // 19: flights.FlightTimes.scheduledArrivalTime:type_name -> io.Time
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_io_flights_barcode_proto_init() }
@@ -865,8 +1856,8 @@ func file_io_flights_barcode_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_io_flights_barcode_proto_rawDesc), len(file_io_flights_barcode_proto_rawDesc)),
-			NumEnums:      8,
-			NumMessages:   1,
+			NumEnums:      16,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

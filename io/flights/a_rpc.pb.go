@@ -12,14 +12,13 @@
 package flights
 
 import (
-	reflect "reflect"
-	unsafe "unsafe"
-
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	reflect "reflect"
+	unsafe "unsafe"
 )
 
 const (
@@ -33,7 +32,7 @@ var File_io_flights_a_rpc_proto protoreflect.FileDescriptor
 
 const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\n" +
-	"\x16io/flights/a_rpc.proto\x12\aflights\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1eio/flights/boarding_pass.proto\x1a\x18io/flights/airport.proto\x1a\x17io/flights/flight.proto\x1a\"io/flights/flight_designator.proto\x1a\x18io/flights/carrier.proto\x1a\x17io/flights/common.proto2\x978\n" +
+	"\x16io/flights/a_rpc.proto\x12\aflights\x1a\x1cgoogle/api/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1eio/flights/boarding_pass.proto\x1a\x18io/flights/airport.proto\x1a\x17io/flights/flight.proto\x1a\"io/flights/flight_designator.proto\x1a\x18io/flights/carrier.proto\x1a\x18io/flights/barcode.proto2\xd68\n" +
 	"\aFlights\x12\xf2\x01\n" +
 	"\n" +
 	"createPort\x12\r.flights.Port\x1a\x16.google.protobuf.Empty\"\xbc\x01\x92A\x9d\x01\n" +
@@ -94,9 +93,9 @@ const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\x03403\x12-\n" +
 	"+Returned when the user lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x15:\x01**\x10/flights/carrier\x12\x92\x03\n" +
-	"\x16createFlightDesignator\x12\x19.flights.FlightDesignator\x1a\x16.google.protobuf.Empty\"\xc4\x02\x92A\xa2\x02\n" +
-	"\x12Flight Designators\x12\x19Create Flight Designation\x1a\"Creates a flight designator recordJ0\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x15:\x01**\x10/flights/carrier\x12\x91\x03\n" +
+	"\x16createFlightDesignator\x12\x19.flights.FlightDesignator\x1a\x16.google.protobuf.Empty\"\xc3\x02\x92A\xa1\x02\n" +
+	"\x12Flight Designators\x12\x18Create Flight Designator\x1a\"Creates a flight designator recordJ0\n" +
 	"\x03400\x12)\n" +
 	"'There is a problem with the input data.J\"\n" +
 	"\x03403\x12\x1b\n" +
@@ -104,15 +103,15 @@ const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\x03404\x12\x17\n" +
 	"\x15Record was not found.JW\n" +
 	"\x03503\x12P\n" +
-	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/flights/designator\x12\xb2\x02\n" +
-	"\x13getFlightDesignator\x12 .flights.FlightDesignatorRequest\x1a\x19.flights.FlightDesignator\"\xdd\x01\x92A\x96\x01\n" +
-	"\x12Flight Designators\x12\x16Get Flight Designation\x1a$Retrieves a flight designator recordJ\"\n" +
+	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/flights/designator\x12\xb1\x02\n" +
+	"\x13getFlightDesignator\x12 .flights.FlightDesignatorRequest\x1a\x19.flights.FlightDesignator\"\xdc\x01\x92A\x95\x01\n" +
+	"\x12Flight Designators\x12\x15Get Flight Designator\x1a$Retrieves a flight designator recordJ\"\n" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02=\x12;/flights/designator/{carrierCode}/{flightNumber}/{revision}\x12\x95\x03\n" +
-	"\x16updateFlightDesignator\x12\x19.flights.FlightDesignator\x1a\x19.flights.FlightDesignator\"\xc4\x02\x92A\xa2\x02\n" +
-	"\x12Flight Designators\x12\x19Update Flight Designation\x1a\"Updates a flight designator recordJ0\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02=\x12;/flights/designator/{carrierCode}/{flightNumber}/{revision}\x12\x94\x03\n" +
+	"\x16updateFlightDesignator\x12\x19.flights.FlightDesignator\x1a\x19.flights.FlightDesignator\"\xc3\x02\x92A\xa1\x02\n" +
+	"\x12Flight Designators\x12\x18Update Flight Designator\x1a\"Updates a flight designator recordJ0\n" +
 	"\x03400\x12)\n" +
 	"'There is a problem with the input data.J\"\n" +
 	"\x03403\x12\x1b\n" +
@@ -120,9 +119,9 @@ const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\x03404\x12\x17\n" +
 	"\x15Record was not found.JW\n" +
 	"\x03503\x12P\n" +
-	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x18:\x01*\x1a\x13/flights/designator\x12\x8f\x02\n" +
-	"\x16deleteFlightDesignator\x12 .flights.FlightDesignatorRequest\x1a\x16.google.protobuf.Empty\"\xba\x01\x92A\x98\x01\n" +
-	"\x12Flight Designators\x12\x19Delete Flight Designation\x1a#Deletes a flight designator record.J\"\n" +
+	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x18:\x01*\x1a\x13/flights/designator\x12\x8e\x02\n" +
+	"\x16deleteFlightDesignator\x12 .flights.FlightDesignatorRequest\x1a\x16.google.protobuf.Empty\"\xb9\x01\x92A\x97\x01\n" +
+	"\x12Flight Designators\x12\x18Delete Flight Designator\x1a#Deletes a flight designator record.J\"\n" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
@@ -153,15 +152,15 @@ const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\x03404\x12\x17\n" +
 	"\x15Record was not found.JW\n" +
 	"\x03503\x12P\n" +
-	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x14:\x01*\x1a\x0f/flights/flight\x12\xdd\x02\n" +
-	"\fdeleteFlight\x12\x16.flights.FlightRequest\x1a\x16.google.protobuf.Empty\"\x9c\x02\x92A\xfe\x01\n" +
-	"\aFlights\x12\rDelete Flight\x1a\x9f\x01Deletes a flight record. Note that a deleted flight record may be automatically recreated, unless the [active] flag on the Flight Number record is set to falseJ\"\n" +
+	"NServer is unavailable. Back off for 250ms and repeat request until successful.\x82\xd3\xe4\x93\x02\x14:\x01*\x1a\x0f/flights/flight\x12\xa1\x03\n" +
+	"\fdeleteFlight\x12\x16.flights.FlightRequest\x1a\x16.google.protobuf.Empty\"\xe0\x02\x92A\xc2\x02\n" +
+	"\aFlights\x12\rDelete Flight\x1a\xe3\x01Deletes a flight record. Note that a deleted flight record may be automatically recreated, unless the [active] flag on the Flight Designator record is set to false. Deleting a flight deletes all boarding passes for that flight.J\"\n" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x14:\x01**\x0f/flights/flight\x12\x91\x04\n" +
-	"\x12createBoardingPass\x12\x1b.flights.BoardingPassRecord\x1a\x1f.flights.BoardingPassesResponse\"\xbc\x03\x92A\x98\x03\n" +
-	"\x0fBoarding Passes\x12\x14Create Boarding Pass\x1a\x9e\x01Creates a boarding pass record. If flight record for the date does not yet exist, it will be created using the Flight Designation defaults. Returns a pass id.J0\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x14:\x01**\x0f/flights/flight\x12\x90\x04\n" +
+	"\x12createBoardingPass\x12\x1b.flights.BoardingPassRecord\x1a\x1f.flights.BoardingPassesResponse\"\xbb\x03\x92A\x97\x03\n" +
+	"\x0fBoarding Passes\x12\x14Create Boarding Pass\x1a\x9d\x01Creates a boarding pass record. If flight record for the date does not yet exist, it will be created using the Flight Designator defaults. Returns a pass id.J0\n" +
 	"\x03400\x12)\n" +
 	"'There is a problem with the input data.J\"\n" +
 	"\x03403\x12\x1b\n" +
@@ -277,7 +276,7 @@ func file_io_flights_a_rpc_proto_init() {
 	file_io_flights_flight_proto_init()
 	file_io_flights_flight_designator_proto_init()
 	file_io_flights_carrier_proto_init()
-	file_io_flights_common_proto_init()
+	file_io_flights_barcode_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
