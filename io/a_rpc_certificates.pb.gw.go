@@ -42,7 +42,9 @@ func request_Certificates_GetAppleCertificateData_0(ctx context.Context, marshal
 		metadata runtime.ServerMetadata
 		err      error
 	)
-	io.Copy(io.Discard, req.Body)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	val, ok := pathParams["passTypeId"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "passTypeId")
@@ -78,7 +80,9 @@ func request_Certificates_GetCertificateSigningRequest_0(ctx context.Context, ma
 		protoReq emptypb.Empty
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.GetCertificateSigningRequest(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -99,6 +103,9 @@ func request_Certificates_AddAppleCertificate_0(ctx context.Context, marshaler r
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
 	msg, err := client.AddAppleCertificate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -124,6 +131,9 @@ func request_Certificates_UpdateAppleCertificate_0(ctx context.Context, marshale
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.UpdateAppleCertificate(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -147,7 +157,9 @@ func request_Certificates_ListAppleCertificatesDeprecated_0(ctx context.Context,
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -174,6 +186,9 @@ func request_Certificates_ListAppleCertificates_0(ctx context.Context, marshaler
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	stream, err := client.ListAppleCertificates(ctx, &protoReq)
 	if err != nil {
 		return nil, metadata, err
@@ -193,7 +208,9 @@ func request_Certificates_CountAppleCertificatesDeprecated_0(ctx context.Context
 		protoReq Pagination
 		metadata runtime.ServerMetadata
 	)
-	io.Copy(io.Discard, req.Body)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
@@ -227,6 +244,9 @@ func request_Certificates_CountAppleCertificates_0(ctx context.Context, marshale
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
 	msg, err := client.CountAppleCertificates(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -243,6 +263,161 @@ func local_request_Certificates_CountAppleCertificates_0(ctx context.Context, ma
 	return msg, metadata, err
 }
 
+func request_Certificates_CreateAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.CreateAppleCertificateRenewalAuthority(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Certificates_CreateAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, server CertificatesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq CreateAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.CreateAppleCertificateRenewalAuthority(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Certificates_GetAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["apiKeyId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "apiKeyId")
+	}
+	protoReq.ApiKeyId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "apiKeyId", err)
+	}
+	msg, err := client.GetAppleCertificateRenewalAuthority(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Certificates_GetAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, server CertificatesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["apiKeyId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "apiKeyId")
+	}
+	protoReq.ApiKeyId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "apiKeyId", err)
+	}
+	msg, err := server.GetAppleCertificateRenewalAuthority(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Certificates_UpdateAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	msg, err := client.UpdateAppleCertificateRenewalAuthority(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Certificates_UpdateAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, server CertificatesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq UpdateAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.UpdateAppleCertificateRenewalAuthority(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Certificates_DeleteAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	val, ok := pathParams["apiKeyId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "apiKeyId")
+	}
+	protoReq.ApiKeyId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "apiKeyId", err)
+	}
+	msg, err := client.DeleteAppleCertificateRenewalAuthority(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_Certificates_DeleteAppleCertificateRenewalAuthority_0(ctx context.Context, marshaler runtime.Marshaler, server CertificatesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq GetAppleCertificateRenewalAuthorityRequest
+		metadata runtime.ServerMetadata
+		err      error
+	)
+	val, ok := pathParams["apiKeyId"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "apiKeyId")
+	}
+	protoReq.ApiKeyId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "apiKeyId", err)
+	}
+	msg, err := server.DeleteAppleCertificateRenewalAuthority(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+func request_Certificates_ListAppleCertificateRenewalAuthorities_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (Certificates_ListAppleCertificateRenewalAuthoritiesClient, runtime.ServerMetadata, error) {
+	var (
+		protoReq ListAppleCertificateRenewalAuthoritiesRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	stream, err := client.ListAppleCertificateRenewalAuthorities(ctx, &protoReq)
+	if err != nil {
+		return nil, metadata, err
+	}
+	header, err := stream.Header()
+	if err != nil {
+		return nil, metadata, err
+	}
+	metadata.HeaderMD = header
+	return stream, metadata, nil
+}
+
 func request_Certificates_SendNFCSigningCredentials_0(ctx context.Context, marshaler runtime.Marshaler, client CertificatesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq NFCSigningCredentialsRequest
@@ -250,6 +425,9 @@ func request_Certificates_SendNFCSigningCredentials_0(ctx context.Context, marsh
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
 	}
 	msg, err := client.SendNFCSigningCredentials(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -406,6 +584,93 @@ func RegisterCertificatesHandlerServer(ctx context.Context, mux *runtime.ServeMu
 			return
 		}
 		forward_Certificates_CountAppleCertificates_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Certificates_CreateAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Certificates/CreateAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Certificates_CreateAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_CreateAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_Certificates_GetAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Certificates/GetAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority/{apiKeyId}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Certificates_GetAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_GetAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_Certificates_UpdateAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Certificates/UpdateAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Certificates_UpdateAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_UpdateAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_Certificates_DeleteAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/io.Certificates/DeleteAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority/{apiKeyId}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_Certificates_DeleteAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_DeleteAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+
+	mux.Handle(http.MethodPost, pattern_Certificates_ListAppleCertificateRenewalAuthorities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		err := status.Error(codes.Unimplemented, "streaming calls are not yet supported in the in-process transport")
+		_, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+		return
 	})
 	mux.Handle(http.MethodPost, pattern_Certificates_SendNFCSigningCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
@@ -603,6 +868,91 @@ func RegisterCertificatesHandlerClient(ctx context.Context, mux *runtime.ServeMu
 		}
 		forward_Certificates_CountAppleCertificates_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodPost, pattern_Certificates_CreateAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Certificates/CreateAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Certificates_CreateAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_CreateAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_Certificates_GetAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Certificates/GetAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority/{apiKeyId}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Certificates_GetAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_GetAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPut, pattern_Certificates_UpdateAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Certificates/UpdateAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Certificates_UpdateAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_UpdateAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodDelete, pattern_Certificates_DeleteAppleCertificateRenewalAuthority_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Certificates/DeleteAppleCertificateRenewalAuthority", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authority/{apiKeyId}"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Certificates_DeleteAppleCertificateRenewalAuthority_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_DeleteAppleCertificateRenewalAuthority_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodPost, pattern_Certificates_ListAppleCertificateRenewalAuthorities_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/io.Certificates/ListAppleCertificateRenewalAuthorities", runtime.WithHTTPPathPattern("/certificate/apple_certificate_renewal_authorities/list"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_Certificates_ListAppleCertificateRenewalAuthorities_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_Certificates_ListAppleCertificateRenewalAuthorities_0(annotatedContext, mux, outboundMarshaler, w, req, func() (proto.Message, error) { return resp.Recv() }, mux.GetForwardResponseOptions()...)
+	})
 	mux.Handle(http.MethodPost, pattern_Certificates_SendNFCSigningCredentials_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -624,25 +974,35 @@ func RegisterCertificatesHandlerClient(ctx context.Context, mux *runtime.ServeMu
 }
 
 var (
-	pattern_Certificates_GetAppleCertificateData_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"certificate", "passTypeId"}, ""))
-	pattern_Certificates_GetCertificateSigningRequest_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "certificate_signing_request"}, ""))
-	pattern_Certificates_AddAppleCertificate_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate"}, ""))
-	pattern_Certificates_UpdateAppleCertificate_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate"}, ""))
-	pattern_Certificates_ListAppleCertificatesDeprecated_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"certificates"}, ""))
-	pattern_Certificates_ListAppleCertificates_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"certificates", "apple", "list"}, ""))
-	pattern_Certificates_CountAppleCertificatesDeprecated_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificates", "count"}, ""))
-	pattern_Certificates_CountAppleCertificates_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"certificates", "apple", "count"}, ""))
-	pattern_Certificates_SendNFCSigningCredentials_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"certificates", "nfc", "credentials", "send"}, ""))
+	pattern_Certificates_GetAppleCertificateData_0                = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 1, 0, 4, 1, 5, 1}, []string{"certificate", "passTypeId"}, ""))
+	pattern_Certificates_GetCertificateSigningRequest_0           = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "certificate_signing_request"}, ""))
+	pattern_Certificates_AddAppleCertificate_0                    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate"}, ""))
+	pattern_Certificates_UpdateAppleCertificate_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate"}, ""))
+	pattern_Certificates_ListAppleCertificatesDeprecated_0        = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0}, []string{"certificates"}, ""))
+	pattern_Certificates_ListAppleCertificates_0                  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"certificates", "apple", "list"}, ""))
+	pattern_Certificates_CountAppleCertificatesDeprecated_0       = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificates", "count"}, ""))
+	pattern_Certificates_CountAppleCertificates_0                 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"certificates", "apple", "count"}, ""))
+	pattern_Certificates_CreateAppleCertificateRenewalAuthority_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate_renewal_authority"}, ""))
+	pattern_Certificates_GetAppleCertificateRenewalAuthority_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"certificate", "apple_certificate_renewal_authority", "apiKeyId"}, ""))
+	pattern_Certificates_UpdateAppleCertificateRenewalAuthority_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"certificate", "apple_certificate_renewal_authority"}, ""))
+	pattern_Certificates_DeleteAppleCertificateRenewalAuthority_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"certificate", "apple_certificate_renewal_authority", "apiKeyId"}, ""))
+	pattern_Certificates_ListAppleCertificateRenewalAuthorities_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"certificate", "apple_certificate_renewal_authorities", "list"}, ""))
+	pattern_Certificates_SendNFCSigningCredentials_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"certificates", "nfc", "credentials", "send"}, ""))
 )
 
 var (
-	forward_Certificates_GetAppleCertificateData_0          = runtime.ForwardResponseMessage
-	forward_Certificates_GetCertificateSigningRequest_0     = runtime.ForwardResponseMessage
-	forward_Certificates_AddAppleCertificate_0              = runtime.ForwardResponseMessage
-	forward_Certificates_UpdateAppleCertificate_0           = runtime.ForwardResponseMessage
-	forward_Certificates_ListAppleCertificatesDeprecated_0  = runtime.ForwardResponseStream
-	forward_Certificates_ListAppleCertificates_0            = runtime.ForwardResponseStream
-	forward_Certificates_CountAppleCertificatesDeprecated_0 = runtime.ForwardResponseMessage
-	forward_Certificates_CountAppleCertificates_0           = runtime.ForwardResponseMessage
-	forward_Certificates_SendNFCSigningCredentials_0        = runtime.ForwardResponseMessage
+	forward_Certificates_GetAppleCertificateData_0                = runtime.ForwardResponseMessage
+	forward_Certificates_GetCertificateSigningRequest_0           = runtime.ForwardResponseMessage
+	forward_Certificates_AddAppleCertificate_0                    = runtime.ForwardResponseMessage
+	forward_Certificates_UpdateAppleCertificate_0                 = runtime.ForwardResponseMessage
+	forward_Certificates_ListAppleCertificatesDeprecated_0        = runtime.ForwardResponseStream
+	forward_Certificates_ListAppleCertificates_0                  = runtime.ForwardResponseStream
+	forward_Certificates_CountAppleCertificatesDeprecated_0       = runtime.ForwardResponseMessage
+	forward_Certificates_CountAppleCertificates_0                 = runtime.ForwardResponseMessage
+	forward_Certificates_CreateAppleCertificateRenewalAuthority_0 = runtime.ForwardResponseMessage
+	forward_Certificates_GetAppleCertificateRenewalAuthority_0    = runtime.ForwardResponseMessage
+	forward_Certificates_UpdateAppleCertificateRenewalAuthority_0 = runtime.ForwardResponseMessage
+	forward_Certificates_DeleteAppleCertificateRenewalAuthority_0 = runtime.ForwardResponseMessage
+	forward_Certificates_ListAppleCertificateRenewalAuthorities_0 = runtime.ForwardResponseStream
+	forward_Certificates_SendNFCSigningCredentials_0              = runtime.ForwardResponseMessage
 )
