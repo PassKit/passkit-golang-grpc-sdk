@@ -15,12 +15,12 @@
 package raw
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -425,8 +425,8 @@ const file_io_raw_pass_proto_rawDesc = "" +
 	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afilters\"n\n" +
 	"\x1fListPassesByPassTemplateRequest\x12$\n" +
 	"\rpassProjectId\x18\x01 \x01(\tR\rpassProjectId\x12%\n" +
-	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersBS\n" +
-	"\x14com.passkit.grpc.RawZ(github.com/PassKit/passkit-golang-grpc-sdk/io/raw\xaa\x02\x10PassKit.Grpc.Rawb\x06proto3"
+	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersB\\\n" +
+	"\x14com.passkit.grpc.RawZ1github.com/PassKit/passkit-golang-grpc-sdk/io/raw\xaa\x02\x10PassKit.Grpc.Rawb\x06proto3"
 
 var (
 	file_io_raw_pass_proto_rawDescOnce sync.Once

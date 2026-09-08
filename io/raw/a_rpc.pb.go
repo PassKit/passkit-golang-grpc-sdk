@@ -11,13 +11,13 @@
 package raw
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	unsafe "unsafe"
 )
 
@@ -62,7 +62,7 @@ const file_io_raw_a_rpc_proto_rawDesc = "" +
 	"\x17listPassesByPassProject\x12#.raw.ListPassesByPassProjectRequest\x1a\t.raw.Pass\"s\x92AJ\n" +
 	"\x03Raw\x12\vList Passes\x1a6List all passes for pass project. Supports pagination.\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/raw/pass/listByPassProject0\x01\x12\xc6\x01\n" +
 	"\x18listPassesByPassTemplate\x12$.raw.ListPassesByPassTemplateRequest\x1a\t.raw.Pass\"w\x92AM\n" +
-	"\x03Raw\x12\vList Passes\x1a9List all passes for a pass template. Supports pagination.\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/raw/pass/listByPassTemplate0\x01B\xf6\x06\x92A\x9f\x06\x12\xac\x02\n" +
+	"\x03Raw\x12\vList Passes\x1a9List all passes for a pass template. Supports pagination.\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/raw/pass/listByPassTemplate0\x01B\xff\x06\x92A\x9f\x06\x12\xac\x02\n" +
 	"\x16PassKit Raw Passes API\x12\xa8\x01This protocol is suit for cases where the business logic is handled elsewhere, and the purpose is purely to issue and update content for Apple Wallet and Google Wallet.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\x030.1*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -82,7 +82,7 @@ const file_io_raw_a_rpc_proto_rawDesc = "" +
 	"\x04\x9a\x02\x01\aRW\n" +
 	"\x03503\x12P\n" +
 	"NServer is unavailable. Back off for 250ms and repeat request until successful.\n" +
-	"\x14com.passkit.grpc.RawZ(github.com/PassKit/passkit-golang-grpc-sdk/io/raw\xaa\x02\x10PassKit.Grpc.Rawb\x06proto3"
+	"\x14com.passkit.grpc.RawZ1github.com/PassKit/passkit-golang-grpc-sdk/io/raw\xaa\x02\x10PassKit.Grpc.Rawb\x06proto3"
 
 var file_io_raw_a_rpc_proto_goTypes = []any{
 	(*PassProject)(nil),                     // 0: raw.PassProject

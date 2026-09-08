@@ -341,8 +341,8 @@ const file_io_common_localization_proto_rawDesc = "" +
 	"\x02TH\x10\x9c\x01\x12\a\n" +
 	"\x02TR\x10\xa0\x01\x12\a\n" +
 	"\x02UK\x10\xa4\x01\x12\a\n" +
-	"\x02VI\x10\xa8\x01BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x02VI\x10\xa8\x01BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_localization_proto_rawDescOnce sync.Once

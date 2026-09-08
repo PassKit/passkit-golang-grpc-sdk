@@ -10,13 +10,13 @@
 package event_tickets
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	unsafe "unsafe"
 )
 
@@ -124,7 +124,7 @@ const file_io_event_tickets_a_rpc_proto_rawDesc = "" +
 	"\vlistTickets\x12 .event_tickets.TicketListRequest\x1a\".event_tickets.TicketLimitedFields\"x\x92AP\n" +
 	"\aTickets\x12\fList Tickets\x1a7List all tickets for a Production. Supports pagination.\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/eventTickets/tickets/list0\x01\x12\xcb\x01\n" +
 	"\fcountTickets\x12 .event_tickets.TicketListRequest\x1a\t.io.Count\"\x8d\x01\x92Ad\n" +
-	"\aTickets\x12\rCount Tickets\x1aJCount all tickets for a Production, Event, Ticket Type and / or Start Date\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/eventTickets/tickets/countB\xd8\a\x92A\xe5\x06\x12\xa0\x02\n" +
+	"\aTickets\x12\rCount Tickets\x1aJCount all tickets for a Production, Event, Ticket Type and / or Start Date\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/eventTickets/tickets/countB\xe1\a\x92A\xe5\x06\x12\xa0\x02\n" +
 	"\x19PassKit Event Tickets API\x12\x94\x01This API enables you to get all your Digital Event Tickets into Apple Wallet & Google Wallet, from theatre and cinema, to sport events and concerts.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\b0.1-spec*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -150,7 +150,7 @@ const file_io_event_tickets_a_rpc_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x1dcom.passkit.grpc.EventTicketsZ2github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
+	"\x1dcom.passkit.grpc.EventTicketsZ;github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
 
 var file_io_event_tickets_a_rpc_proto_goTypes = []any{
 	(*Production)(nil),                  // 0: event_tickets.Production

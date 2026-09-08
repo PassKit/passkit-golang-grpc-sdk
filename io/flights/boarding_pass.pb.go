@@ -12,12 +12,12 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
-	cabincodes "github.com/PassKit/passkit-golang-grpc-sdk/io/flights/cabincodes"
+	cabincodes "stash.passkit.com/io/model/sdk/go/io/flights/cabincodes"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -1030,8 +1030,8 @@ const file_io_flights_boarding_pass_proto_rawDesc = "" +
 	"\rboardingPoint\x18\x03 \x01(\tR\rboardingPoint:~\x92A{\n" +
 	"y*\"Boarding Pass Record By PNR record2MUsed to access a single or multiple boarding passed or boarding pass records.\xd2\x01\x03pnr\"P\n" +
 	"\x16BoardingPassesResponse\x126\n" +
-	"\x0eboardingPasses\x18\x01 \x03(\v2\x0e.io.PassBundleR\x0eboardingPassesB_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\x0eboardingPasses\x18\x01 \x03(\v2\x0e.io.PassBundleR\x0eboardingPassesBh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_boarding_pass_proto_rawDescOnce sync.Once

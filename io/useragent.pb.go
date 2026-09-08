@@ -179,8 +179,8 @@ const file_io_common_useragent_proto_rawDesc = "" +
 	"\flocalization\x18\t \x01(\tR\flocalization\x12\x16\n" +
 	"\x06mobile\x18\n" +
 	" \x01(\bR\x06mobile\x12*\n" +
-	"\x10walletCompatible\x18\v \x01(\bR\x10walletCompatibleBU\n" +
-	"\x10com.passkit.grpcB\fBrowserAgentZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10walletCompatible\x18\v \x01(\bR\x10walletCompatibleB^\n" +
+	"\x10com.passkit.grpcB\fBrowserAgentZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_useragent_proto_rawDescOnce sync.Once

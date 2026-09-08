@@ -13,6 +13,7 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
+	io "stash.passkit.com/io/model/sdk/go/io"
 	unsafe "unsafe"
 )
 
@@ -60,7 +61,7 @@ const file_io_core_a_rpc_images_proto_rawDesc = "" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
 	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x14\x12\x12/images/user/count\x12\xa9\x01\n" +
-	"\x12countImagesForUser\x12\v.io.Filters\x1a\t.io.Count\"{\x92A[\x12\"Count All Images Owned by The User\x1a5Retrieves all images stored under the user's account.\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/images/user/countB\xcd\x06\x92A\x82\x06\x12\xbd\x01\n" +
+	"\x12countImagesForUser\x12\v.io.Filters\x1a\t.io.Count\"{\x92A[\x12\"Count All Images Owned by The User\x1a5Retrieves all images stored under the user's account.\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/images/user/countB\xd6\x06\x92A\x82\x06\x12\xbd\x01\n" +
 	"\x12PassKit Images API\x12CAPI for managing image assets for Pass Templates & Wallet Projects.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -86,26 +87,26 @@ const file_io_core_a_rpc_images_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_images_proto_goTypes = []any{
-	(*ProfileImageInput)(nil),        // 0: io.ProfileImageInput
-	(*emptypb.Empty)(nil),            // 1: google.protobuf.Empty
-	(*CreateImageInput)(nil),         // 2: io.CreateImageInput
-	(*UpdateImageInput)(nil),         // 3: io.UpdateImageInput
-	(*Id)(nil),                       // 4: io.Id
-	(*StampImageRequest)(nil),        // 5: io.StampImageRequest
-	(*StampImageConfig)(nil),         // 6: io.StampImageConfig
-	(*StampImagePreviewRequest)(nil), // 7: io.StampImagePreviewRequest
-	(*LocalizedImageInput)(nil),      // 8: io.LocalizedImageInput
-	(*Pagination)(nil),               // 9: io.Pagination
-	(*Filters)(nil),                  // 10: io.Filters
-	(*Url)(nil),                      // 11: io.Url
-	(*ImageIds)(nil),                 // 12: io.ImageIds
-	(*ImageRecord)(nil),              // 13: io.ImageRecord
-	(*StampImagePreview)(nil),        // 14: io.StampImagePreview
-	(*ImageBundle)(nil),              // 15: io.ImageBundle
-	(*Count)(nil),                    // 16: io.Count
+	(*io.ProfileImageInput)(nil),        // 0: io.ProfileImageInput
+	(*emptypb.Empty)(nil),               // 1: google.protobuf.Empty
+	(*io.CreateImageInput)(nil),         // 2: io.CreateImageInput
+	(*io.UpdateImageInput)(nil),         // 3: io.UpdateImageInput
+	(*Id)(nil),                          // 4: io.Id
+	(*io.StampImageRequest)(nil),        // 5: io.StampImageRequest
+	(*io.StampImageConfig)(nil),         // 6: io.StampImageConfig
+	(*io.StampImagePreviewRequest)(nil), // 7: io.StampImagePreviewRequest
+	(*io.LocalizedImageInput)(nil),      // 8: io.LocalizedImageInput
+	(*Pagination)(nil),                  // 9: io.Pagination
+	(*Filters)(nil),                     // 10: io.Filters
+	(*Url)(nil),                         // 11: io.Url
+	(*io.ImageIds)(nil),                 // 12: io.ImageIds
+	(*io.ImageRecord)(nil),              // 13: io.ImageRecord
+	(*io.StampImagePreview)(nil),        // 14: io.StampImagePreview
+	(*io.ImageBundle)(nil),              // 15: io.ImageBundle
+	(*Count)(nil),                       // 16: io.Count
 }
 var file_io_core_a_rpc_images_proto_depIdxs = []int32{
 	0,  // 0: io.Images.setProfileImage:input_type -> io.ProfileImageInput
@@ -168,7 +169,6 @@ func file_io_core_a_rpc_images_proto_init() {
 	}
 	file_io_common_common_objects_proto_init()
 	file_io_common_pagination_proto_init()
-	file_io_image_image_proto_init()
 	file_io_common_filter_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

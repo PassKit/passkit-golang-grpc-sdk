@@ -10,13 +10,13 @@
 package single_use_coupons
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	unsafe "unsafe"
 )
 
@@ -101,7 +101,7 @@ const file_io_single_use_coupons_a_rpc_proto_rawDesc = "" +
 	"\x12copyCouponCampaign\x12'.single_use_coupons.CampaignCopyRequest\x1a\x06.io.Id\"r\x92AE\n" +
 	"\x10Coupon Campaigns\x12\rCopy Campaign\x1a\"Copies an existing campaign record\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/coupon/singleUse/campaign/copy\x12\xf0\x01\n" +
 	"\x16getMetaKeysForCampaign\x12\x06.io.Id\x1a\v.io.Strings\"\xc0\x01\x92A\x90\x01\n" +
-	"\x10Coupon Campaigns\x12\x1cGet Meta Keys for a Campaign\x1a^Returns a list of distinct meta field keys. Can be used for building filters / table headings.\x82\xd3\xe4\x93\x02&\x12$/coupon/singleUse/campaign/meta/{id}B\xef\a\x92A\xef\x06\x12\xaa\x02\n" +
+	"\x10Coupon Campaigns\x12\x1cGet Meta Keys for a Campaign\x1a^Returns a list of distinct meta field keys. Can be used for building filters / table headings.\x82\xd3\xe4\x93\x02&\x12$/coupon/singleUse/campaign/meta/{id}B\xf8\a\x92A\xef\x06\x12\xaa\x02\n" +
 	"\x1dPassKit Single Use Coupon API\x12\x9f\x01This protocol is suit for cases where the user requires a clean and simple single use coupon for short term coupon campaigns in Apple Wallet and Google Wallet.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\x031.0*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -127,7 +127,7 @@ const file_io_single_use_coupons_a_rpc_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"!com.passkit.grpc.SingleUseCouponsZ7github.com/PassKit/passkit-golang-grpc-sdk/io/single_use_coupons\xaa\x02\x1dPassKit.Grpc.SingleUseCouponsb\x06proto3"
+	"!com.passkit.grpc.SingleUseCouponsZ@github.com/PassKit/passkit-golang-grpc-sdk/io/single_use_coupons\xaa\x02\x1dPassKit.Grpc.SingleUseCouponsb\x06proto3"
 
 var file_io_single_use_coupons_a_rpc_proto_goTypes = []any{
 	(*CouponCampaign)(nil),                    // 0: single_use_coupons.CouponCampaign

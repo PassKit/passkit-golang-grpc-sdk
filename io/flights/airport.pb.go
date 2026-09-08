@@ -12,11 +12,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -248,8 +248,8 @@ const file_io_flights_airport_proto_rawDesc = "" +
 	"\tloungeIds\x18\r \x03(\tR\tloungeIds:\xae\x01\x92A\xaa\x01\n" +
 	"\xa7\x01*\x0eAirport Record2QAirport records are required for each port that a carrier operates in and out of.\xd2\x01\x0fiataAirportCode\xd2\x01\bcityName\xd2\x01\vairportName\xd2\x01\vcountryCode\xd2\x01\btimezone\"/\n" +
 	"\vAirportCode\x12 \n" +
-	"\vairportCode\x18\x01 \x01(\tR\vairportCodeB_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\vairportCode\x18\x01 \x01(\tR\vairportCodeBh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_airport_proto_rawDescOnce sync.Once

@@ -10,12 +10,12 @@
 package event_tickets
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -995,8 +995,8 @@ const file_io_event_tickets_event_proto_rawDesc = "" +
 	" \x01(\v2\v.io.MetricsR\ametrics\x124\n" +
 	"\acreated\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
 	"\aupdated\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\aupdated:k\x92Ah\n" +
-	"f*\x13Event List Response2OContains event search result. Production and venue objects have limited fields.Bo\n" +
-	"\x1dcom.passkit.grpc.EventTicketsZ2github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
+	"f*\x13Event List Response2OContains event search result. Production and venue objects have limited fields.Bx\n" +
+	"\x1dcom.passkit.grpc.EventTicketsZ;github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
 
 var (
 	file_io_event_tickets_event_proto_rawDescOnce sync.Once

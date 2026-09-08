@@ -12,12 +12,12 @@
 package single_use_coupons
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -335,8 +335,8 @@ const file_io_single_use_coupons_campaign_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12)\n" +
 	"\x06status\x18\x03 \x03(\x0e2\x11.io.ProjectStatusR\x06status\x12.\n" +
-	"\x12passTypeIdentifier\x18\x04 \x01(\tR\x12passTypeIdentifierB|\n" +
-	"!com.passkit.grpc.SingleUseCouponsZ7github.com/PassKit/passkit-golang-grpc-sdk/io/single_use_coupons\xaa\x02\x1dPassKit.Grpc.SingleUseCouponsb\x06proto3"
+	"\x12passTypeIdentifier\x18\x04 \x01(\tR\x12passTypeIdentifierB\x85\x01\n" +
+	"!com.passkit.grpc.SingleUseCouponsZ@github.com/PassKit/passkit-golang-grpc-sdk/io/single_use_coupons\xaa\x02\x1dPassKit.Grpc.SingleUseCouponsb\x06proto3"
 
 var (
 	file_io_single_use_coupons_campaign_proto_rawDescOnce sync.Once

@@ -194,8 +194,8 @@ const file_io_common_protocols_proto_rawDesc = "" +
 	"\x11EVENT_PASS_ISSUED\x10\x05\x12\x18\n" +
 	"\x14EVENT_PASS_INSTALLED\x10\x06\x12\x1a\n" +
 	"\x16EVENT_PASS_UNINSTALLED\x10\a\x12\x1a\n" +
-	"\x16EVENT_PASS_INVALIDATED\x10\bBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x16EVENT_PASS_INVALIDATED\x10\bBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_protocols_proto_rawDescOnce sync.Once

@@ -12,13 +12,13 @@
 package members
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	unsafe "unsafe"
 )
 
@@ -149,7 +149,7 @@ const file_io_member_a_rpc_proto_rawDesc = "" +
 	"\aMembers\x12\"Deletes an individual member event\x1a\"Deletes an individual member event\x82\xd3\xe4\x93\x02 *\x1e/members/member/events/id/{id}\x12\xdf\x01\n" +
 	"\x13getProgramEnrolment\x12\x06.io.Id\x1a\x11.io.EnrolmentUrls\"\xac\x01\x92A\x81\x01\n" +
 	"\x0eEnrolment Urls\x12\x1eGet Program Enrolment Page URL\x1aORetrieves enrolment page URL of the base tier and enrolment URLs for each tier.\x82\xd3\xe4\x93\x02!\x12\x1f/members/enrol/url/program/{id}\x12\xb2\x01\n" +
-	"\vbatchUpdate\x12\x16.io.BatchUpdateRequest\x1a\x16.google.protobuf.Empty\"s\x92AP\x12\fBatch Update\x1a@Batch update takes a filter and a list of updates to be applied.\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/members/batch-updateB\x9a\a\x92A\xb7\x06\x12\xf2\x01\n" +
+	"\vbatchUpdate\x12\x16.io.BatchUpdateRequest\x1a\x16.google.protobuf.Empty\"s\x92AP\x12\fBatch Update\x1a@Batch update takes a filter and a list of updates to be applied.\x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/members/batch-updateB\xa3\a\x92A\xb7\x06\x12\xf2\x01\n" +
 	"\x13PassKit Members API\x12oThe PassKit Members API lets you manage your membership programs and passes for Apple Wallet and Google Wallet.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\x061.0-rc*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -175,7 +175,7 @@ const file_io_member_a_rpc_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var file_io_member_a_rpc_proto_goTypes = []any{
 	(*Program)(nil),                         // 0: members.Program

@@ -1917,8 +1917,8 @@ const file_io_common_common_objects_proto_rawDesc = "" +
 	"\bNO_USAGE\x10\x00\x12\x16\n" +
 	"\x12USAGE_APPLE_WALLET\x10\x01\x12\x14\n" +
 	"\x10USAGE_GOOGLE_PAY\x10\x02\x12\x1e\n" +
-	"\x1aUSAGE_DATA_COLLECTION_PAGE\x10\x04BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x1aUSAGE_DATA_COLLECTION_PAGE\x10\x04BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_common_objects_proto_rawDescOnce sync.Once

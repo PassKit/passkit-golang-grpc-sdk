@@ -136,8 +136,8 @@ const file_io_common_billing_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\v2\x10.io.QuotaDetailsR\x05value:\x028\x01\"<\n" +
 	"\fQuotaDetails\x12\x14\n" +
 	"\x05quota\x18\x01 \x01(\x05R\x05quota\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x04R\x06statusBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x06status\x18\x02 \x01(\x04R\x06statusBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_billing_proto_rawDescOnce sync.Once

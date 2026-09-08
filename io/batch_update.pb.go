@@ -332,8 +332,8 @@ const file_io_common_batch_update_proto_rawDesc = "" +
 	"\x17BATCH_UPDATE_DO_NOT_USE\x10\x00\x12\a\n" +
 	"\x03SET\x10\x01\x12\f\n" +
 	"\bINCREASE\x10\x02\x12\f\n" +
-	"\bDECREASE\x10\x03BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\bDECREASE\x10\x03BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_batch_update_proto_rawDescOnce sync.Once

@@ -16,6 +16,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
+	io "stash.passkit.com/io/model/sdk/go/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -31,7 +32,7 @@ const (
 type PassOverrides struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Image ID's of images to override for this pass.
-	ImageIds *ImageIds `protobuf:"bytes,1,opt,name=imageIds,proto3" json:"imageIds,omitempty"`
+	ImageIds *io.ImageIds `protobuf:"bytes,1,opt,name=imageIds,proto3" json:"imageIds,omitempty"`
 	// A list of up to 10 GPS locations where this pass should be presented on the lock-screen.
 	Locations []*GPSLocation `protobuf:"bytes,3,rep,name=locations,proto3" json:"locations,omitempty"`
 	// A list of up to 10 Beacon UUIDs that should trigger the pass to be presented on the lock-screen.
@@ -80,7 +81,7 @@ func (*PassOverrides) Descriptor() ([]byte, []int) {
 	return file_io_common_pass_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PassOverrides) GetImageIds() *ImageIds {
+func (x *PassOverrides) GetImageIds() *io.ImageIds {
 	if x != nil {
 		return x.ImageIds
 	}
@@ -328,8 +329,8 @@ const file_io_common_pass_proto_rawDesc = "" +
 	"externalId\x1a=\n" +
 	"\x0fRecordDataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_pass_proto_rawDescOnce sync.Once
@@ -349,7 +350,7 @@ var file_io_common_pass_proto_goTypes = []any{
 	(*PassOptions)(nil),         // 1: io.PassOptions
 	(*Pass)(nil),                // 2: io.Pass
 	nil,                         // 3: io.Pass.RecordDataEntry
-	(*ImageIds)(nil),            // 4: io.ImageIds
+	(*io.ImageIds)(nil),         // 4: io.ImageIds
 	(*GPSLocation)(nil),         // 5: io.GPSLocation
 	(*Beacon)(nil),              // 6: io.Beacon
 	(*Link)(nil),                // 7: io.Link
@@ -386,7 +387,6 @@ func file_io_common_pass_proto_init() {
 	if File_io_common_pass_proto != nil {
 		return
 	}
-	file_io_image_image_proto_init()
 	file_io_common_links_proto_init()
 	file_io_common_metrics_proto_init()
 	file_io_common_personal_proto_init()

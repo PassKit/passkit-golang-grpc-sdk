@@ -14,12 +14,12 @@
 package members
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -354,8 +354,8 @@ const file_io_member_tier_proto_rawDesc = "" +
 	"~*\x04Tier2ATier allows a company to override certain details in the program.\xd2\x01\x02id\xd2\x01\ttierIndex\xd2\x01\tprogramId\xd2\x01\x04name\xd2\x01\x0epassTemplateId\"H\n" +
 	"\x10TierRequestInput\x12\x1c\n" +
 	"\tprogramId\x18\x01 \x01(\tR\tprogramId\x12\x16\n" +
-	"\x06tierId\x18\x02 \x01(\tR\x06tierIdB_\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\x06tierId\x18\x02 \x01(\tR\x06tierIdBh\n" +
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var (
 	file_io_member_tier_proto_rawDescOnce sync.Once

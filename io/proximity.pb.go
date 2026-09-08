@@ -329,8 +329,8 @@ const file_io_common_proximity_proto_rawDesc = "" +
 	"\bposition\x18\b \x01(\rR\bposition:\xdd\x01\x92A\xd9\x01\n" +
 	"\xd6\x01*\fGPS Location2\xa4\x01A location record enables the pass to be pushed to the lock screen when the user is in near the location. For iOS users, a customized message can also be displayed.\xd2\x01\x03lat\xd2\x01\x04long\xd2\x01\x11lockScreenMessage\",\n" +
 	"\fRelevantDate\x12\x1c\n" +
-	"\ttimestamp\x18\x01 \x01(\rR\ttimestampBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\ttimestamp\x18\x01 \x01(\rR\ttimestampBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_proximity_proto_rawDescOnce sync.Once

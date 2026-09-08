@@ -12,10 +12,10 @@
 package scheduler
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -91,8 +91,8 @@ const file_io_scheduler_scheduler_proto_rawDesc = "" +
 	"\x1cio/scheduler/scheduler.proto\x12\tscheduler\x1a\x16io/common/filter.proto\"J\n" +
 	"\vListRequest\x12\x14\n" +
 	"\x05jobId\x18\x01 \x01(\tR\x05jobId\x12%\n" +
-	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersBe\n" +
-	"\x1acom.passkit.grpc.SchedulerZ.github.com/PassKit/passkit-golang-grpc-sdk/io/scheduler\xaa\x02\x16PassKit.Grpc.Schedulerb\x06proto3"
+	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersBn\n" +
+	"\x1acom.passkit.grpc.SchedulerZ7github.com/PassKit/passkit-golang-grpc-sdk/io/scheduler\xaa\x02\x16PassKit.Grpc.Schedulerb\x06proto3"
 
 var (
 	file_io_scheduler_scheduler_proto_rawDescOnce sync.Once

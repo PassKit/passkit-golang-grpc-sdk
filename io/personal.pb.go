@@ -464,8 +464,8 @@ const file_io_common_personal_proto_rawDesc = "" +
 	"\tNOT_KNOWN\x10\x00\x12\b\n" +
 	"\x04MALE\x10\x01\x12\n" +
 	"\n" +
-	"\x06FEMALE\x10\x02BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x06FEMALE\x10\x02BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_personal_proto_rawDescOnce sync.Once

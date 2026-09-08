@@ -10,12 +10,12 @@
 package event_tickets
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -3142,8 +3142,8 @@ const file_io_event_tickets_ticket_proto_rawDesc = "" +
 	"\vSTATUS_NONE\x10\x00\x12\n" +
 	"\n" +
 	"\x06ISSUED\x10\x01\x12\f\n" +
-	"\bREDEEMED\x10\x02\"\x04\b\x03\x10\x03Bo\n" +
-	"\x1dcom.passkit.grpc.EventTicketsZ2github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
+	"\bREDEEMED\x10\x02\"\x04\b\x03\x10\x03Bx\n" +
+	"\x1dcom.passkit.grpc.EventTicketsZ;github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
 
 var (
 	file_io_event_tickets_ticket_proto_rawDescOnce sync.Once

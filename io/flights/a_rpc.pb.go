@@ -196,10 +196,10 @@ const file_io_flights_a_rpc_proto_rawDesc = "" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x1c:\x01**\x17/flights/boardingRecordB\xf9\x02\x92A\x96\x02\x12\xec\x01\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x1c:\x01**\x17/flights/boardingRecordB\x82\x03\x92A\x96\x02\x12\xec\x01\n" +
 	"\x13PassKit Flights API\x12lThe PassKit Flights API lets you manage your flights and boarding passes for Apple Wallet and Google Wallet.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\x030.1*\x01\x022\x10application/json:\x10application/json\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var file_io_flights_a_rpc_proto_goTypes = []any{
 	(*Port)(nil),                      // 0: flights.Port

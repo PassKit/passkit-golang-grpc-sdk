@@ -22,12 +22,12 @@
 package members
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -1504,8 +1504,8 @@ const file_io_member_member_proto_rawDesc = "" +
 	"CHECKED_IN\x10\x02\x12\v\n" +
 	"\aEXPIRED\x10\x03\x12\x0f\n" +
 	"\vCHECKED_OUT\x10\x04\x12\v\n" +
-	"\aDELETED\x10\x05B_\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\aDELETED\x10\x05Bh\n" +
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var (
 	file_io_member_member_proto_rawDescOnce sync.Once

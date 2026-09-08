@@ -12,11 +12,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -1813,8 +1813,8 @@ const file_io_flights_barcode_proto_rawDesc = "" +
 	"\rPERSONAL_ITEM\x10\x04\x12\x12\n" +
 	"\x0eEXTRA_CARRY_ON\x10\x05\x12\x0e\n" +
 	"\n" +
-	"LAP_INFANT\x10\x06B_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"LAP_INFANT\x10\x06Bh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_barcode_proto_rawDescOnce sync.Once

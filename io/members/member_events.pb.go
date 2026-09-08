@@ -12,12 +12,12 @@
 package members
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -438,8 +438,8 @@ const file_io_member_member_events_proto_rawDesc = "" +
 	"\x1aEVENT_MEMBER_POINTS_EARNED\x10\x04\x12\x1e\n" +
 	"\x1aEVENT_MEMBER_POINTS_BURNED\x10\x05\x12\x1b\n" +
 	"\x17EVENT_MEMBER_POINTS_SET\x10\x06\x12\x1d\n" +
-	"\x19EVENT_MEMBER_TIER_CHANGED\x10\aB_\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\x19EVENT_MEMBER_TIER_CHANGED\x10\aBh\n" +
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var (
 	file_io_member_member_events_proto_rawDescOnce sync.Once

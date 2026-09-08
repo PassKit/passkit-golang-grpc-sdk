@@ -1925,8 +1925,8 @@ const file_io_image_image_proto_rawDesc = "" +
 	"\rsecondaryLogo\x10\x16\x12\v\n" +
 	"\aartwork\x10\x17\x12\x0f\n" +
 	"\vprimaryLogo\x10\x18\x12\f\n" +
-	"\bvenueMap\x10\x19BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\bvenueMap\x10\x19BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_image_image_proto_rawDescOnce sync.Once

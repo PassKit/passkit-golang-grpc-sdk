@@ -12,6 +12,7 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	io "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -52,43 +53,43 @@ const (
 // The PassKit Images API lets you manage your image assets for Apple Wallet, Google Wallet and the data collection pages.
 type ImagesClient interface {
 	// Set the profile image for the logged in user. Required Fields: imageData.
-	SetProfileImage(ctx context.Context, in *ProfileImageInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetProfileImage(ctx context.Context, in *io.ProfileImageInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Get the profile image URL for the logged in user.
 	GetProfileImage(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Url, error)
 	// Creates one or more images. Image data is provided in base64. Required Fields: name, imageData.
-	CreateImages(ctx context.Context, in *CreateImageInput, opts ...grpc.CallOption) (*ImageIds, error)
+	CreateImages(ctx context.Context, in *io.CreateImageInput, opts ...grpc.CallOption) (*io.ImageIds, error)
 	// Updates an image record's metadata. Required Fields: id.
-	UpdateImage(ctx context.Context, in *UpdateImageInput, opts ...grpc.CallOption) (*ImageRecord, error)
+	UpdateImage(ctx context.Context, in *io.UpdateImageInput, opts ...grpc.CallOption) (*io.ImageRecord, error)
 	// Retrieves an image URL by its ID. Required Fields: id.
 	GetImageURL(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Url, error)
 	// Retrieves a stamp image URL with the supplied stamp status. Required Fields: id and status.
-	GetStampImageURL(ctx context.Context, in *StampImageRequest, opts ...grpc.CallOption) (*Url, error)
+	GetStampImageURL(ctx context.Context, in *io.StampImageRequest, opts ...grpc.CallOption) (*Url, error)
 	// Retrieves the configuration of a stamp image. Required Fields: id.
-	GetStampImageConfig(ctx context.Context, in *Id, opts ...grpc.CallOption) (*StampImageConfig, error)
+	GetStampImageConfig(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.StampImageConfig, error)
 	// Updates a stamp image configuration. Required Fields: id and config fields.
-	UpdateStampImageConfig(ctx context.Context, in *StampImageConfig, opts ...grpc.CallOption) (*Id, error)
+	UpdateStampImageConfig(ctx context.Context, in *io.StampImageConfig, opts ...grpc.CallOption) (*Id, error)
 	// Gets a preview image of the provided stamp image configuration. Required Fields: stampImageConfig and status.
-	GetStampImagePreview(ctx context.Context, in *StampImagePreviewRequest, opts ...grpc.CallOption) (*StampImagePreview, error)
+	GetStampImagePreview(ctx context.Context, in *io.StampImagePreviewRequest, opts ...grpc.CallOption) (*io.StampImagePreview, error)
 	// Retrieves a localized image URL for a specific language. Required Fields: iD and languageCode.
-	GetLocalizedImageURL(ctx context.Context, in *LocalizedImageInput, opts ...grpc.CallOption) (*Url, error)
+	GetLocalizedImageURL(ctx context.Context, in *io.LocalizedImageInput, opts ...grpc.CallOption) (*Url, error)
 	// Retrieves a profile image URL by a specific ID. Required Fields: id.
 	GetProfileImageById(ctx context.Context, in *Id, opts ...grpc.CallOption) (*Url, error)
 	// Retrieves an image bundle (ZIP) containing all images for the given ID. Required Fields: id.
-	GetImageBundle(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ImageBundle, error)
+	GetImageBundle(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.ImageBundle, error)
 	// Retrieves metadata for an image record. Required: id.
-	GetImageData(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ImageRecord, error)
+	GetImageData(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.ImageRecord, error)
 	// Deletes an image record. Required: id.
 	DeleteImage(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Deletes a localized version of an image. Required Fields: id and language code.
-	DeleteLocalizedImage(ctx context.Context, in *LocalizedImageInput, opts ...grpc.CallOption) (*ImageRecord, error)
+	DeleteLocalizedImage(ctx context.Context, in *io.LocalizedImageInput, opts ...grpc.CallOption) (*io.ImageRecord, error)
 	// [DEPRECATED] Retrieves all user-owned images using pagination.
-	ListImagesForUserDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error)
+	ListImagesForUserDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error)
 	// Retrieves all images stored under the user account using filters. Required Fields: filters.
-	ListImagesForUser(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error)
+	ListImagesForUser(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error)
 	// [DEPRECATED] Retrieves all images available to the company.
-	ListImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error)
+	ListImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error)
 	// Retrieves all images stored under the company using filters. Required Fields: filters.
-	ListImages(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error)
+	ListImages(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error)
 	// [DEPRECATED] Returns the count of all images available to the user.
 	CountImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (*Count, error)
 	// Returns the count of all images available to the user using filters.
@@ -107,7 +108,7 @@ func NewImagesClient(cc grpc.ClientConnInterface) ImagesClient {
 	return &imagesClient{cc}
 }
 
-func (c *imagesClient) SetProfileImage(ctx context.Context, in *ProfileImageInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *imagesClient) SetProfileImage(ctx context.Context, in *io.ProfileImageInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Images_SetProfileImage_FullMethodName, in, out, cOpts...)
@@ -127,9 +128,9 @@ func (c *imagesClient) GetProfileImage(ctx context.Context, in *emptypb.Empty, o
 	return out, nil
 }
 
-func (c *imagesClient) CreateImages(ctx context.Context, in *CreateImageInput, opts ...grpc.CallOption) (*ImageIds, error) {
+func (c *imagesClient) CreateImages(ctx context.Context, in *io.CreateImageInput, opts ...grpc.CallOption) (*io.ImageIds, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ImageIds)
+	out := new(io.ImageIds)
 	err := c.cc.Invoke(ctx, Images_CreateImages_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -137,9 +138,9 @@ func (c *imagesClient) CreateImages(ctx context.Context, in *CreateImageInput, o
 	return out, nil
 }
 
-func (c *imagesClient) UpdateImage(ctx context.Context, in *UpdateImageInput, opts ...grpc.CallOption) (*ImageRecord, error) {
+func (c *imagesClient) UpdateImage(ctx context.Context, in *io.UpdateImageInput, opts ...grpc.CallOption) (*io.ImageRecord, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ImageRecord)
+	out := new(io.ImageRecord)
 	err := c.cc.Invoke(ctx, Images_UpdateImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -157,7 +158,7 @@ func (c *imagesClient) GetImageURL(ctx context.Context, in *Id, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *imagesClient) GetStampImageURL(ctx context.Context, in *StampImageRequest, opts ...grpc.CallOption) (*Url, error) {
+func (c *imagesClient) GetStampImageURL(ctx context.Context, in *io.StampImageRequest, opts ...grpc.CallOption) (*Url, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Url)
 	err := c.cc.Invoke(ctx, Images_GetStampImageURL_FullMethodName, in, out, cOpts...)
@@ -167,9 +168,9 @@ func (c *imagesClient) GetStampImageURL(ctx context.Context, in *StampImageReque
 	return out, nil
 }
 
-func (c *imagesClient) GetStampImageConfig(ctx context.Context, in *Id, opts ...grpc.CallOption) (*StampImageConfig, error) {
+func (c *imagesClient) GetStampImageConfig(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.StampImageConfig, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StampImageConfig)
+	out := new(io.StampImageConfig)
 	err := c.cc.Invoke(ctx, Images_GetStampImageConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -177,7 +178,7 @@ func (c *imagesClient) GetStampImageConfig(ctx context.Context, in *Id, opts ...
 	return out, nil
 }
 
-func (c *imagesClient) UpdateStampImageConfig(ctx context.Context, in *StampImageConfig, opts ...grpc.CallOption) (*Id, error) {
+func (c *imagesClient) UpdateStampImageConfig(ctx context.Context, in *io.StampImageConfig, opts ...grpc.CallOption) (*Id, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Id)
 	err := c.cc.Invoke(ctx, Images_UpdateStampImageConfig_FullMethodName, in, out, cOpts...)
@@ -187,9 +188,9 @@ func (c *imagesClient) UpdateStampImageConfig(ctx context.Context, in *StampImag
 	return out, nil
 }
 
-func (c *imagesClient) GetStampImagePreview(ctx context.Context, in *StampImagePreviewRequest, opts ...grpc.CallOption) (*StampImagePreview, error) {
+func (c *imagesClient) GetStampImagePreview(ctx context.Context, in *io.StampImagePreviewRequest, opts ...grpc.CallOption) (*io.StampImagePreview, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StampImagePreview)
+	out := new(io.StampImagePreview)
 	err := c.cc.Invoke(ctx, Images_GetStampImagePreview_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -197,7 +198,7 @@ func (c *imagesClient) GetStampImagePreview(ctx context.Context, in *StampImageP
 	return out, nil
 }
 
-func (c *imagesClient) GetLocalizedImageURL(ctx context.Context, in *LocalizedImageInput, opts ...grpc.CallOption) (*Url, error) {
+func (c *imagesClient) GetLocalizedImageURL(ctx context.Context, in *io.LocalizedImageInput, opts ...grpc.CallOption) (*Url, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Url)
 	err := c.cc.Invoke(ctx, Images_GetLocalizedImageURL_FullMethodName, in, out, cOpts...)
@@ -217,9 +218,9 @@ func (c *imagesClient) GetProfileImageById(ctx context.Context, in *Id, opts ...
 	return out, nil
 }
 
-func (c *imagesClient) GetImageBundle(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ImageBundle, error) {
+func (c *imagesClient) GetImageBundle(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.ImageBundle, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ImageBundle)
+	out := new(io.ImageBundle)
 	err := c.cc.Invoke(ctx, Images_GetImageBundle_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -227,9 +228,9 @@ func (c *imagesClient) GetImageBundle(ctx context.Context, in *Id, opts ...grpc.
 	return out, nil
 }
 
-func (c *imagesClient) GetImageData(ctx context.Context, in *Id, opts ...grpc.CallOption) (*ImageRecord, error) {
+func (c *imagesClient) GetImageData(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.ImageRecord, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ImageRecord)
+	out := new(io.ImageRecord)
 	err := c.cc.Invoke(ctx, Images_GetImageData_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -247,9 +248,9 @@ func (c *imagesClient) DeleteImage(ctx context.Context, in *Id, opts ...grpc.Cal
 	return out, nil
 }
 
-func (c *imagesClient) DeleteLocalizedImage(ctx context.Context, in *LocalizedImageInput, opts ...grpc.CallOption) (*ImageRecord, error) {
+func (c *imagesClient) DeleteLocalizedImage(ctx context.Context, in *io.LocalizedImageInput, opts ...grpc.CallOption) (*io.ImageRecord, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ImageRecord)
+	out := new(io.ImageRecord)
 	err := c.cc.Invoke(ctx, Images_DeleteLocalizedImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -257,13 +258,13 @@ func (c *imagesClient) DeleteLocalizedImage(ctx context.Context, in *LocalizedIm
 	return out, nil
 }
 
-func (c *imagesClient) ListImagesForUserDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error) {
+func (c *imagesClient) ListImagesForUserDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Images_ServiceDesc.Streams[0], Images_ListImagesForUserDeprecated_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Pagination, ImageRecord]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Pagination, io.ImageRecord]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -274,15 +275,15 @@ func (c *imagesClient) ListImagesForUserDeprecated(ctx context.Context, in *Pagi
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesForUserDeprecatedClient = grpc.ServerStreamingClient[ImageRecord]
+type Images_ListImagesForUserDeprecatedClient = grpc.ServerStreamingClient[io.ImageRecord]
 
-func (c *imagesClient) ListImagesForUser(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error) {
+func (c *imagesClient) ListImagesForUser(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Images_ServiceDesc.Streams[1], Images_ListImagesForUser_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Filters, ImageRecord]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Filters, io.ImageRecord]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -293,15 +294,15 @@ func (c *imagesClient) ListImagesForUser(ctx context.Context, in *Filters, opts 
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesForUserClient = grpc.ServerStreamingClient[ImageRecord]
+type Images_ListImagesForUserClient = grpc.ServerStreamingClient[io.ImageRecord]
 
-func (c *imagesClient) ListImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error) {
+func (c *imagesClient) ListImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Images_ServiceDesc.Streams[2], Images_ListImagesDeprecated_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Pagination, ImageRecord]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Pagination, io.ImageRecord]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -312,15 +313,15 @@ func (c *imagesClient) ListImagesDeprecated(ctx context.Context, in *Pagination,
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesDeprecatedClient = grpc.ServerStreamingClient[ImageRecord]
+type Images_ListImagesDeprecatedClient = grpc.ServerStreamingClient[io.ImageRecord]
 
-func (c *imagesClient) ListImages(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ImageRecord], error) {
+func (c *imagesClient) ListImages(ctx context.Context, in *Filters, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ImageRecord], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Images_ServiceDesc.Streams[3], Images_ListImages_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[Filters, ImageRecord]{ClientStream: stream}
+	x := &grpc.GenericClientStream[Filters, io.ImageRecord]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -331,7 +332,7 @@ func (c *imagesClient) ListImages(ctx context.Context, in *Filters, opts ...grpc
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesClient = grpc.ServerStreamingClient[ImageRecord]
+type Images_ListImagesClient = grpc.ServerStreamingClient[io.ImageRecord]
 
 func (c *imagesClient) CountImagesDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (*Count, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -380,43 +381,43 @@ func (c *imagesClient) CountImagesForUser(ctx context.Context, in *Filters, opts
 // The PassKit Images API lets you manage your image assets for Apple Wallet, Google Wallet and the data collection pages.
 type ImagesServer interface {
 	// Set the profile image for the logged in user. Required Fields: imageData.
-	SetProfileImage(context.Context, *ProfileImageInput) (*emptypb.Empty, error)
+	SetProfileImage(context.Context, *io.ProfileImageInput) (*emptypb.Empty, error)
 	// Get the profile image URL for the logged in user.
 	GetProfileImage(context.Context, *emptypb.Empty) (*Url, error)
 	// Creates one or more images. Image data is provided in base64. Required Fields: name, imageData.
-	CreateImages(context.Context, *CreateImageInput) (*ImageIds, error)
+	CreateImages(context.Context, *io.CreateImageInput) (*io.ImageIds, error)
 	// Updates an image record's metadata. Required Fields: id.
-	UpdateImage(context.Context, *UpdateImageInput) (*ImageRecord, error)
+	UpdateImage(context.Context, *io.UpdateImageInput) (*io.ImageRecord, error)
 	// Retrieves an image URL by its ID. Required Fields: id.
 	GetImageURL(context.Context, *Id) (*Url, error)
 	// Retrieves a stamp image URL with the supplied stamp status. Required Fields: id and status.
-	GetStampImageURL(context.Context, *StampImageRequest) (*Url, error)
+	GetStampImageURL(context.Context, *io.StampImageRequest) (*Url, error)
 	// Retrieves the configuration of a stamp image. Required Fields: id.
-	GetStampImageConfig(context.Context, *Id) (*StampImageConfig, error)
+	GetStampImageConfig(context.Context, *Id) (*io.StampImageConfig, error)
 	// Updates a stamp image configuration. Required Fields: id and config fields.
-	UpdateStampImageConfig(context.Context, *StampImageConfig) (*Id, error)
+	UpdateStampImageConfig(context.Context, *io.StampImageConfig) (*Id, error)
 	// Gets a preview image of the provided stamp image configuration. Required Fields: stampImageConfig and status.
-	GetStampImagePreview(context.Context, *StampImagePreviewRequest) (*StampImagePreview, error)
+	GetStampImagePreview(context.Context, *io.StampImagePreviewRequest) (*io.StampImagePreview, error)
 	// Retrieves a localized image URL for a specific language. Required Fields: iD and languageCode.
-	GetLocalizedImageURL(context.Context, *LocalizedImageInput) (*Url, error)
+	GetLocalizedImageURL(context.Context, *io.LocalizedImageInput) (*Url, error)
 	// Retrieves a profile image URL by a specific ID. Required Fields: id.
 	GetProfileImageById(context.Context, *Id) (*Url, error)
 	// Retrieves an image bundle (ZIP) containing all images for the given ID. Required Fields: id.
-	GetImageBundle(context.Context, *Id) (*ImageBundle, error)
+	GetImageBundle(context.Context, *Id) (*io.ImageBundle, error)
 	// Retrieves metadata for an image record. Required: id.
-	GetImageData(context.Context, *Id) (*ImageRecord, error)
+	GetImageData(context.Context, *Id) (*io.ImageRecord, error)
 	// Deletes an image record. Required: id.
 	DeleteImage(context.Context, *Id) (*emptypb.Empty, error)
 	// Deletes a localized version of an image. Required Fields: id and language code.
-	DeleteLocalizedImage(context.Context, *LocalizedImageInput) (*ImageRecord, error)
+	DeleteLocalizedImage(context.Context, *io.LocalizedImageInput) (*io.ImageRecord, error)
 	// [DEPRECATED] Retrieves all user-owned images using pagination.
-	ListImagesForUserDeprecated(*Pagination, grpc.ServerStreamingServer[ImageRecord]) error
+	ListImagesForUserDeprecated(*Pagination, grpc.ServerStreamingServer[io.ImageRecord]) error
 	// Retrieves all images stored under the user account using filters. Required Fields: filters.
-	ListImagesForUser(*Filters, grpc.ServerStreamingServer[ImageRecord]) error
+	ListImagesForUser(*Filters, grpc.ServerStreamingServer[io.ImageRecord]) error
 	// [DEPRECATED] Retrieves all images available to the company.
-	ListImagesDeprecated(*Pagination, grpc.ServerStreamingServer[ImageRecord]) error
+	ListImagesDeprecated(*Pagination, grpc.ServerStreamingServer[io.ImageRecord]) error
 	// Retrieves all images stored under the company using filters. Required Fields: filters.
-	ListImages(*Filters, grpc.ServerStreamingServer[ImageRecord]) error
+	ListImages(*Filters, grpc.ServerStreamingServer[io.ImageRecord]) error
 	// [DEPRECATED] Returns the count of all images available to the user.
 	CountImagesDeprecated(context.Context, *Pagination) (*Count, error)
 	// Returns the count of all images available to the user using filters.
@@ -434,61 +435,61 @@ type ImagesServer interface {
 // pointer dereference when methods are called.
 type UnimplementedImagesServer struct{}
 
-func (UnimplementedImagesServer) SetProfileImage(context.Context, *ProfileImageInput) (*emptypb.Empty, error) {
+func (UnimplementedImagesServer) SetProfileImage(context.Context, *io.ProfileImageInput) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method SetProfileImage not implemented")
 }
 func (UnimplementedImagesServer) GetProfileImage(context.Context, *emptypb.Empty) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfileImage not implemented")
 }
-func (UnimplementedImagesServer) CreateImages(context.Context, *CreateImageInput) (*ImageIds, error) {
+func (UnimplementedImagesServer) CreateImages(context.Context, *io.CreateImageInput) (*io.ImageIds, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateImages not implemented")
 }
-func (UnimplementedImagesServer) UpdateImage(context.Context, *UpdateImageInput) (*ImageRecord, error) {
+func (UnimplementedImagesServer) UpdateImage(context.Context, *io.UpdateImageInput) (*io.ImageRecord, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateImage not implemented")
 }
 func (UnimplementedImagesServer) GetImageURL(context.Context, *Id) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetImageURL not implemented")
 }
-func (UnimplementedImagesServer) GetStampImageURL(context.Context, *StampImageRequest) (*Url, error) {
+func (UnimplementedImagesServer) GetStampImageURL(context.Context, *io.StampImageRequest) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetStampImageURL not implemented")
 }
-func (UnimplementedImagesServer) GetStampImageConfig(context.Context, *Id) (*StampImageConfig, error) {
+func (UnimplementedImagesServer) GetStampImageConfig(context.Context, *Id) (*io.StampImageConfig, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetStampImageConfig not implemented")
 }
-func (UnimplementedImagesServer) UpdateStampImageConfig(context.Context, *StampImageConfig) (*Id, error) {
+func (UnimplementedImagesServer) UpdateStampImageConfig(context.Context, *io.StampImageConfig) (*Id, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateStampImageConfig not implemented")
 }
-func (UnimplementedImagesServer) GetStampImagePreview(context.Context, *StampImagePreviewRequest) (*StampImagePreview, error) {
+func (UnimplementedImagesServer) GetStampImagePreview(context.Context, *io.StampImagePreviewRequest) (*io.StampImagePreview, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetStampImagePreview not implemented")
 }
-func (UnimplementedImagesServer) GetLocalizedImageURL(context.Context, *LocalizedImageInput) (*Url, error) {
+func (UnimplementedImagesServer) GetLocalizedImageURL(context.Context, *io.LocalizedImageInput) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetLocalizedImageURL not implemented")
 }
 func (UnimplementedImagesServer) GetProfileImageById(context.Context, *Id) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetProfileImageById not implemented")
 }
-func (UnimplementedImagesServer) GetImageBundle(context.Context, *Id) (*ImageBundle, error) {
+func (UnimplementedImagesServer) GetImageBundle(context.Context, *Id) (*io.ImageBundle, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetImageBundle not implemented")
 }
-func (UnimplementedImagesServer) GetImageData(context.Context, *Id) (*ImageRecord, error) {
+func (UnimplementedImagesServer) GetImageData(context.Context, *Id) (*io.ImageRecord, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetImageData not implemented")
 }
 func (UnimplementedImagesServer) DeleteImage(context.Context, *Id) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteImage not implemented")
 }
-func (UnimplementedImagesServer) DeleteLocalizedImage(context.Context, *LocalizedImageInput) (*ImageRecord, error) {
+func (UnimplementedImagesServer) DeleteLocalizedImage(context.Context, *io.LocalizedImageInput) (*io.ImageRecord, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteLocalizedImage not implemented")
 }
-func (UnimplementedImagesServer) ListImagesForUserDeprecated(*Pagination, grpc.ServerStreamingServer[ImageRecord]) error {
+func (UnimplementedImagesServer) ListImagesForUserDeprecated(*Pagination, grpc.ServerStreamingServer[io.ImageRecord]) error {
 	return status.Error(codes.Unimplemented, "method ListImagesForUserDeprecated not implemented")
 }
-func (UnimplementedImagesServer) ListImagesForUser(*Filters, grpc.ServerStreamingServer[ImageRecord]) error {
+func (UnimplementedImagesServer) ListImagesForUser(*Filters, grpc.ServerStreamingServer[io.ImageRecord]) error {
 	return status.Error(codes.Unimplemented, "method ListImagesForUser not implemented")
 }
-func (UnimplementedImagesServer) ListImagesDeprecated(*Pagination, grpc.ServerStreamingServer[ImageRecord]) error {
+func (UnimplementedImagesServer) ListImagesDeprecated(*Pagination, grpc.ServerStreamingServer[io.ImageRecord]) error {
 	return status.Error(codes.Unimplemented, "method ListImagesDeprecated not implemented")
 }
-func (UnimplementedImagesServer) ListImages(*Filters, grpc.ServerStreamingServer[ImageRecord]) error {
+func (UnimplementedImagesServer) ListImages(*Filters, grpc.ServerStreamingServer[io.ImageRecord]) error {
 	return status.Error(codes.Unimplemented, "method ListImages not implemented")
 }
 func (UnimplementedImagesServer) CountImagesDeprecated(context.Context, *Pagination) (*Count, error) {
@@ -524,7 +525,7 @@ func RegisterImagesServer(s grpc.ServiceRegistrar, srv ImagesServer) {
 }
 
 func _Images_SetProfileImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ProfileImageInput)
+	in := new(io.ProfileImageInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -536,7 +537,7 @@ func _Images_SetProfileImage_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Images_SetProfileImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).SetProfileImage(ctx, req.(*ProfileImageInput))
+		return srv.(ImagesServer).SetProfileImage(ctx, req.(*io.ProfileImageInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -560,7 +561,7 @@ func _Images_GetProfileImage_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Images_CreateImages_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateImageInput)
+	in := new(io.CreateImageInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -572,13 +573,13 @@ func _Images_CreateImages_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Images_CreateImages_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).CreateImages(ctx, req.(*CreateImageInput))
+		return srv.(ImagesServer).CreateImages(ctx, req.(*io.CreateImageInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Images_UpdateImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateImageInput)
+	in := new(io.UpdateImageInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -590,7 +591,7 @@ func _Images_UpdateImage_Handler(srv interface{}, ctx context.Context, dec func(
 		FullMethod: Images_UpdateImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).UpdateImage(ctx, req.(*UpdateImageInput))
+		return srv.(ImagesServer).UpdateImage(ctx, req.(*io.UpdateImageInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -614,7 +615,7 @@ func _Images_GetImageURL_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Images_GetStampImageURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StampImageRequest)
+	in := new(io.StampImageRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -626,7 +627,7 @@ func _Images_GetStampImageURL_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Images_GetStampImageURL_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).GetStampImageURL(ctx, req.(*StampImageRequest))
+		return srv.(ImagesServer).GetStampImageURL(ctx, req.(*io.StampImageRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -650,7 +651,7 @@ func _Images_GetStampImageConfig_Handler(srv interface{}, ctx context.Context, d
 }
 
 func _Images_UpdateStampImageConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StampImageConfig)
+	in := new(io.StampImageConfig)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -662,13 +663,13 @@ func _Images_UpdateStampImageConfig_Handler(srv interface{}, ctx context.Context
 		FullMethod: Images_UpdateStampImageConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).UpdateStampImageConfig(ctx, req.(*StampImageConfig))
+		return srv.(ImagesServer).UpdateStampImageConfig(ctx, req.(*io.StampImageConfig))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Images_GetStampImagePreview_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StampImagePreviewRequest)
+	in := new(io.StampImagePreviewRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -680,13 +681,13 @@ func _Images_GetStampImagePreview_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Images_GetStampImagePreview_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).GetStampImagePreview(ctx, req.(*StampImagePreviewRequest))
+		return srv.(ImagesServer).GetStampImagePreview(ctx, req.(*io.StampImagePreviewRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Images_GetLocalizedImageURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LocalizedImageInput)
+	in := new(io.LocalizedImageInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -698,7 +699,7 @@ func _Images_GetLocalizedImageURL_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Images_GetLocalizedImageURL_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).GetLocalizedImageURL(ctx, req.(*LocalizedImageInput))
+		return srv.(ImagesServer).GetLocalizedImageURL(ctx, req.(*io.LocalizedImageInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -776,7 +777,7 @@ func _Images_DeleteImage_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Images_DeleteLocalizedImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(LocalizedImageInput)
+	in := new(io.LocalizedImageInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -788,7 +789,7 @@ func _Images_DeleteLocalizedImage_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Images_DeleteLocalizedImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ImagesServer).DeleteLocalizedImage(ctx, req.(*LocalizedImageInput))
+		return srv.(ImagesServer).DeleteLocalizedImage(ctx, req.(*io.LocalizedImageInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -798,44 +799,44 @@ func _Images_ListImagesForUserDeprecated_Handler(srv interface{}, stream grpc.Se
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ImagesServer).ListImagesForUserDeprecated(m, &grpc.GenericServerStream[Pagination, ImageRecord]{ServerStream: stream})
+	return srv.(ImagesServer).ListImagesForUserDeprecated(m, &grpc.GenericServerStream[Pagination, io.ImageRecord]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesForUserDeprecatedServer = grpc.ServerStreamingServer[ImageRecord]
+type Images_ListImagesForUserDeprecatedServer = grpc.ServerStreamingServer[io.ImageRecord]
 
 func _Images_ListImagesForUser_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Filters)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ImagesServer).ListImagesForUser(m, &grpc.GenericServerStream[Filters, ImageRecord]{ServerStream: stream})
+	return srv.(ImagesServer).ListImagesForUser(m, &grpc.GenericServerStream[Filters, io.ImageRecord]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesForUserServer = grpc.ServerStreamingServer[ImageRecord]
+type Images_ListImagesForUserServer = grpc.ServerStreamingServer[io.ImageRecord]
 
 func _Images_ListImagesDeprecated_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Pagination)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ImagesServer).ListImagesDeprecated(m, &grpc.GenericServerStream[Pagination, ImageRecord]{ServerStream: stream})
+	return srv.(ImagesServer).ListImagesDeprecated(m, &grpc.GenericServerStream[Pagination, io.ImageRecord]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesDeprecatedServer = grpc.ServerStreamingServer[ImageRecord]
+type Images_ListImagesDeprecatedServer = grpc.ServerStreamingServer[io.ImageRecord]
 
 func _Images_ListImages_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Filters)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(ImagesServer).ListImages(m, &grpc.GenericServerStream[Filters, ImageRecord]{ServerStream: stream})
+	return srv.(ImagesServer).ListImages(m, &grpc.GenericServerStream[Filters, io.ImageRecord]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Images_ListImagesServer = grpc.ServerStreamingServer[ImageRecord]
+type Images_ListImagesServer = grpc.ServerStreamingServer[io.ImageRecord]
 
 func _Images_CountImagesDeprecated_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Pagination)

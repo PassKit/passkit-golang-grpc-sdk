@@ -10,12 +10,12 @@
 package event_tickets
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -494,8 +494,8 @@ const file_io_event_tickets_production_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03uid\x18\x02 \x01(\tR\x03uid\x12\x12\n" +
 	"\x04name\x18\x03 \x01(\tR\x04name:\xab\x01\x92A\xa7\x01\n" +
-	"\xa4\x01*\x16Production (Light ver)2\x89\x01Production contains data that is shared by events: common event properties / settings, distribution settings and Apple Pass Type details.Bo\n" +
-	"\x1dcom.passkit.grpc.EventTicketsZ2github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
+	"\xa4\x01*\x16Production (Light ver)2\x89\x01Production contains data that is shared by events: common event properties / settings, distribution settings and Apple Pass Type details.Bx\n" +
+	"\x1dcom.passkit.grpc.EventTicketsZ;github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
 
 var (
 	file_io_event_tickets_production_proto_rawDescOnce sync.Once

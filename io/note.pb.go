@@ -109,8 +109,8 @@ const file_io_common_note_proto_rawDesc = "" +
 	"\tsubjectId\x18\x01 \x01(\tR\tsubjectId\x12\x1a\n" +
 	"\busername\x18\x02 \x01(\tR\busername\x12\x18\n" +
 	"\amessage\x18\x03 \x01(\tR\amessage\x124\n" +
-	"\acreated\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\acreatedBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\acreated\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\acreatedBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_note_proto_rawDescOnce sync.Once

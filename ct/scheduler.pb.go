@@ -627,8 +627,8 @@ const file_ct_scheduler_scheduler_proto_rawDesc = "" +
 	"\x11JOB_STATUS_FAILED\x10\x05\x12\x15\n" +
 	"\x11JOB_STATUS_PAUSED\x10\x06\x12\x16\n" +
 	"\x12JOB_STATUS_EXPIRED\x10\a\x12\x16\n" +
-	"\x12JOB_STATUS_DELETED\x10\bBM\n" +
-	"\x13com.passkit.grpc.ctZ$github.com/PassKit/passkit-golang-grpc-sdk/ct\xaa\x02\x0fPassKit.Grpc.Ctb\x06proto3"
+	"\x12JOB_STATUS_DELETED\x10\bBV\n" +
+	"\x13com.passkit.grpc.ctZ-github.com/PassKit/passkit-golang-grpc-sdk/ct\xaa\x02\x0fPassKit.Grpc.Ctb\x06proto3"
 
 var (
 	file_ct_scheduler_scheduler_proto_rawDescOnce sync.Once

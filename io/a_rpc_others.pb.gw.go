@@ -23,6 +23,7 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/emptypb"
+	io_1 "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Suppress "imported and not used" errors
@@ -38,7 +39,7 @@ var (
 
 func request_Users_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewUser
+		protoReq io_1.NewUser
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -53,7 +54,7 @@ func request_Users_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler
 
 func local_request_Users_CreateUser_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewUser
+		protoReq io_1.NewUser
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -65,7 +66,7 @@ func local_request_Users_CreateUser_0(ctx context.Context, marshaler runtime.Mar
 
 func request_Users_NewUser_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewUser
+		protoReq io_1.NewUser
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -80,7 +81,7 @@ func request_Users_NewUser_0(ctx context.Context, marshaler runtime.Marshaler, c
 
 func local_request_Users_NewUser_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewUser
+		protoReq io_1.NewUser
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -92,7 +93,7 @@ func local_request_Users_NewUser_0(ctx context.Context, marshaler runtime.Marsha
 
 func request_Users_Verify_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq VerifyRequest
+		protoReq io_1.VerifyRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -107,7 +108,7 @@ func request_Users_Verify_0(ctx context.Context, marshaler runtime.Marshaler, cl
 
 func local_request_Users_Verify_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq VerifyRequest
+		protoReq io_1.VerifyRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -167,7 +168,7 @@ func local_request_Users_GetUser_0(ctx context.Context, marshaler runtime.Marsha
 
 func request_Users_Login_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Credentials
+		protoReq io_1.Credentials
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -182,7 +183,7 @@ func request_Users_Login_0(ctx context.Context, marshaler runtime.Marshaler, cli
 
 func local_request_Users_Login_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Credentials
+		protoReq io_1.Credentials
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -215,7 +216,7 @@ func local_request_Users_Get2FaBarcode_0(ctx context.Context, marshaler runtime.
 
 func request_Users_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Credentials
+		protoReq io_1.Credentials
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -230,7 +231,7 @@ func request_Users_ResetPassword_0(ctx context.Context, marshaler runtime.Marsha
 
 func local_request_Users_ResetPassword_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Credentials
+		protoReq io_1.Credentials
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -242,7 +243,7 @@ func local_request_Users_ResetPassword_0(ctx context.Context, marshaler runtime.
 
 func request_Users_SendPasswordResetLink_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Username
+		protoReq io_1.Username
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -257,7 +258,7 @@ func request_Users_SendPasswordResetLink_0(ctx context.Context, marshaler runtim
 
 func local_request_Users_SendPasswordResetLink_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Username
+		protoReq io_1.Username
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -269,7 +270,7 @@ func local_request_Users_SendPasswordResetLink_0(ctx context.Context, marshaler 
 
 func request_Users_ChangePassword_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq PasswordResetInput
+		protoReq io_1.PasswordResetInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -284,7 +285,7 @@ func request_Users_ChangePassword_0(ctx context.Context, marshaler runtime.Marsh
 
 func local_request_Users_ChangePassword_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq PasswordResetInput
+		protoReq io_1.PasswordResetInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -296,7 +297,7 @@ func local_request_Users_ChangePassword_0(ctx context.Context, marshaler runtime
 
 func request_Users_ChangeOwnPassword_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ChangeOwnPasswordInput
+		protoReq io_1.ChangeOwnPasswordInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -311,7 +312,7 @@ func request_Users_ChangeOwnPassword_0(ctx context.Context, marshaler runtime.Ma
 
 func local_request_Users_ChangeOwnPassword_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ChangeOwnPasswordInput
+		protoReq io_1.ChangeOwnPasswordInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -323,7 +324,7 @@ func local_request_Users_ChangeOwnPassword_0(ctx context.Context, marshaler runt
 
 func request_Users_ChangeEmail_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Email
+		protoReq io_1.Email
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -338,7 +339,7 @@ func request_Users_ChangeEmail_0(ctx context.Context, marshaler runtime.Marshale
 
 func local_request_Users_ChangeEmail_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq Email
+		protoReq io_1.Email
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -350,7 +351,7 @@ func local_request_Users_ChangeEmail_0(ctx context.Context, marshaler runtime.Ma
 
 func request_Users_ConfirmEmailChange_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ConfirmEmailChangeInput
+		protoReq io_1.ConfirmEmailChangeInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -365,7 +366,7 @@ func request_Users_ConfirmEmailChange_0(ctx context.Context, marshaler runtime.M
 
 func local_request_Users_ConfirmEmailChange_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ConfirmEmailChangeInput
+		protoReq io_1.ConfirmEmailChangeInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -377,7 +378,7 @@ func local_request_Users_ConfirmEmailChange_0(ctx context.Context, marshaler run
 
 func request_Users_UpdateCompanyName_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CompanyName
+		protoReq io_1.CompanyName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -392,7 +393,7 @@ func request_Users_UpdateCompanyName_0(ctx context.Context, marshaler runtime.Ma
 
 func local_request_Users_UpdateCompanyName_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq CompanyName
+		protoReq io_1.CompanyName
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -667,7 +668,7 @@ func local_request_Users_GetScannerConfig_0(ctx context.Context, marshaler runti
 
 func request_Users_CreateScannerConfig_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ScannerConfiguration
+		protoReq io_1.ScannerConfiguration
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -682,7 +683,7 @@ func request_Users_CreateScannerConfig_0(ctx context.Context, marshaler runtime.
 
 func local_request_Users_CreateScannerConfig_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ScannerConfiguration
+		protoReq io_1.ScannerConfiguration
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -694,7 +695,7 @@ func local_request_Users_CreateScannerConfig_0(ctx context.Context, marshaler ru
 
 func request_Users_UpdateScannerConfig_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ScannerConfiguration
+		protoReq io_1.ScannerConfiguration
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -709,7 +710,7 @@ func request_Users_UpdateScannerConfig_0(ctx context.Context, marshaler runtime.
 
 func local_request_Users_UpdateScannerConfig_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq ScannerConfiguration
+		protoReq io_1.ScannerConfiguration
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -721,7 +722,7 @@ func local_request_Users_UpdateScannerConfig_0(ctx context.Context, marshaler ru
 
 func request_Users_CreateAuthorizationResource_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq OAuth2AuthorizationRequest
+		protoReq io_1.OAuth2AuthorizationRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -736,7 +737,7 @@ func request_Users_CreateAuthorizationResource_0(ctx context.Context, marshaler 
 
 func local_request_Users_CreateAuthorizationResource_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq OAuth2AuthorizationRequest
+		protoReq io_1.OAuth2AuthorizationRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -808,7 +809,7 @@ func local_request_Users_RefreshApiSecret_0(ctx context.Context, marshaler runti
 
 func request_Users_DeleteAccount_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteAccountRequest
+		protoReq io_1.DeleteAccountRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -823,7 +824,7 @@ func request_Users_DeleteAccount_0(ctx context.Context, marshaler runtime.Marsha
 
 func local_request_Users_DeleteAccount_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq DeleteAccountRequest
+		protoReq io_1.DeleteAccountRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -862,7 +863,7 @@ func local_request_Users_RevokeLegacyCredentials_0(ctx context.Context, marshale
 
 func request_Users_CreateTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewTeamMember
+		protoReq io_1.NewTeamMember
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -877,7 +878,7 @@ func request_Users_CreateTeamMember_0(ctx context.Context, marshaler runtime.Mar
 
 func local_request_Users_CreateTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq NewTeamMember
+		protoReq io_1.NewTeamMember
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -889,7 +890,7 @@ func local_request_Users_CreateTeamMember_0(ctx context.Context, marshaler runti
 
 func request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -904,7 +905,7 @@ func request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, marshal
 
 func local_request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -916,7 +917,7 @@ func local_request_Users_CreatePermissionsForTeamMember_0(ctx context.Context, m
 
 func request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -931,7 +932,7 @@ func request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, marshaler 
 
 func local_request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -943,7 +944,7 @@ func local_request_Users_UpdateTeamMemberPermissions_0(ctx context.Context, mars
 
 func request_Users_PatchTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -958,7 +959,7 @@ func request_Users_PatchTeamMemberPermissions_0(ctx context.Context, marshaler r
 
 func local_request_Users_PatchTeamMemberPermissions_0(ctx context.Context, marshaler runtime.Marshaler, server UsersServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq TeamMemberPermissions
+		protoReq io_1.TeamMemberPermissions
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -1068,7 +1069,7 @@ func local_request_Users_DeleteTeamMember_0(ctx context.Context, marshaler runti
 
 func request_Users_GetTeamMemberLogs_0(ctx context.Context, marshaler runtime.Marshaler, client UsersClient, req *http.Request, pathParams map[string]string) (Users_GetTeamMemberLogsClient, runtime.ServerMetadata, error) {
 	var (
-		protoReq AuditLogRequest
+		protoReq io_1.AuditLogRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {

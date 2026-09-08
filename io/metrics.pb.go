@@ -757,8 +757,8 @@ const file_io_common_metrics_proto_rawDesc = "" +
 	"\vPASS_ISSUED\x10\x00\x12\x12\n" +
 	"\x0ePASS_INSTALLED\x10\x01\x12\x14\n" +
 	"\x10PASS_UNINSTALLED\x10\x02\x12\x14\n" +
-	"\x10PASS_INVALIDATED\x10\x03BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10PASS_INVALIDATED\x10\x03BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_metrics_proto_rawDescOnce sync.Once

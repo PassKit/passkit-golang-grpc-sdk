@@ -696,8 +696,8 @@ const file_io_common_message_proto_rawDesc = "" +
 	"\x06ACTIVE\x10\x02\x12\r\n" +
 	"\tCOMPLETED\x10\x03\x12\r\n" +
 	"\tCANCELLED\x10\x04\x12\f\n" +
-	"\bARCHIVED\x10\x05BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\bARCHIVED\x10\x05BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_message_proto_rawDescOnce sync.Once

@@ -354,8 +354,8 @@ const file_io_common_project_proto_rawDesc = "" +
 	"\x12PROJECT_OVER_QUOTA\x10 \x12\x13\n" +
 	"\x0fPROJECT_DELETED\x10@\x12\x1a\n" +
 	"\x15PROJECT_EMAIL_WARNING\x10\x80\x01\x12\x1c\n" +
-	"\x17PROJECT_EMAIL_SUSPENDED\x10\x80\x02BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x17PROJECT_EMAIL_SUSPENDED\x10\x80\x02BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_project_proto_rawDescOnce sync.Once

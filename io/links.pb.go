@@ -272,8 +272,8 @@ const file_io_common_links_proto_rawDesc = "" +
 	"\aURI_TEL\x10\x02\x12\r\n" +
 	"\tURI_EMAIL\x10\x03\x12\x10\n" +
 	"\fURI_LOCATION\x10\x04\x12\x10\n" +
-	"\fURI_CALENDAR\x10\x05BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\fURI_CALENDAR\x10\x05BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_links_proto_rawDescOnce sync.Once

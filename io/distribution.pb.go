@@ -1996,8 +1996,8 @@ const file_io_common_distribution_proto_rawDesc = "" +
 	"\x10MM_DD_YYYY_SLASH\x10\x05\x12\f\n" +
 	"\bMMM_YYYY\x10\x06\x12\n" +
 	"\n" +
-	"\x06MMM_DD\x10\aBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x06MMM_DD\x10\aBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_distribution_proto_rawDescOnce sync.Once

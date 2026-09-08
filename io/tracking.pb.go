@@ -685,8 +685,8 @@ const file_io_common_tracking_proto_rawDesc = "" +
 	"3GoogleAnalyticsCustomerInitiatedRedemptionPageEvent\x12\x1c\n" +
 	"\x18GA_CIRP_EVENT_DO_NOT_USE\x10\x00\x12\x1b\n" +
 	"\x17GA_CIRP_EVENT_PAGE_VIEW\x10\x01\x12\x18\n" +
-	"\x14GA_CIRP_EVENT_REDEEM\x10\x02BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x14GA_CIRP_EVENT_REDEEM\x10\x02BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_tracking_proto_rawDescOnce sync.Once

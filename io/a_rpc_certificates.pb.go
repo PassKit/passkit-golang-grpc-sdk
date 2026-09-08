@@ -62,7 +62,7 @@ const file_io_core_a_rpc_certificates_proto_rawDesc = "" +
 	"&listAppleCertificateRenewalAuthorities\x121.io.ListAppleCertificateRenewalAuthoritiesRequest\x1a$.io.AppleCertificateRenewalAuthority\"\xa8\x02\x92A\xe2\x01\x12*List Apple Certificate Renewal Authorities\x1a~Lists Apple certificate renewal authorities available to the authenticated user, optionally filtered by the supplied criteria.J4\n" +
 	"\x03403\x12-\n" +
 	"+Returned when the user lacks authorization.\x82\xd3\xe4\x93\x02<:\x01*\"7/certificate/apple_certificate_renewal_authorities/list0\x01\x12\xb4\x02\n" +
-	"\x19sendNFCSigningCredentials\x12 .io.NFCSigningCredentialsRequest\x1a\x16.google.protobuf.Empty\"\xdc\x01\x92A\xab\x01\x12\x1cSend NFC signing credentials\x1a\x8a\x01Sends the NFC signing credentials for a certificate to the registered email address of the user. Only works with NFC enabled certificates.\x82\xd3\xe4\x93\x02':\x01*\"\"/certificates/nfc/credentials/sendB\xc1\x06\x92A\xf6\x05\x12\xc3\x01\n" +
+	"\x19sendNFCSigningCredentials\x12 .io.NFCSigningCredentialsRequest\x1a\x16.google.protobuf.Empty\"\xdc\x01\x92A\xab\x01\x12\x1cSend NFC signing credentials\x1a\x8a\x01Sends the NFC signing credentials for a certificate to the registered email address of the user. Only works with NFC enabled certificates.\x82\xd3\xe4\x93\x02':\x01*\"\"/certificates/nfc/credentials/sendB\xca\x06\x92A\xf6\x05\x12\xc3\x01\n" +
 	"\x18PassKit Certificates API\x12CAPI for managing Apple Wallet Pass Type Identifiers & Certificates.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -85,7 +85,7 @@ const file_io_core_a_rpc_certificates_proto_rawDesc = "" +
 	"<\n" +
 	"\n" +
 	"apiKeyAuth\x12.\b\x02\x12\x19JWT Authentication token.\x1a\rAuthorization \x02\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_certificates_proto_goTypes = []any{
 	(*PassTypeIdentifier)(nil), // 0: io.PassTypeIdentifier

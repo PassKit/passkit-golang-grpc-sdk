@@ -13,11 +13,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -601,8 +601,8 @@ const file_io_flights_passenger_proto_rawDesc = "" +
 	"\x0fDRIVING_LICENSE\x10\x02\x12\x0f\n" +
 	"\vCREDIT_CARD\x10\x03\x12\x17\n" +
 	"\x13FREQUENT_FLYER_CARD\x10\x04\x12\x19\n" +
-	"\x15OTHER_TRAVEL_DOCUMENT\x10\x05B_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\x15OTHER_TRAVEL_DOCUMENT\x10\x05Bh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_passenger_proto_rawDescOnce sync.Once

@@ -12,11 +12,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -194,8 +194,8 @@ const file_io_flights_carrier_proto_rawDesc = "" +
 	"\fprivateKeyId\x18\a \x01(\tR\fprivateKeyId:\xa3\x02\x92A\x9f\x02\n" +
 	"\x9c\x02*\aCarrier2\xdb\x01A carrier record contains details of the carrier.  The carrier will be the issuer of the boarding pass and may be used as a marketing or operating carrier.  All marketing and operating carriers require a Carrier record.\xd2\x01\x0fiataCarrierCode\xd2\x01\vairlineName\xd2\x01\x12passTypeIdentifier\"/\n" +
 	"\vCarrierCode\x12 \n" +
-	"\vcarrierCode\x18\x01 \x01(\tR\vcarrierCodeB_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\vcarrierCode\x18\x01 \x01(\tR\vcarrierCodeBh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_carrier_proto_rawDescOnce sync.Once

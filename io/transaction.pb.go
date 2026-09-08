@@ -385,8 +385,8 @@ const file_io_common_transaction_proto_rawDesc = "" +
 	"\x03tax\x18\x02 \x01(\x02R\x03tax\x12\x1a\n" +
 	"\bitemName\x18\x03 \x01(\tR\bitemName\x12\x1a\n" +
 	"\bquantity\x18\x04 \x01(\x05R\bquantity\x12\x10\n" +
-	"\x03sku\x18\x05 \x01(\tR\x03skuBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x03sku\x18\x05 \x01(\tR\x03skuBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_transaction_proto_rawDescOnce sync.Once

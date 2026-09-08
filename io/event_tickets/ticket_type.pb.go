@@ -10,12 +10,12 @@
 package event_tickets
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -386,8 +386,8 @@ const file_io_event_tickets_ticket_type_proto_rawDesc = "" +
 	"\x89\x01*\x17Ticket Type (Light ver)2nTicket Type holds details about the ticket type, and links to the before & after redeem Pass Template Designs.\"b\n" +
 	"\x15TicketTypeListRequest\x12\"\n" +
 	"\fproductionId\x18\x01 \x01(\tR\fproductionId\x12%\n" +
-	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersBo\n" +
-	"\x1dcom.passkit.grpc.EventTicketsZ2github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
+	"\afilters\x18\x02 \x01(\v2\v.io.FiltersR\afiltersBx\n" +
+	"\x1dcom.passkit.grpc.EventTicketsZ;github.com/PassKit/passkit-golang-grpc-sdk/io/event_tickets\xaa\x02\x19PassKit.Grpc.EventTicketsb\x06proto3"
 
 var (
 	file_io_event_tickets_ticket_type_proto_rawDescOnce sync.Once

@@ -12,11 +12,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -557,8 +557,8 @@ const file_io_flights_flight_proto_rawDesc = "" +
 	"\fflightNumber\x18\x02 \x01(\tB\x05\x92A\x02x\x05R\fflightNumber\x12.\n" +
 	"\rdepartureDate\x18\x03 \x01(\v2\b.io.DateR\rdepartureDate\x12$\n" +
 	"\rboardingPoint\x18\x05 \x01(\tR\rboardingPoint\x12&\n" +
-	"\x0edeplaningPoint\x18\x06 \x01(\tR\x0edeplaningPointB_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"\x0edeplaningPoint\x18\x06 \x01(\tR\x0edeplaningPointBh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_flight_proto_rawDescOnce sync.Once

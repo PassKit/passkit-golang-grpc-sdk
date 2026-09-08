@@ -17,7 +17,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	io "stash.passkit.com/io/model/sdk/go/io"
 	unsafe "unsafe"
 )
 
@@ -39,7 +39,7 @@ const file_io_analytics_a_rpc_proto_rawDesc = "" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x16\x12\x14/analytics/{classId}B\x8d\a\x92A\xa4\x06\x12\xdf\x01\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x16\x12\x14/analytics/{classId}B\x96\a\x92A\xa4\x06\x12\xdf\x01\n" +
 	"\x15PassKit Analytics API\x12bThe PassKit Analytics API lets you track the performance of Apple Wallet and Google Wallet passes.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -65,7 +65,7 @@ const file_io_analytics_a_rpc_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x1acom.passkit.grpc.AnalyticsZ.github.com/PassKit/passkit-golang-grpc-sdk/io/analytics\xaa\x02\x16PassKit.Grpc.Analyticsb\x06proto3"
+	"\x1acom.passkit.grpc.AnalyticsZ7github.com/PassKit/passkit-golang-grpc-sdk/io/analytics\xaa\x02\x16PassKit.Grpc.Analyticsb\x06proto3"
 
 var file_io_analytics_a_rpc_proto_goTypes = []any{
 	(*io.AnalyticsRequest)(nil),  // 0: io.AnalyticsRequest

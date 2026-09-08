@@ -151,7 +151,7 @@ const file_io_core_a_rpc_templates_proto_rawDesc = "" +
 	"countLinks\x12\v.io.Filters\x1a\t.io.Count\"\xfa\x03\x92A\xdf\x03\n" +
 	"\x05Links\x12\vCount Links\x1a\xc8\x03Retrieves a count of links that match the supplied criteria.\n" +
 	"\n" +
-	"<span style=\"font-weight:bold\">About filter field names, operators and sample payloads:</span> <a target=\"_blank\" href=\"https://help.passkit.com/en/articles/4200250-pass-templates-locations-beacons-links-filtering-listing-and-counting-by-api#filter-links\">https://help.passkit.com/en/articles/4200250-pass-templates-locations-beacons-links-filtering-listing-and-counting-by-api#filter-links</a>\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/links/countB\xf1\x06\x92A\xa6\x06\x12\xe1\x01\n" +
+	"<span style=\"font-weight:bold\">About filter field names, operators and sample payloads:</span> <a target=\"_blank\" href=\"https://help.passkit.com/en/articles/4200250-pass-templates-locations-beacons-links-filtering-listing-and-counting-by-api#filter-links\">https://help.passkit.com/en/articles/4200250-pass-templates-locations-beacons-links-filtering-listing-and-counting-by-api#filter-links</a>\x82\xd3\xe4\x93\x02\x11:\x01*\"\f/links/countB\xfa\x06\x92A\xa6\x06\x12\xe1\x01\n" +
 	"\x15PassKit Templates API\x12dAPI for managing Pass Templates & Designs for Apple Wallet, Google Wallet and Data Collection Forms.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -177,7 +177,7 @@ const file_io_core_a_rpc_templates_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_templates_proto_goTypes = []any{
 	(*PassTemplate)(nil),           // 0: io.PassTemplate

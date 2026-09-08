@@ -218,8 +218,8 @@ const file_io_common_featured_actions_proto_rawDesc = "" +
 	"\bBOOK_CAR\x10\v\x12\x14\n" +
 	"\x10BOOK_APPOINTMENT\x10\f\x12\x17\n" +
 	"\x13MEMBERSHIP_BENEFITS\x10\r\x12\t\n" +
-	"\x05ORDER\x10\x0eBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x05ORDER\x10\x0eBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_featured_actions_proto_rawDescOnce sync.Once

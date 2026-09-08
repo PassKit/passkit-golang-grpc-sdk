@@ -200,8 +200,8 @@ const file_io_common_expiry_proto_rawDesc = "" +
 	"\x14EXPIRE_ON_FIXED_DATE\x10\x01\x12\x17\n" +
 	"\x13EXPIRE_AFTER_X_DAYS\x10\x02\x12 \n" +
 	"\x1cEXPIRE_ON_VARIABLE_DATE_TIME\x10\x03\x12\x16\n" +
-	"\x12EXPIRE_SET_TO_NULL\x10\x04BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x12EXPIRE_SET_TO_NULL\x10\x04BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_expiry_proto_rawDescOnce sync.Once

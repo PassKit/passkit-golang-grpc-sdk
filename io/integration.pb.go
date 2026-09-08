@@ -1721,8 +1721,8 @@ const file_io_common_integration_proto_rawDesc = "" +
 	"\vMETHOD_POST\x10\x01\x12\x0e\n" +
 	"\n" +
 	"METHOD_PUT\x10\x02\x12\x11\n" +
-	"\rMETHOD_DELETE\x10\x03BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\rMETHOD_DELETE\x10\x03BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_integration_proto_rawDescOnce sync.Once

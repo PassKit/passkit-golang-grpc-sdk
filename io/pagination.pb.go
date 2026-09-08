@@ -210,8 +210,8 @@ const file_io_common_pagination_proto_rawDesc = "" +
 	"\x06Filter\x12 \n" +
 	"\vfilterField\x18\x01 \x03(\tR\vfilterField\x12 \n" +
 	"\vfilterValue\x18\x02 \x03(\tR\vfilterValue\x12&\n" +
-	"\x0efilterOperator\x18\x03 \x03(\tR\x0efilterOperatorBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x0efilterOperator\x18\x03 \x03(\tR\x0efilterOperatorBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_pagination_proto_rawDescOnce sync.Once

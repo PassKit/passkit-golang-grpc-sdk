@@ -12,14 +12,14 @@
 package scheduler
 
 import (
+	ct "github.com/PassKit/passkit-golang-grpc-sdk/ct"
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	ct "github.com/PassKit/passkit-golang-grpc-sdk/ct"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	unsafe "unsafe"
 )
 
@@ -85,10 +85,10 @@ const file_io_scheduler_a_rpc_proto_rawDesc = "" +
 	"\x03403\x12\x1b\n" +
 	"\x19User lacks authorization.J\x1e\n" +
 	"\x03404\x12\x17\n" +
-	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/scheduling/history/list0\x01B\xc6\x02\x92A\xdd\x01\x12\xb3\x01\n" +
+	"\x15Record was not found.\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/scheduling/history/list0\x01B\xcf\x02\x92A\xdd\x01\x12\xb3\x01\n" +
 	"\x15PassKit Scheduler API\x121This protocol schedule recursive or one-off jobs.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com2\x031.0*\x01\x022\x10application/json:\x10application/json\n" +
-	"\x1acom.passkit.grpc.SchedulerZ.github.com/PassKit/passkit-golang-grpc-sdk/io/scheduler\xaa\x02\x16PassKit.Grpc.Schedulerb\x06proto3"
+	"\x1acom.passkit.grpc.SchedulerZ7github.com/PassKit/passkit-golang-grpc-sdk/io/scheduler\xaa\x02\x16PassKit.Grpc.Schedulerb\x06proto3"
 
 var file_io_scheduler_a_rpc_proto_goTypes = []any{
 	(*ct.SchedulingJob)(nil),         // 0: ct.SchedulingJob

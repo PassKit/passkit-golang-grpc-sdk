@@ -42,8 +42,8 @@ const file_io_core_a_rpc_messages_proto_rawDesc = "" +
 	"\x1bMessage could not be found.\x82\xd3\xe4\x93\x02\x0f*\r/message/{id}\x12\xe3\x01\n" +
 	"\vsendMessage\x12\x16.io.SendMessageRequest\x1a\x17.io.SendMessageResponse\"\xa2\x01\x92A\x86\x01\x12\fSend Message\x1aDSends a message to an array of passIds, or to every pass in a class.J0\n" +
 	"\x03400\x12)\n" +
-	"'There is a problem with the input data.\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/message/sendBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"'There is a problem with the input data.\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/message/sendBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_messages_proto_goTypes = []any{
 	(*Id)(nil),                  // 0: io.Id

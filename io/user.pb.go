@@ -2674,8 +2674,8 @@ const file_io_user_user_proto_rawDesc = "" +
 	"\x12TEAM_MEMBER_ACTIVE\x10\x01\x12\x18\n" +
 	"\x14TEAM_MEMBER_DISABLED\x10\x02\x12\x17\n" +
 	"\x13TEAM_MEMBER_EXPIRED\x10\x04\x12\x17\n" +
-	"\x13TEAM_MEMBER_PENDING\x10\bBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x13TEAM_MEMBER_PENDING\x10\bBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_user_user_proto_rawDescOnce sync.Once

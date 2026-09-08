@@ -177,8 +177,8 @@ const file_io_member_event_proto_rawDesc = "" +
 	" \x01(\tR\x0eexternalUserId\x1a;\n" +
 	"\rMetaDataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01B_\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01Bh\n" +
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var (
 	file_io_member_event_proto_rawDescOnce sync.Once

@@ -828,8 +828,8 @@ const file_io_common_reporting_proto_rawDesc = "" +
 	"\x06Period\x12\a\n" +
 	"\x03DAY\x10\x00\x12\t\n" +
 	"\x05MONTH\x10\x01\x12\b\n" +
-	"\x04YEAR\x10\x02BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x04YEAR\x10\x02BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_reporting_proto_rawDescOnce sync.Once

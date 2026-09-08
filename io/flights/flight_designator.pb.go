@@ -12,11 +12,11 @@
 package flights
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -445,8 +445,8 @@ const file_io_flights_flight_designator_proto_rawDesc = "" +
 	"\vcarrierCode\x18\x01 \x01(\tB\b\x92A\x05x\x03\x80\x01\x02R\vcarrierCode\x12)\n" +
 	"\fflightNumber\x18\x02 \x01(\tB\x05\x92A\x02x\x05R\fflightNumber\x12\x1a\n" +
 	"\brevision\x18\x03 \x01(\rR\brevision:}\x92Az\n" +
-	"x*\x19Flight Designator Request2>Used for retrieving details of a particular flight designator.\xd2\x01\vcarrierCode\xd2\x01\fflightNumberB_\n" +
-	"\x18com.passkit.grpc.FlightsZ,github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
+	"x*\x19Flight Designator Request2>Used for retrieving details of a particular flight designator.\xd2\x01\vcarrierCode\xd2\x01\fflightNumberBh\n" +
+	"\x18com.passkit.grpc.FlightsZ5github.com/PassKit/passkit-golang-grpc-sdk/io/flights\xaa\x02\x14PassKit.Grpc.Flightsb\x06proto3"
 
 var (
 	file_io_flights_flight_designator_proto_rawDescOnce sync.Once

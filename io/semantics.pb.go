@@ -2367,8 +2367,8 @@ const file_io_common_semantics_proto_rawDesc = "" +
 	"\x13EVENT_TYPE_WORKSHOP\x10\x05\x12\x1f\n" +
 	"\x1bEVENT_TYPE_SOCIAL_GATHERING\x10\x06\x12\x15\n" +
 	"\x11EVENT_TYPE_SPORTS\x10\a\x12\x1f\n" +
-	"\x1bEVENT_TYPE_LIVE_PERFORMANCE\x10\bBG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x1bEVENT_TYPE_LIVE_PERFORMANCE\x10\bBP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_semantics_proto_rawDescOnce sync.Once

@@ -301,8 +301,8 @@ const file_io_common_filter_proto_rawDesc = "" +
 	"\ffieldFilters\x18\x02 \x03(\v2\x0f.io.FieldFilterR\ffieldFilters*\x1b\n" +
 	"\bOperator\x12\a\n" +
 	"\x03AND\x10\x00\x12\x06\n" +
-	"\x02OR\x10\x01BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x02OR\x10\x01BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_filter_proto_rawDescOnce sync.Once

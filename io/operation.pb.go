@@ -87,8 +87,8 @@ const file_io_common_operation_proto_rawDesc = "" +
 	"\tOperation\x12\x18\n" +
 	"\x14OPERATION_DO_NOT_USE\x10\x00\x12\x11\n" +
 	"\rOPERATION_PUT\x10\x01\x12\x13\n" +
-	"\x0fOPERATION_PATCH\x10\x02BG\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x0fOPERATION_PATCH\x10\x02BP\n" +
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var (
 	file_io_common_operation_proto_rawDescOnce sync.Once

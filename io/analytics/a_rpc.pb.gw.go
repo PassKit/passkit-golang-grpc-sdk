@@ -22,7 +22,7 @@ import (
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
-	io_0 "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	io_0 "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Suppress "imported and not used" errors

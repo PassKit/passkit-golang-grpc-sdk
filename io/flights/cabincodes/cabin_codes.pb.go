@@ -203,8 +203,8 @@ const file_io_flights_cabin_codes_cabin_codes_proto_rawDesc = "" +
 	"\x01V\x10\x17\x12\x05\n" +
 	"\x01X\x10\x18\x12\x05\n" +
 	"\x01G\x10\x19\x12\x05\n" +
-	"\x01U\x10\x1aB\x80\x01\n" +
-	"#com.passkit.grpc.Flights.CabinCodesZ7github.com/PassKit/passkit-golang-grpc-sdk/io/flights/cabincodes\xaa\x02\x1fPassKit.Grpc.Flights.CabinCodesb\x06proto3"
+	"\x01U\x10\x1aB\x89\x01\n" +
+	"#com.passkit.grpc.Flights.CabinCodesZ@github.com/PassKit/passkit-golang-grpc-sdk/io/flights/cabincodes\xaa\x02\x1fPassKit.Grpc.Flights.CabinCodesb\x06proto3"
 
 var (
 	file_io_flights_cabin_codes_cabin_codes_proto_rawDescOnce sync.Once

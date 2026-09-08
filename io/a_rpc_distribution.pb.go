@@ -49,7 +49,7 @@ const file_io_core_a_rpc_distribution_proto_rawDesc = "" +
 	"getMessage\x12\x06.io.Id\x1a\v.io.Message\"H\x92A#\x12\vGet message\x1a\x14Retrieves a message.\x82\xd3\xe4\x93\x02\x1c\x12\x1a/distribution/message/{id}\x12\xd5\x01\n" +
 	"\vgetMessages\x12\x16.google.protobuf.Empty\x1a\v.io.Message\"\x9e\x01\x92A}\x12\vAdd message\x1anRetrieves a list of fields used on the data collection page. ClassId is required only for the Member protocol.\x82\xd3\xe4\x93\x02\x18\x12\x16/distribution/messages0\x01\x12\xdb\x01\n" +
 	"\rupdateMessage\x12\v.io.Message\x1a\x16.google.protobuf.Empty\"\xa4\x01\x92A\x80\x01\x12\x0eUpdate message\x1anRetrieves a list of fields used on the data collection page. ClassId is required only for the Member protocol.\x82\xd3\xe4\x93\x02\x1a:\x01*\x1a\x15/distribution/message\x12\xd8\x01\n" +
-	"\rcancelMessage\x12\x06.io.Id\x1a\x16.google.protobuf.Empty\"\xa6\x01\x92A\x80\x01\x12\x0eCancel message\x1anRetrieves a list of fields used on the data collection page. ClassId is required only for the Member protocol.\x82\xd3\xe4\x93\x02\x1c*\x1a/distribution/message/{id}B\xea\x06\x92A\x9f\x06\x12\xda\x01\n" +
+	"\rcancelMessage\x12\x06.io.Id\x1a\x16.google.protobuf.Empty\"\xa6\x01\x92A\x80\x01\x12\x0eCancel message\x1anRetrieves a list of fields used on the data collection page. ClassId is required only for the Member protocol.\x82\xd3\xe4\x93\x02\x1c*\x1a/distribution/message/{id}B\xf3\x06\x92A\x9f\x06\x12\xda\x01\n" +
 	"\x18PassKit Distribution API\x12ZAPI for generating SmartPass links and distribution of your passes via different channels.\x1a https://passkit.com/legal/terms/\"@\n" +
 	"\x0fPassKit Support\x12\x18https://help.passkit.com\x1a\x13support@passkit.com*\x01\x022\x10application/json:\x10application/jsonR9\n" +
 	"\x03200\x122\n" +
@@ -75,7 +75,7 @@ const file_io_core_a_rpc_distribution_proto_rawDesc = "" +
 	"\x0e\n" +
 	"\n" +
 	"apiKeyAuth\x12\x00\n" +
-	"\x10com.passkit.grpcZ$github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
+	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_distribution_proto_goTypes = []any{
 	(*EmailDistributionRequest)(nil),  // 0: io.EmailDistributionRequest

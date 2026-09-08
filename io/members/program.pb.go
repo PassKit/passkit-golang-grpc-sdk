@@ -12,12 +12,12 @@
 package members
 
 import (
+	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -995,8 +995,8 @@ const file_io_member_program_proto_rawDesc = "" +
 	"\x13RecoverPassDelivery\x12\x15\n" +
 	"\x11DELIVERY_REDIRECT\x10\x00\x12\x12\n" +
 	"\x0eDELIVERY_EMAIL\x10\x01\x12\x10\n" +
-	"\fDELIVERY_SMS\x10\x02B_\n" +
-	"\x18com.passkit.grpc.MembersZ,github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
+	"\fDELIVERY_SMS\x10\x02Bh\n" +
+	"\x18com.passkit.grpc.MembersZ5github.com/PassKit/passkit-golang-grpc-sdk/io/members\xaa\x02\x14PassKit.Grpc.Membersb\x06proto3"
 
 var (
 	file_io_member_program_proto_rawDescOnce sync.Once
