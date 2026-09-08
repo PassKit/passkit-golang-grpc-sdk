@@ -13,7 +13,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "stash.passkit.com/io/model/sdk/go/io"
 	unsafe "unsafe"
 )
 
@@ -90,23 +89,23 @@ const file_io_core_a_rpc_images_proto_rawDesc = "" +
 	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_images_proto_goTypes = []any{
-	(*io.ProfileImageInput)(nil),        // 0: io.ProfileImageInput
-	(*emptypb.Empty)(nil),               // 1: google.protobuf.Empty
-	(*io.CreateImageInput)(nil),         // 2: io.CreateImageInput
-	(*io.UpdateImageInput)(nil),         // 3: io.UpdateImageInput
-	(*Id)(nil),                          // 4: io.Id
-	(*io.StampImageRequest)(nil),        // 5: io.StampImageRequest
-	(*io.StampImageConfig)(nil),         // 6: io.StampImageConfig
-	(*io.StampImagePreviewRequest)(nil), // 7: io.StampImagePreviewRequest
-	(*io.LocalizedImageInput)(nil),      // 8: io.LocalizedImageInput
-	(*Pagination)(nil),                  // 9: io.Pagination
-	(*Filters)(nil),                     // 10: io.Filters
-	(*Url)(nil),                         // 11: io.Url
-	(*io.ImageIds)(nil),                 // 12: io.ImageIds
-	(*io.ImageRecord)(nil),              // 13: io.ImageRecord
-	(*io.StampImagePreview)(nil),        // 14: io.StampImagePreview
-	(*io.ImageBundle)(nil),              // 15: io.ImageBundle
-	(*Count)(nil),                       // 16: io.Count
+	(*ProfileImageInput)(nil),        // 0: io.ProfileImageInput
+	(*emptypb.Empty)(nil),            // 1: google.protobuf.Empty
+	(*CreateImageInput)(nil),         // 2: io.CreateImageInput
+	(*UpdateImageInput)(nil),         // 3: io.UpdateImageInput
+	(*Id)(nil),                       // 4: io.Id
+	(*StampImageRequest)(nil),        // 5: io.StampImageRequest
+	(*StampImageConfig)(nil),         // 6: io.StampImageConfig
+	(*StampImagePreviewRequest)(nil), // 7: io.StampImagePreviewRequest
+	(*LocalizedImageInput)(nil),      // 8: io.LocalizedImageInput
+	(*Pagination)(nil),               // 9: io.Pagination
+	(*Filters)(nil),                  // 10: io.Filters
+	(*Url)(nil),                      // 11: io.Url
+	(*ImageIds)(nil),                 // 12: io.ImageIds
+	(*ImageRecord)(nil),              // 13: io.ImageRecord
+	(*StampImagePreview)(nil),        // 14: io.StampImagePreview
+	(*ImageBundle)(nil),              // 15: io.ImageBundle
+	(*Count)(nil),                    // 16: io.Count
 }
 var file_io_core_a_rpc_images_proto_depIdxs = []int32{
 	0,  // 0: io.Images.setProfileImage:input_type -> io.ProfileImageInput
@@ -169,6 +168,7 @@ func file_io_core_a_rpc_images_proto_init() {
 	}
 	file_io_common_common_objects_proto_init()
 	file_io_common_pagination_proto_init()
+	file_io_image_image_proto_init()
 	file_io_common_filter_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{

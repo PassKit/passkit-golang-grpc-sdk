@@ -11,7 +11,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "stash.passkit.com/io/model/sdk/go/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -958,7 +957,7 @@ func (x *UpdateAppleCertificateRenewalAuthorityRequest) GetAllowCrossAccountUse(
 type ListAppleCertificateRenewalAuthoritiesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Optional filter and pagination criteria.
-	Filters       *io.Filters `protobuf:"bytes,1,opt,name=filters,proto3" json:"filters,omitempty"`
+	Filters       *Filters `protobuf:"bytes,1,opt,name=filters,proto3" json:"filters,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -993,7 +992,7 @@ func (*ListAppleCertificateRenewalAuthoritiesRequest) Descriptor() ([]byte, []in
 	return file_io_certificate_certificate_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *ListAppleCertificateRenewalAuthoritiesRequest) GetFilters() *io.Filters {
+func (x *ListAppleCertificateRenewalAuthoritiesRequest) GetFilters() *Filters {
 	if x != nil {
 		return x.Filters
 	}
@@ -1168,7 +1167,7 @@ var file_io_certificate_certificate_proto_goTypes = []any{
 	(*ListAppleCertificateRenewalAuthoritiesRequest)(nil),  // 12: io.ListAppleCertificateRenewalAuthoritiesRequest
 	(*DeleteAppleCertificateRenewalAuthorityResponse)(nil), // 13: io.DeleteAppleCertificateRenewalAuthorityResponse
 	(*timestamppb.Timestamp)(nil),                          // 14: google.protobuf.Timestamp
-	(*io.Filters)(nil),                                     // 15: io.Filters
+	(*Filters)(nil),                                        // 15: io.Filters
 }
 var file_io_certificate_certificate_proto_depIdxs = []int32{
 	14, // 0: io.CertificateData.validFrom:type_name -> google.protobuf.Timestamp
@@ -1192,6 +1191,7 @@ func file_io_certificate_certificate_proto_init() {
 	if File_io_certificate_certificate_proto != nil {
 		return
 	}
+	file_io_common_filter_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

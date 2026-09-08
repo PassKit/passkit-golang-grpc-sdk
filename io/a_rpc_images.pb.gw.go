@@ -23,7 +23,6 @@ import (
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/emptypb"
-	io_1 "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // Suppress "imported and not used" errors
@@ -39,7 +38,7 @@ var (
 
 func request_Images_SetProfileImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.ProfileImageInput
+		protoReq ProfileImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -54,7 +53,7 @@ func request_Images_SetProfileImage_0(ctx context.Context, marshaler runtime.Mar
 
 func local_request_Images_SetProfileImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.ProfileImageInput
+		protoReq ProfileImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -87,7 +86,7 @@ func local_request_Images_GetProfileImage_0(ctx context.Context, marshaler runti
 
 func request_Images_CreateImages_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.CreateImageInput
+		protoReq CreateImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -102,7 +101,7 @@ func request_Images_CreateImages_0(ctx context.Context, marshaler runtime.Marsha
 
 func local_request_Images_CreateImages_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.CreateImageInput
+		protoReq CreateImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -114,7 +113,7 @@ func local_request_Images_CreateImages_0(ctx context.Context, marshaler runtime.
 
 func request_Images_UpdateImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.UpdateImageInput
+		protoReq UpdateImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -129,7 +128,7 @@ func request_Images_UpdateImage_0(ctx context.Context, marshaler runtime.Marshal
 
 func local_request_Images_UpdateImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.UpdateImageInput
+		protoReq UpdateImageInput
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -180,7 +179,7 @@ func local_request_Images_GetImageURL_0(ctx context.Context, marshaler runtime.M
 
 func request_Images_GetStampImageURL_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImageRequest
+		protoReq StampImageRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -209,7 +208,7 @@ func request_Images_GetStampImageURL_0(ctx context.Context, marshaler runtime.Ma
 
 func local_request_Images_GetStampImageURL_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImageRequest
+		protoReq StampImageRequest
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -274,7 +273,7 @@ func local_request_Images_GetStampImageConfig_0(ctx context.Context, marshaler r
 
 func request_Images_UpdateStampImageConfig_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImageConfig
+		protoReq StampImageConfig
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -289,7 +288,7 @@ func request_Images_UpdateStampImageConfig_0(ctx context.Context, marshaler runt
 
 func local_request_Images_UpdateStampImageConfig_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImageConfig
+		protoReq StampImageConfig
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -301,7 +300,7 @@ func local_request_Images_UpdateStampImageConfig_0(ctx context.Context, marshale
 
 func request_Images_GetStampImagePreview_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImagePreviewRequest
+		protoReq StampImagePreviewRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -316,7 +315,7 @@ func request_Images_GetStampImagePreview_0(ctx context.Context, marshaler runtim
 
 func local_request_Images_GetStampImagePreview_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.StampImagePreviewRequest
+		protoReq StampImagePreviewRequest
 		metadata runtime.ServerMetadata
 	)
 	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && !errors.Is(err, io.EOF) {
@@ -328,7 +327,7 @@ func local_request_Images_GetStampImagePreview_0(ctx context.Context, marshaler 
 
 func request_Images_GetLocalizedImageURL_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.LocalizedImageInput
+		protoReq LocalizedImageInput
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -357,7 +356,7 @@ func request_Images_GetLocalizedImageURL_0(ctx context.Context, marshaler runtim
 
 func local_request_Images_GetLocalizedImageURL_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.LocalizedImageInput
+		protoReq LocalizedImageInput
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -539,7 +538,7 @@ func local_request_Images_DeleteImage_0(ctx context.Context, marshaler runtime.M
 
 func request_Images_DeleteLocalizedImage_0(ctx context.Context, marshaler runtime.Marshaler, client ImagesClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.LocalizedImageInput
+		protoReq LocalizedImageInput
 		metadata runtime.ServerMetadata
 		err      error
 	)
@@ -568,7 +567,7 @@ func request_Images_DeleteLocalizedImage_0(ctx context.Context, marshaler runtim
 
 func local_request_Images_DeleteLocalizedImage_0(ctx context.Context, marshaler runtime.Marshaler, server ImagesServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
-		protoReq io_1.LocalizedImageInput
+		protoReq LocalizedImageInput
 		metadata runtime.ServerMetadata
 		err      error
 	)

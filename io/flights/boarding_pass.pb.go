@@ -13,11 +13,11 @@ package flights
 
 import (
 	io "github.com/PassKit/passkit-golang-grpc-sdk/io"
+	cabincodes "github.com/PassKit/passkit-golang-grpc-sdk/io/flights/cabincodes"
 	_ "github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2/options"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
-	cabincodes "stash.passkit.com/io/model/sdk/go/io/flights/cabincodes"
 	sync "sync"
 	unsafe "unsafe"
 )

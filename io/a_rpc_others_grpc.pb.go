@@ -12,7 +12,6 @@ import (
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
-	io "stash.passkit.com/io/model/sdk/go/io"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -66,33 +65,33 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UsersClient interface {
 	// Creates a user and issues a verification email. Required Fields: email, password, name, companyName.
-	CreateUser(ctx context.Context, in *io.NewUser, opts ...grpc.CallOption) (*io.NewUserResponse, error)
+	CreateUser(ctx context.Context, in *NewUser, opts ...grpc.CallOption) (*NewUserResponse, error)
 	// Creates a new user and returns a JWT token. Required Fields: email, password, name, companyName.
-	NewUser(ctx context.Context, in *io.NewUser, opts ...grpc.CallOption) (*io.JWT, error)
+	NewUser(ctx context.Context, in *NewUser, opts ...grpc.CallOption) (*JWT, error)
 	// Verifies the user with the email verification code. Required Fields: code.
-	Verify(ctx context.Context, in *io.VerifyRequest, opts ...grpc.CallOption) (*Boolean, error)
+	Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*Boolean, error)
 	// Resends the verification email.
 	ResendVerificationEmail(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Boolean, error)
 	// Retrieves the authenticated user's profile.
-	GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*io.GetUserResponse, error)
+	GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUserResponse, error)
 	// Authenticates the user and returns a JWT token. Required Fields: username, password.
-	Login(ctx context.Context, in *io.Credentials, opts ...grpc.CallOption) (*io.JWT, error)
+	Login(ctx context.Context, in *Credentials, opts ...grpc.CallOption) (*JWT, error)
 	// Returns the barcode image URL for 2FA setup.
 	Get2FaBarcode(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Url, error)
 	// Resets the user's password if a reset code is already obtained. Required Fields: username, password, code.
-	ResetPassword(ctx context.Context, in *io.Credentials, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ResetPassword(ctx context.Context, in *Credentials, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Sends a password reset link to the user's email. Required Fields: username.
-	SendPasswordResetLink(ctx context.Context, in *io.Username, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SendPasswordResetLink(ctx context.Context, in *Username, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Changes the user's password using a reset token. Required Fields: token, password.
-	ChangePassword(ctx context.Context, in *io.PasswordResetInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ChangePassword(ctx context.Context, in *PasswordResetInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Changes the currently authenticated user's password. Requires a valid auth token and the current password. Required Fields: currentPassword, newPassword, confirmNewPassword.
-	ChangeOwnPassword(ctx context.Context, in *io.ChangeOwnPasswordInput, opts ...grpc.CallOption) (*io.JWT, error)
+	ChangeOwnPassword(ctx context.Context, in *ChangeOwnPasswordInput, opts ...grpc.CallOption) (*JWT, error)
 	// Initiates email change. Verification email is sent to new address. Required Fields: email.
-	ChangeEmail(ctx context.Context, in *io.Email, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ChangeEmail(ctx context.Context, in *Email, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Confirms and finalizes the email change. Required Fields: email, code.
-	ConfirmEmailChange(ctx context.Context, in *io.ConfirmEmailChangeInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmEmailChange(ctx context.Context, in *ConfirmEmailChangeInput, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Updates the company name associated with the account. Required Fields: name.
-	UpdateCompanyName(ctx context.Context, in *io.CompanyName, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateCompanyName(ctx context.Context, in *CompanyName, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// [DEPRECATED] Retrieves user’s projects using pagination. Required Fields: pagination.
 	GetProjectsForUserQueryDeprecated(ctx context.Context, in *Pagination, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Project], error)
 	// [DEPRECATED] Retrieves all company projects using pagination. Required Fields: pagination.
@@ -110,37 +109,37 @@ type UsersClient interface {
 	// Retrieves all company projects by status. Required Fields: status.
 	GetProjects(ctx context.Context, in *ProjectStatusFilter, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Project], error)
 	// Retrieves the scanner configuration for the user.
-	GetScannerConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*io.ScannerConfiguration, error)
+	GetScannerConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ScannerConfiguration, error)
 	// Creates a new scanner configuration. Required Fields: ScannerConfiguration fields.
-	CreateScannerConfig(ctx context.Context, in *io.ScannerConfiguration, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	CreateScannerConfig(ctx context.Context, in *ScannerConfiguration, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Updates the existing scanner configuration. Required Fields: ScannerConfiguration fields.
-	UpdateScannerConfig(ctx context.Context, in *io.ScannerConfiguration, opts ...grpc.CallOption) (*io.ScannerConfiguration, error)
+	UpdateScannerConfig(ctx context.Context, in *ScannerConfiguration, opts ...grpc.CallOption) (*ScannerConfiguration, error)
 	// Creates a new oauth2 resource, the returned id is NOT the access token used to make requests on the users behalf.
-	CreateAuthorizationResource(ctx context.Context, in *io.OAuth2AuthorizationRequest, opts ...grpc.CallOption) (*Id, error)
+	CreateAuthorizationResource(ctx context.Context, in *OAuth2AuthorizationRequest, opts ...grpc.CallOption) (*Id, error)
 	// Deletes an OAuth2 authorization resource. Required Fields: id.
 	DeleteAuthorizationResource(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Refreshes the API secret key for the current user.
 	RefreshApiSecret(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Permanently deletes the user's account and all associated data. Required Fields: password.
-	DeleteAccount(ctx context.Context, in *io.DeleteAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Immediately revokes any old gRPC credentials.
 	RevokeLegacyCredentials(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Creates a new sub-user account for the company. Required Fields: email, name, password.
-	CreateTeamMember(ctx context.Context, in *io.NewTeamMember, opts ...grpc.CallOption) (*Id, error)
+	CreateTeamMember(ctx context.Context, in *NewTeamMember, opts ...grpc.CallOption) (*Id, error)
 	// Assigns permissions to a new team member. Required Fields: userId, permissions.
-	CreatePermissionsForTeamMember(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*Id, error)
+	CreatePermissionsForTeamMember(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*Id, error)
 	// Updates the entire permissions object for a team member. Required Fields: userId, permissions.
-	UpdateTeamMemberPermissions(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*io.TeamMemberPermissions, error)
+	UpdateTeamMemberPermissions(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*TeamMemberPermissions, error)
 	// Updates partial permissions for a team member. Required Fields: userId, permissions.
-	PatchTeamMemberPermissions(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*io.TeamMemberPermissions, error)
+	PatchTeamMemberPermissions(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*TeamMemberPermissions, error)
 	// Retrieves a team member by ID. Required Fields: id.
-	GetTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.GetTeamMemberResponse, error)
+	GetTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*GetTeamMemberResponse, error)
 	// Retrieves all team members.
-	GetTeamMembers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ListTeamMembersResponse], error)
+	GetTeamMembers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListTeamMembersResponse], error)
 	// Deletes a team member. Required Fields: id.
 	DeleteTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Retrieves access logs for a company or user. Required Fields: protocol, classId, userId, dateRange.
-	GetTeamMemberLogs(ctx context.Context, in *io.AuditLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.AuditLog], error)
+	GetTeamMemberLogs(ctx context.Context, in *AuditLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AuditLog], error)
 }
 
 type usersClient struct {
@@ -151,9 +150,9 @@ func NewUsersClient(cc grpc.ClientConnInterface) UsersClient {
 	return &usersClient{cc}
 }
 
-func (c *usersClient) CreateUser(ctx context.Context, in *io.NewUser, opts ...grpc.CallOption) (*io.NewUserResponse, error) {
+func (c *usersClient) CreateUser(ctx context.Context, in *NewUser, opts ...grpc.CallOption) (*NewUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.NewUserResponse)
+	out := new(NewUserResponse)
 	err := c.cc.Invoke(ctx, Users_CreateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -161,9 +160,9 @@ func (c *usersClient) CreateUser(ctx context.Context, in *io.NewUser, opts ...gr
 	return out, nil
 }
 
-func (c *usersClient) NewUser(ctx context.Context, in *io.NewUser, opts ...grpc.CallOption) (*io.JWT, error) {
+func (c *usersClient) NewUser(ctx context.Context, in *NewUser, opts ...grpc.CallOption) (*JWT, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.JWT)
+	out := new(JWT)
 	err := c.cc.Invoke(ctx, Users_NewUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -171,7 +170,7 @@ func (c *usersClient) NewUser(ctx context.Context, in *io.NewUser, opts ...grpc.
 	return out, nil
 }
 
-func (c *usersClient) Verify(ctx context.Context, in *io.VerifyRequest, opts ...grpc.CallOption) (*Boolean, error) {
+func (c *usersClient) Verify(ctx context.Context, in *VerifyRequest, opts ...grpc.CallOption) (*Boolean, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Boolean)
 	err := c.cc.Invoke(ctx, Users_Verify_FullMethodName, in, out, cOpts...)
@@ -191,9 +190,9 @@ func (c *usersClient) ResendVerificationEmail(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
-func (c *usersClient) GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*io.GetUserResponse, error) {
+func (c *usersClient) GetUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetUserResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.GetUserResponse)
+	out := new(GetUserResponse)
 	err := c.cc.Invoke(ctx, Users_GetUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -201,9 +200,9 @@ func (c *usersClient) GetUser(ctx context.Context, in *emptypb.Empty, opts ...gr
 	return out, nil
 }
 
-func (c *usersClient) Login(ctx context.Context, in *io.Credentials, opts ...grpc.CallOption) (*io.JWT, error) {
+func (c *usersClient) Login(ctx context.Context, in *Credentials, opts ...grpc.CallOption) (*JWT, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.JWT)
+	out := new(JWT)
 	err := c.cc.Invoke(ctx, Users_Login_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -221,7 +220,7 @@ func (c *usersClient) Get2FaBarcode(ctx context.Context, in *emptypb.Empty, opts
 	return out, nil
 }
 
-func (c *usersClient) ResetPassword(ctx context.Context, in *io.Credentials, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) ResetPassword(ctx context.Context, in *Credentials, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_ResetPassword_FullMethodName, in, out, cOpts...)
@@ -231,7 +230,7 @@ func (c *usersClient) ResetPassword(ctx context.Context, in *io.Credentials, opt
 	return out, nil
 }
 
-func (c *usersClient) SendPasswordResetLink(ctx context.Context, in *io.Username, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) SendPasswordResetLink(ctx context.Context, in *Username, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_SendPasswordResetLink_FullMethodName, in, out, cOpts...)
@@ -241,7 +240,7 @@ func (c *usersClient) SendPasswordResetLink(ctx context.Context, in *io.Username
 	return out, nil
 }
 
-func (c *usersClient) ChangePassword(ctx context.Context, in *io.PasswordResetInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) ChangePassword(ctx context.Context, in *PasswordResetInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_ChangePassword_FullMethodName, in, out, cOpts...)
@@ -251,9 +250,9 @@ func (c *usersClient) ChangePassword(ctx context.Context, in *io.PasswordResetIn
 	return out, nil
 }
 
-func (c *usersClient) ChangeOwnPassword(ctx context.Context, in *io.ChangeOwnPasswordInput, opts ...grpc.CallOption) (*io.JWT, error) {
+func (c *usersClient) ChangeOwnPassword(ctx context.Context, in *ChangeOwnPasswordInput, opts ...grpc.CallOption) (*JWT, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.JWT)
+	out := new(JWT)
 	err := c.cc.Invoke(ctx, Users_ChangeOwnPassword_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -261,7 +260,7 @@ func (c *usersClient) ChangeOwnPassword(ctx context.Context, in *io.ChangeOwnPas
 	return out, nil
 }
 
-func (c *usersClient) ChangeEmail(ctx context.Context, in *io.Email, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) ChangeEmail(ctx context.Context, in *Email, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_ChangeEmail_FullMethodName, in, out, cOpts...)
@@ -271,7 +270,7 @@ func (c *usersClient) ChangeEmail(ctx context.Context, in *io.Email, opts ...grp
 	return out, nil
 }
 
-func (c *usersClient) ConfirmEmailChange(ctx context.Context, in *io.ConfirmEmailChangeInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) ConfirmEmailChange(ctx context.Context, in *ConfirmEmailChangeInput, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_ConfirmEmailChange_FullMethodName, in, out, cOpts...)
@@ -281,7 +280,7 @@ func (c *usersClient) ConfirmEmailChange(ctx context.Context, in *io.ConfirmEmai
 	return out, nil
 }
 
-func (c *usersClient) UpdateCompanyName(ctx context.Context, in *io.CompanyName, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) UpdateCompanyName(ctx context.Context, in *CompanyName, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_UpdateCompanyName_FullMethodName, in, out, cOpts...)
@@ -425,9 +424,9 @@ func (c *usersClient) GetProjects(ctx context.Context, in *ProjectStatusFilter, 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type Users_GetProjectsClient = grpc.ServerStreamingClient[Project]
 
-func (c *usersClient) GetScannerConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*io.ScannerConfiguration, error) {
+func (c *usersClient) GetScannerConfig(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ScannerConfiguration, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.ScannerConfiguration)
+	out := new(ScannerConfiguration)
 	err := c.cc.Invoke(ctx, Users_GetScannerConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -435,7 +434,7 @@ func (c *usersClient) GetScannerConfig(ctx context.Context, in *emptypb.Empty, o
 	return out, nil
 }
 
-func (c *usersClient) CreateScannerConfig(ctx context.Context, in *io.ScannerConfiguration, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) CreateScannerConfig(ctx context.Context, in *ScannerConfiguration, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_CreateScannerConfig_FullMethodName, in, out, cOpts...)
@@ -445,9 +444,9 @@ func (c *usersClient) CreateScannerConfig(ctx context.Context, in *io.ScannerCon
 	return out, nil
 }
 
-func (c *usersClient) UpdateScannerConfig(ctx context.Context, in *io.ScannerConfiguration, opts ...grpc.CallOption) (*io.ScannerConfiguration, error) {
+func (c *usersClient) UpdateScannerConfig(ctx context.Context, in *ScannerConfiguration, opts ...grpc.CallOption) (*ScannerConfiguration, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.ScannerConfiguration)
+	out := new(ScannerConfiguration)
 	err := c.cc.Invoke(ctx, Users_UpdateScannerConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -455,7 +454,7 @@ func (c *usersClient) UpdateScannerConfig(ctx context.Context, in *io.ScannerCon
 	return out, nil
 }
 
-func (c *usersClient) CreateAuthorizationResource(ctx context.Context, in *io.OAuth2AuthorizationRequest, opts ...grpc.CallOption) (*Id, error) {
+func (c *usersClient) CreateAuthorizationResource(ctx context.Context, in *OAuth2AuthorizationRequest, opts ...grpc.CallOption) (*Id, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Id)
 	err := c.cc.Invoke(ctx, Users_CreateAuthorizationResource_FullMethodName, in, out, cOpts...)
@@ -485,7 +484,7 @@ func (c *usersClient) RefreshApiSecret(ctx context.Context, in *emptypb.Empty, o
 	return out, nil
 }
 
-func (c *usersClient) DeleteAccount(ctx context.Context, in *io.DeleteAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *usersClient) DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Users_DeleteAccount_FullMethodName, in, out, cOpts...)
@@ -505,7 +504,7 @@ func (c *usersClient) RevokeLegacyCredentials(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
-func (c *usersClient) CreateTeamMember(ctx context.Context, in *io.NewTeamMember, opts ...grpc.CallOption) (*Id, error) {
+func (c *usersClient) CreateTeamMember(ctx context.Context, in *NewTeamMember, opts ...grpc.CallOption) (*Id, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Id)
 	err := c.cc.Invoke(ctx, Users_CreateTeamMember_FullMethodName, in, out, cOpts...)
@@ -515,7 +514,7 @@ func (c *usersClient) CreateTeamMember(ctx context.Context, in *io.NewTeamMember
 	return out, nil
 }
 
-func (c *usersClient) CreatePermissionsForTeamMember(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*Id, error) {
+func (c *usersClient) CreatePermissionsForTeamMember(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*Id, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Id)
 	err := c.cc.Invoke(ctx, Users_CreatePermissionsForTeamMember_FullMethodName, in, out, cOpts...)
@@ -525,9 +524,9 @@ func (c *usersClient) CreatePermissionsForTeamMember(ctx context.Context, in *io
 	return out, nil
 }
 
-func (c *usersClient) UpdateTeamMemberPermissions(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*io.TeamMemberPermissions, error) {
+func (c *usersClient) UpdateTeamMemberPermissions(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*TeamMemberPermissions, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.TeamMemberPermissions)
+	out := new(TeamMemberPermissions)
 	err := c.cc.Invoke(ctx, Users_UpdateTeamMemberPermissions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -535,9 +534,9 @@ func (c *usersClient) UpdateTeamMemberPermissions(ctx context.Context, in *io.Te
 	return out, nil
 }
 
-func (c *usersClient) PatchTeamMemberPermissions(ctx context.Context, in *io.TeamMemberPermissions, opts ...grpc.CallOption) (*io.TeamMemberPermissions, error) {
+func (c *usersClient) PatchTeamMemberPermissions(ctx context.Context, in *TeamMemberPermissions, opts ...grpc.CallOption) (*TeamMemberPermissions, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.TeamMemberPermissions)
+	out := new(TeamMemberPermissions)
 	err := c.cc.Invoke(ctx, Users_PatchTeamMemberPermissions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -545,9 +544,9 @@ func (c *usersClient) PatchTeamMemberPermissions(ctx context.Context, in *io.Tea
 	return out, nil
 }
 
-func (c *usersClient) GetTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*io.GetTeamMemberResponse, error) {
+func (c *usersClient) GetTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*GetTeamMemberResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(io.GetTeamMemberResponse)
+	out := new(GetTeamMemberResponse)
 	err := c.cc.Invoke(ctx, Users_GetTeamMember_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -555,13 +554,13 @@ func (c *usersClient) GetTeamMember(ctx context.Context, in *Id, opts ...grpc.Ca
 	return out, nil
 }
 
-func (c *usersClient) GetTeamMembers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.ListTeamMembersResponse], error) {
+func (c *usersClient) GetTeamMembers(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ListTeamMembersResponse], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Users_ServiceDesc.Streams[6], Users_GetTeamMembers_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[emptypb.Empty, io.ListTeamMembersResponse]{ClientStream: stream}
+	x := &grpc.GenericClientStream[emptypb.Empty, ListTeamMembersResponse]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -572,7 +571,7 @@ func (c *usersClient) GetTeamMembers(ctx context.Context, in *emptypb.Empty, opt
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Users_GetTeamMembersClient = grpc.ServerStreamingClient[io.ListTeamMembersResponse]
+type Users_GetTeamMembersClient = grpc.ServerStreamingClient[ListTeamMembersResponse]
 
 func (c *usersClient) DeleteTeamMember(ctx context.Context, in *Id, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -584,13 +583,13 @@ func (c *usersClient) DeleteTeamMember(ctx context.Context, in *Id, opts ...grpc
 	return out, nil
 }
 
-func (c *usersClient) GetTeamMemberLogs(ctx context.Context, in *io.AuditLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[io.AuditLog], error) {
+func (c *usersClient) GetTeamMemberLogs(ctx context.Context, in *AuditLogRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[AuditLog], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	stream, err := c.cc.NewStream(ctx, &Users_ServiceDesc.Streams[7], Users_GetTeamMemberLogs_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &grpc.GenericClientStream[io.AuditLogRequest, io.AuditLog]{ClientStream: stream}
+	x := &grpc.GenericClientStream[AuditLogRequest, AuditLog]{ClientStream: stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -601,40 +600,40 @@ func (c *usersClient) GetTeamMemberLogs(ctx context.Context, in *io.AuditLogRequ
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Users_GetTeamMemberLogsClient = grpc.ServerStreamingClient[io.AuditLog]
+type Users_GetTeamMemberLogsClient = grpc.ServerStreamingClient[AuditLog]
 
 // UsersServer is the server API for Users service.
 // All implementations should embed UnimplementedUsersServer
 // for forward compatibility.
 type UsersServer interface {
 	// Creates a user and issues a verification email. Required Fields: email, password, name, companyName.
-	CreateUser(context.Context, *io.NewUser) (*io.NewUserResponse, error)
+	CreateUser(context.Context, *NewUser) (*NewUserResponse, error)
 	// Creates a new user and returns a JWT token. Required Fields: email, password, name, companyName.
-	NewUser(context.Context, *io.NewUser) (*io.JWT, error)
+	NewUser(context.Context, *NewUser) (*JWT, error)
 	// Verifies the user with the email verification code. Required Fields: code.
-	Verify(context.Context, *io.VerifyRequest) (*Boolean, error)
+	Verify(context.Context, *VerifyRequest) (*Boolean, error)
 	// Resends the verification email.
 	ResendVerificationEmail(context.Context, *emptypb.Empty) (*Boolean, error)
 	// Retrieves the authenticated user's profile.
-	GetUser(context.Context, *emptypb.Empty) (*io.GetUserResponse, error)
+	GetUser(context.Context, *emptypb.Empty) (*GetUserResponse, error)
 	// Authenticates the user and returns a JWT token. Required Fields: username, password.
-	Login(context.Context, *io.Credentials) (*io.JWT, error)
+	Login(context.Context, *Credentials) (*JWT, error)
 	// Returns the barcode image URL for 2FA setup.
 	Get2FaBarcode(context.Context, *emptypb.Empty) (*Url, error)
 	// Resets the user's password if a reset code is already obtained. Required Fields: username, password, code.
-	ResetPassword(context.Context, *io.Credentials) (*emptypb.Empty, error)
+	ResetPassword(context.Context, *Credentials) (*emptypb.Empty, error)
 	// Sends a password reset link to the user's email. Required Fields: username.
-	SendPasswordResetLink(context.Context, *io.Username) (*emptypb.Empty, error)
+	SendPasswordResetLink(context.Context, *Username) (*emptypb.Empty, error)
 	// Changes the user's password using a reset token. Required Fields: token, password.
-	ChangePassword(context.Context, *io.PasswordResetInput) (*emptypb.Empty, error)
+	ChangePassword(context.Context, *PasswordResetInput) (*emptypb.Empty, error)
 	// Changes the currently authenticated user's password. Requires a valid auth token and the current password. Required Fields: currentPassword, newPassword, confirmNewPassword.
-	ChangeOwnPassword(context.Context, *io.ChangeOwnPasswordInput) (*io.JWT, error)
+	ChangeOwnPassword(context.Context, *ChangeOwnPasswordInput) (*JWT, error)
 	// Initiates email change. Verification email is sent to new address. Required Fields: email.
-	ChangeEmail(context.Context, *io.Email) (*emptypb.Empty, error)
+	ChangeEmail(context.Context, *Email) (*emptypb.Empty, error)
 	// Confirms and finalizes the email change. Required Fields: email, code.
-	ConfirmEmailChange(context.Context, *io.ConfirmEmailChangeInput) (*emptypb.Empty, error)
+	ConfirmEmailChange(context.Context, *ConfirmEmailChangeInput) (*emptypb.Empty, error)
 	// Updates the company name associated with the account. Required Fields: name.
-	UpdateCompanyName(context.Context, *io.CompanyName) (*emptypb.Empty, error)
+	UpdateCompanyName(context.Context, *CompanyName) (*emptypb.Empty, error)
 	// [DEPRECATED] Retrieves user’s projects using pagination. Required Fields: pagination.
 	GetProjectsForUserQueryDeprecated(*Pagination, grpc.ServerStreamingServer[Project]) error
 	// [DEPRECATED] Retrieves all company projects using pagination. Required Fields: pagination.
@@ -652,37 +651,37 @@ type UsersServer interface {
 	// Retrieves all company projects by status. Required Fields: status.
 	GetProjects(*ProjectStatusFilter, grpc.ServerStreamingServer[Project]) error
 	// Retrieves the scanner configuration for the user.
-	GetScannerConfig(context.Context, *emptypb.Empty) (*io.ScannerConfiguration, error)
+	GetScannerConfig(context.Context, *emptypb.Empty) (*ScannerConfiguration, error)
 	// Creates a new scanner configuration. Required Fields: ScannerConfiguration fields.
-	CreateScannerConfig(context.Context, *io.ScannerConfiguration) (*emptypb.Empty, error)
+	CreateScannerConfig(context.Context, *ScannerConfiguration) (*emptypb.Empty, error)
 	// Updates the existing scanner configuration. Required Fields: ScannerConfiguration fields.
-	UpdateScannerConfig(context.Context, *io.ScannerConfiguration) (*io.ScannerConfiguration, error)
+	UpdateScannerConfig(context.Context, *ScannerConfiguration) (*ScannerConfiguration, error)
 	// Creates a new oauth2 resource, the returned id is NOT the access token used to make requests on the users behalf.
-	CreateAuthorizationResource(context.Context, *io.OAuth2AuthorizationRequest) (*Id, error)
+	CreateAuthorizationResource(context.Context, *OAuth2AuthorizationRequest) (*Id, error)
 	// Deletes an OAuth2 authorization resource. Required Fields: id.
 	DeleteAuthorizationResource(context.Context, *Id) (*emptypb.Empty, error)
 	// Refreshes the API secret key for the current user.
 	RefreshApiSecret(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// Permanently deletes the user's account and all associated data. Required Fields: password.
-	DeleteAccount(context.Context, *io.DeleteAccountRequest) (*emptypb.Empty, error)
+	DeleteAccount(context.Context, *DeleteAccountRequest) (*emptypb.Empty, error)
 	// Immediately revokes any old gRPC credentials.
 	RevokeLegacyCredentials(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// Creates a new sub-user account for the company. Required Fields: email, name, password.
-	CreateTeamMember(context.Context, *io.NewTeamMember) (*Id, error)
+	CreateTeamMember(context.Context, *NewTeamMember) (*Id, error)
 	// Assigns permissions to a new team member. Required Fields: userId, permissions.
-	CreatePermissionsForTeamMember(context.Context, *io.TeamMemberPermissions) (*Id, error)
+	CreatePermissionsForTeamMember(context.Context, *TeamMemberPermissions) (*Id, error)
 	// Updates the entire permissions object for a team member. Required Fields: userId, permissions.
-	UpdateTeamMemberPermissions(context.Context, *io.TeamMemberPermissions) (*io.TeamMemberPermissions, error)
+	UpdateTeamMemberPermissions(context.Context, *TeamMemberPermissions) (*TeamMemberPermissions, error)
 	// Updates partial permissions for a team member. Required Fields: userId, permissions.
-	PatchTeamMemberPermissions(context.Context, *io.TeamMemberPermissions) (*io.TeamMemberPermissions, error)
+	PatchTeamMemberPermissions(context.Context, *TeamMemberPermissions) (*TeamMemberPermissions, error)
 	// Retrieves a team member by ID. Required Fields: id.
-	GetTeamMember(context.Context, *Id) (*io.GetTeamMemberResponse, error)
+	GetTeamMember(context.Context, *Id) (*GetTeamMemberResponse, error)
 	// Retrieves all team members.
-	GetTeamMembers(*emptypb.Empty, grpc.ServerStreamingServer[io.ListTeamMembersResponse]) error
+	GetTeamMembers(*emptypb.Empty, grpc.ServerStreamingServer[ListTeamMembersResponse]) error
 	// Deletes a team member. Required Fields: id.
 	DeleteTeamMember(context.Context, *Id) (*emptypb.Empty, error)
 	// Retrieves access logs for a company or user. Required Fields: protocol, classId, userId, dateRange.
-	GetTeamMemberLogs(*io.AuditLogRequest, grpc.ServerStreamingServer[io.AuditLog]) error
+	GetTeamMemberLogs(*AuditLogRequest, grpc.ServerStreamingServer[AuditLog]) error
 }
 
 // UnimplementedUsersServer should be embedded to have
@@ -692,46 +691,46 @@ type UsersServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUsersServer struct{}
 
-func (UnimplementedUsersServer) CreateUser(context.Context, *io.NewUser) (*io.NewUserResponse, error) {
+func (UnimplementedUsersServer) CreateUser(context.Context, *NewUser) (*NewUserResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUsersServer) NewUser(context.Context, *io.NewUser) (*io.JWT, error) {
+func (UnimplementedUsersServer) NewUser(context.Context, *NewUser) (*JWT, error) {
 	return nil, status.Error(codes.Unimplemented, "method NewUser not implemented")
 }
-func (UnimplementedUsersServer) Verify(context.Context, *io.VerifyRequest) (*Boolean, error) {
+func (UnimplementedUsersServer) Verify(context.Context, *VerifyRequest) (*Boolean, error) {
 	return nil, status.Error(codes.Unimplemented, "method Verify not implemented")
 }
 func (UnimplementedUsersServer) ResendVerificationEmail(context.Context, *emptypb.Empty) (*Boolean, error) {
 	return nil, status.Error(codes.Unimplemented, "method ResendVerificationEmail not implemented")
 }
-func (UnimplementedUsersServer) GetUser(context.Context, *emptypb.Empty) (*io.GetUserResponse, error) {
+func (UnimplementedUsersServer) GetUser(context.Context, *emptypb.Empty) (*GetUserResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUser not implemented")
 }
-func (UnimplementedUsersServer) Login(context.Context, *io.Credentials) (*io.JWT, error) {
+func (UnimplementedUsersServer) Login(context.Context, *Credentials) (*JWT, error) {
 	return nil, status.Error(codes.Unimplemented, "method Login not implemented")
 }
 func (UnimplementedUsersServer) Get2FaBarcode(context.Context, *emptypb.Empty) (*Url, error) {
 	return nil, status.Error(codes.Unimplemented, "method Get2FaBarcode not implemented")
 }
-func (UnimplementedUsersServer) ResetPassword(context.Context, *io.Credentials) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) ResetPassword(context.Context, *Credentials) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method ResetPassword not implemented")
 }
-func (UnimplementedUsersServer) SendPasswordResetLink(context.Context, *io.Username) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) SendPasswordResetLink(context.Context, *Username) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method SendPasswordResetLink not implemented")
 }
-func (UnimplementedUsersServer) ChangePassword(context.Context, *io.PasswordResetInput) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) ChangePassword(context.Context, *PasswordResetInput) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangePassword not implemented")
 }
-func (UnimplementedUsersServer) ChangeOwnPassword(context.Context, *io.ChangeOwnPasswordInput) (*io.JWT, error) {
+func (UnimplementedUsersServer) ChangeOwnPassword(context.Context, *ChangeOwnPasswordInput) (*JWT, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangeOwnPassword not implemented")
 }
-func (UnimplementedUsersServer) ChangeEmail(context.Context, *io.Email) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) ChangeEmail(context.Context, *Email) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method ChangeEmail not implemented")
 }
-func (UnimplementedUsersServer) ConfirmEmailChange(context.Context, *io.ConfirmEmailChangeInput) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) ConfirmEmailChange(context.Context, *ConfirmEmailChangeInput) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method ConfirmEmailChange not implemented")
 }
-func (UnimplementedUsersServer) UpdateCompanyName(context.Context, *io.CompanyName) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) UpdateCompanyName(context.Context, *CompanyName) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateCompanyName not implemented")
 }
 func (UnimplementedUsersServer) GetProjectsForUserQueryDeprecated(*Pagination, grpc.ServerStreamingServer[Project]) error {
@@ -758,16 +757,16 @@ func (UnimplementedUsersServer) GetProjectsForUser(*ProjectStatusFilter, grpc.Se
 func (UnimplementedUsersServer) GetProjects(*ProjectStatusFilter, grpc.ServerStreamingServer[Project]) error {
 	return status.Error(codes.Unimplemented, "method GetProjects not implemented")
 }
-func (UnimplementedUsersServer) GetScannerConfig(context.Context, *emptypb.Empty) (*io.ScannerConfiguration, error) {
+func (UnimplementedUsersServer) GetScannerConfig(context.Context, *emptypb.Empty) (*ScannerConfiguration, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetScannerConfig not implemented")
 }
-func (UnimplementedUsersServer) CreateScannerConfig(context.Context, *io.ScannerConfiguration) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) CreateScannerConfig(context.Context, *ScannerConfiguration) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateScannerConfig not implemented")
 }
-func (UnimplementedUsersServer) UpdateScannerConfig(context.Context, *io.ScannerConfiguration) (*io.ScannerConfiguration, error) {
+func (UnimplementedUsersServer) UpdateScannerConfig(context.Context, *ScannerConfiguration) (*ScannerConfiguration, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateScannerConfig not implemented")
 }
-func (UnimplementedUsersServer) CreateAuthorizationResource(context.Context, *io.OAuth2AuthorizationRequest) (*Id, error) {
+func (UnimplementedUsersServer) CreateAuthorizationResource(context.Context, *OAuth2AuthorizationRequest) (*Id, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateAuthorizationResource not implemented")
 }
 func (UnimplementedUsersServer) DeleteAuthorizationResource(context.Context, *Id) (*emptypb.Empty, error) {
@@ -776,34 +775,34 @@ func (UnimplementedUsersServer) DeleteAuthorizationResource(context.Context, *Id
 func (UnimplementedUsersServer) RefreshApiSecret(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method RefreshApiSecret not implemented")
 }
-func (UnimplementedUsersServer) DeleteAccount(context.Context, *io.DeleteAccountRequest) (*emptypb.Empty, error) {
+func (UnimplementedUsersServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteAccount not implemented")
 }
 func (UnimplementedUsersServer) RevokeLegacyCredentials(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method RevokeLegacyCredentials not implemented")
 }
-func (UnimplementedUsersServer) CreateTeamMember(context.Context, *io.NewTeamMember) (*Id, error) {
+func (UnimplementedUsersServer) CreateTeamMember(context.Context, *NewTeamMember) (*Id, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateTeamMember not implemented")
 }
-func (UnimplementedUsersServer) CreatePermissionsForTeamMember(context.Context, *io.TeamMemberPermissions) (*Id, error) {
+func (UnimplementedUsersServer) CreatePermissionsForTeamMember(context.Context, *TeamMemberPermissions) (*Id, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreatePermissionsForTeamMember not implemented")
 }
-func (UnimplementedUsersServer) UpdateTeamMemberPermissions(context.Context, *io.TeamMemberPermissions) (*io.TeamMemberPermissions, error) {
+func (UnimplementedUsersServer) UpdateTeamMemberPermissions(context.Context, *TeamMemberPermissions) (*TeamMemberPermissions, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpdateTeamMemberPermissions not implemented")
 }
-func (UnimplementedUsersServer) PatchTeamMemberPermissions(context.Context, *io.TeamMemberPermissions) (*io.TeamMemberPermissions, error) {
+func (UnimplementedUsersServer) PatchTeamMemberPermissions(context.Context, *TeamMemberPermissions) (*TeamMemberPermissions, error) {
 	return nil, status.Error(codes.Unimplemented, "method PatchTeamMemberPermissions not implemented")
 }
-func (UnimplementedUsersServer) GetTeamMember(context.Context, *Id) (*io.GetTeamMemberResponse, error) {
+func (UnimplementedUsersServer) GetTeamMember(context.Context, *Id) (*GetTeamMemberResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetTeamMember not implemented")
 }
-func (UnimplementedUsersServer) GetTeamMembers(*emptypb.Empty, grpc.ServerStreamingServer[io.ListTeamMembersResponse]) error {
+func (UnimplementedUsersServer) GetTeamMembers(*emptypb.Empty, grpc.ServerStreamingServer[ListTeamMembersResponse]) error {
 	return status.Error(codes.Unimplemented, "method GetTeamMembers not implemented")
 }
 func (UnimplementedUsersServer) DeleteTeamMember(context.Context, *Id) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DeleteTeamMember not implemented")
 }
-func (UnimplementedUsersServer) GetTeamMemberLogs(*io.AuditLogRequest, grpc.ServerStreamingServer[io.AuditLog]) error {
+func (UnimplementedUsersServer) GetTeamMemberLogs(*AuditLogRequest, grpc.ServerStreamingServer[AuditLog]) error {
 	return status.Error(codes.Unimplemented, "method GetTeamMemberLogs not implemented")
 }
 func (UnimplementedUsersServer) testEmbeddedByValue() {}
@@ -827,7 +826,7 @@ func RegisterUsersServer(s grpc.ServiceRegistrar, srv UsersServer) {
 }
 
 func _Users_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.NewUser)
+	in := new(NewUser)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -839,13 +838,13 @@ func _Users_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(in
 		FullMethod: Users_CreateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).CreateUser(ctx, req.(*io.NewUser))
+		return srv.(UsersServer).CreateUser(ctx, req.(*NewUser))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_NewUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.NewUser)
+	in := new(NewUser)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -857,13 +856,13 @@ func _Users_NewUser_Handler(srv interface{}, ctx context.Context, dec func(inter
 		FullMethod: Users_NewUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).NewUser(ctx, req.(*io.NewUser))
+		return srv.(UsersServer).NewUser(ctx, req.(*NewUser))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_Verify_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.VerifyRequest)
+	in := new(VerifyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -875,7 +874,7 @@ func _Users_Verify_Handler(srv interface{}, ctx context.Context, dec func(interf
 		FullMethod: Users_Verify_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).Verify(ctx, req.(*io.VerifyRequest))
+		return srv.(UsersServer).Verify(ctx, req.(*VerifyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -917,7 +916,7 @@ func _Users_GetUser_Handler(srv interface{}, ctx context.Context, dec func(inter
 }
 
 func _Users_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.Credentials)
+	in := new(Credentials)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -929,7 +928,7 @@ func _Users_Login_Handler(srv interface{}, ctx context.Context, dec func(interfa
 		FullMethod: Users_Login_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).Login(ctx, req.(*io.Credentials))
+		return srv.(UsersServer).Login(ctx, req.(*Credentials))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -953,7 +952,7 @@ func _Users_Get2FaBarcode_Handler(srv interface{}, ctx context.Context, dec func
 }
 
 func _Users_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.Credentials)
+	in := new(Credentials)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -965,13 +964,13 @@ func _Users_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Users_ResetPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).ResetPassword(ctx, req.(*io.Credentials))
+		return srv.(UsersServer).ResetPassword(ctx, req.(*Credentials))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_SendPasswordResetLink_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.Username)
+	in := new(Username)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -983,13 +982,13 @@ func _Users_SendPasswordResetLink_Handler(srv interface{}, ctx context.Context, 
 		FullMethod: Users_SendPasswordResetLink_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).SendPasswordResetLink(ctx, req.(*io.Username))
+		return srv.(UsersServer).SendPasswordResetLink(ctx, req.(*Username))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.PasswordResetInput)
+	in := new(PasswordResetInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1001,13 +1000,13 @@ func _Users_ChangePassword_Handler(srv interface{}, ctx context.Context, dec fun
 		FullMethod: Users_ChangePassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).ChangePassword(ctx, req.(*io.PasswordResetInput))
+		return srv.(UsersServer).ChangePassword(ctx, req.(*PasswordResetInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_ChangeOwnPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.ChangeOwnPasswordInput)
+	in := new(ChangeOwnPasswordInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1019,13 +1018,13 @@ func _Users_ChangeOwnPassword_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Users_ChangeOwnPassword_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).ChangeOwnPassword(ctx, req.(*io.ChangeOwnPasswordInput))
+		return srv.(UsersServer).ChangeOwnPassword(ctx, req.(*ChangeOwnPasswordInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.Email)
+	in := new(Email)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1037,13 +1036,13 @@ func _Users_ChangeEmail_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: Users_ChangeEmail_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).ChangeEmail(ctx, req.(*io.Email))
+		return srv.(UsersServer).ChangeEmail(ctx, req.(*Email))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_ConfirmEmailChange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.ConfirmEmailChangeInput)
+	in := new(ConfirmEmailChangeInput)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1055,13 +1054,13 @@ func _Users_ConfirmEmailChange_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: Users_ConfirmEmailChange_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).ConfirmEmailChange(ctx, req.(*io.ConfirmEmailChangeInput))
+		return srv.(UsersServer).ConfirmEmailChange(ctx, req.(*ConfirmEmailChangeInput))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_UpdateCompanyName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.CompanyName)
+	in := new(CompanyName)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1073,7 +1072,7 @@ func _Users_UpdateCompanyName_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Users_UpdateCompanyName_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).UpdateCompanyName(ctx, req.(*io.CompanyName))
+		return srv.(UsersServer).UpdateCompanyName(ctx, req.(*CompanyName))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1199,7 +1198,7 @@ func _Users_GetScannerConfig_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Users_CreateScannerConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.ScannerConfiguration)
+	in := new(ScannerConfiguration)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1211,13 +1210,13 @@ func _Users_CreateScannerConfig_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: Users_CreateScannerConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).CreateScannerConfig(ctx, req.(*io.ScannerConfiguration))
+		return srv.(UsersServer).CreateScannerConfig(ctx, req.(*ScannerConfiguration))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_UpdateScannerConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.ScannerConfiguration)
+	in := new(ScannerConfiguration)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1229,13 +1228,13 @@ func _Users_UpdateScannerConfig_Handler(srv interface{}, ctx context.Context, de
 		FullMethod: Users_UpdateScannerConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).UpdateScannerConfig(ctx, req.(*io.ScannerConfiguration))
+		return srv.(UsersServer).UpdateScannerConfig(ctx, req.(*ScannerConfiguration))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_CreateAuthorizationResource_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.OAuth2AuthorizationRequest)
+	in := new(OAuth2AuthorizationRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1247,7 +1246,7 @@ func _Users_CreateAuthorizationResource_Handler(srv interface{}, ctx context.Con
 		FullMethod: Users_CreateAuthorizationResource_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).CreateAuthorizationResource(ctx, req.(*io.OAuth2AuthorizationRequest))
+		return srv.(UsersServer).CreateAuthorizationResource(ctx, req.(*OAuth2AuthorizationRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1289,7 +1288,7 @@ func _Users_RefreshApiSecret_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Users_DeleteAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.DeleteAccountRequest)
+	in := new(DeleteAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1301,7 +1300,7 @@ func _Users_DeleteAccount_Handler(srv interface{}, ctx context.Context, dec func
 		FullMethod: Users_DeleteAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).DeleteAccount(ctx, req.(*io.DeleteAccountRequest))
+		return srv.(UsersServer).DeleteAccount(ctx, req.(*DeleteAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1325,7 +1324,7 @@ func _Users_RevokeLegacyCredentials_Handler(srv interface{}, ctx context.Context
 }
 
 func _Users_CreateTeamMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.NewTeamMember)
+	in := new(NewTeamMember)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1337,13 +1336,13 @@ func _Users_CreateTeamMember_Handler(srv interface{}, ctx context.Context, dec f
 		FullMethod: Users_CreateTeamMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).CreateTeamMember(ctx, req.(*io.NewTeamMember))
+		return srv.(UsersServer).CreateTeamMember(ctx, req.(*NewTeamMember))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_CreatePermissionsForTeamMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.TeamMemberPermissions)
+	in := new(TeamMemberPermissions)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1355,13 +1354,13 @@ func _Users_CreatePermissionsForTeamMember_Handler(srv interface{}, ctx context.
 		FullMethod: Users_CreatePermissionsForTeamMember_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).CreatePermissionsForTeamMember(ctx, req.(*io.TeamMemberPermissions))
+		return srv.(UsersServer).CreatePermissionsForTeamMember(ctx, req.(*TeamMemberPermissions))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_UpdateTeamMemberPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.TeamMemberPermissions)
+	in := new(TeamMemberPermissions)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1373,13 +1372,13 @@ func _Users_UpdateTeamMemberPermissions_Handler(srv interface{}, ctx context.Con
 		FullMethod: Users_UpdateTeamMemberPermissions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).UpdateTeamMemberPermissions(ctx, req.(*io.TeamMemberPermissions))
+		return srv.(UsersServer).UpdateTeamMemberPermissions(ctx, req.(*TeamMemberPermissions))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _Users_PatchTeamMemberPermissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(io.TeamMemberPermissions)
+	in := new(TeamMemberPermissions)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -1391,7 +1390,7 @@ func _Users_PatchTeamMemberPermissions_Handler(srv interface{}, ctx context.Cont
 		FullMethod: Users_PatchTeamMemberPermissions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UsersServer).PatchTeamMemberPermissions(ctx, req.(*io.TeamMemberPermissions))
+		return srv.(UsersServer).PatchTeamMemberPermissions(ctx, req.(*TeamMemberPermissions))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1419,11 +1418,11 @@ func _Users_GetTeamMembers_Handler(srv interface{}, stream grpc.ServerStream) er
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(UsersServer).GetTeamMembers(m, &grpc.GenericServerStream[emptypb.Empty, io.ListTeamMembersResponse]{ServerStream: stream})
+	return srv.(UsersServer).GetTeamMembers(m, &grpc.GenericServerStream[emptypb.Empty, ListTeamMembersResponse]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Users_GetTeamMembersServer = grpc.ServerStreamingServer[io.ListTeamMembersResponse]
+type Users_GetTeamMembersServer = grpc.ServerStreamingServer[ListTeamMembersResponse]
 
 func _Users_DeleteTeamMember_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Id)
@@ -1444,15 +1443,15 @@ func _Users_DeleteTeamMember_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Users_GetTeamMemberLogs_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(io.AuditLogRequest)
+	m := new(AuditLogRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(UsersServer).GetTeamMemberLogs(m, &grpc.GenericServerStream[io.AuditLogRequest, io.AuditLog]{ServerStream: stream})
+	return srv.(UsersServer).GetTeamMemberLogs(m, &grpc.GenericServerStream[AuditLogRequest, AuditLog]{ServerStream: stream})
 }
 
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
-type Users_GetTeamMemberLogsServer = grpc.ServerStreamingServer[io.AuditLog]
+type Users_GetTeamMemberLogsServer = grpc.ServerStreamingServer[AuditLog]
 
 // Users_ServiceDesc is the grpc.ServiceDesc for Users service.
 // It's only intended for direct use with grpc.RegisterService,

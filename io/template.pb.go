@@ -17,7 +17,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
-	io "stash.passkit.com/io/model/sdk/go/io"
 	sync "sync"
 	unsafe "unsafe"
 )
@@ -1924,7 +1923,7 @@ func (x *PassTemplate) GetImageAssets() isPassTemplate_ImageAssets {
 	return nil
 }
 
-func (x *PassTemplate) GetImageIds() *io.ImageIds {
+func (x *PassTemplate) GetImageIds() *ImageIds {
 	if x != nil {
 		if x, ok := x.ImageAssets.(*PassTemplate_ImageIds); ok {
 			return x.ImageIds
@@ -1933,7 +1932,7 @@ func (x *PassTemplate) GetImageIds() *io.ImageIds {
 	return nil
 }
 
-func (x *PassTemplate) GetImages() *io.ImageData {
+func (x *PassTemplate) GetImages() *ImageData {
 	if x != nil {
 		if x, ok := x.ImageAssets.(*PassTemplate_Images); ok {
 			return x.Images
@@ -2032,12 +2031,12 @@ type isPassTemplate_ImageAssets interface {
 
 type PassTemplate_ImageIds struct {
 	// Image data defined by image ids.
-	ImageIds *io.ImageIds `protobuf:"bytes,11,opt,name=imageIds,proto3,oneof"`
+	ImageIds *ImageIds `protobuf:"bytes,11,opt,name=imageIds,proto3,oneof"`
 }
 
 type PassTemplate_Images struct {
 	// Image data defined as image object.
-	Images *io.ImageData `protobuf:"bytes,12,opt,name=images,proto3,oneof"`
+	Images *ImageData `protobuf:"bytes,12,opt,name=images,proto3,oneof"`
 }
 
 func (*PassTemplate_ImageIds) isPassTemplate_ImageAssets() {}
@@ -4897,8 +4896,8 @@ var file_io_common_template_proto_goTypes = []any{
 	(*LocalizedString)(nil),                  // 44: io.LocalizedString
 	(PassProtocol)(0),                        // 45: io.PassProtocol
 	(LanguageCode)(0),                        // 46: io.LanguageCode
-	(*io.ImageIds)(nil),                      // 47: io.ImageIds
-	(*io.ImageData)(nil),                     // 48: io.ImageData
+	(*ImageIds)(nil),                         // 47: io.ImageIds
+	(*ImageData)(nil),                        // 48: io.ImageData
 	(*GPSLocation)(nil),                      // 49: io.GPSLocation
 	(*Beacon)(nil),                           // 50: io.Beacon
 	(*Link)(nil),                             // 51: io.Link
@@ -5028,6 +5027,7 @@ func file_io_common_template_proto_init() {
 	file_io_common_links_proto_init()
 	file_io_common_featured_actions_proto_init()
 	file_io_common_tracking_proto_init()
+	file_io_image_image_proto_init()
 	file_io_common_expiry_proto_init()
 	file_io_common_template_proto_msgTypes[3].OneofWrappers = []any{
 		(*PassTemplate_ImageIds)(nil),

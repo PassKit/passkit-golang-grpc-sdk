@@ -13,7 +13,6 @@ import (
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
-	io "stash.passkit.com/io/model/sdk/go/io"
 	unsafe "unsafe"
 )
 
@@ -166,44 +165,44 @@ const file_io_core_a_rpc_others_proto_rawDesc = "" +
 	"\x10com.passkit.grpcZ-github.com/PassKit/passkit-golang-grpc-sdk/io\xaa\x02\fPassKit.Grpcb\x06proto3"
 
 var file_io_core_a_rpc_others_proto_goTypes = []any{
-	(*io.NewUser)(nil),                    // 0: io.NewUser
-	(*io.VerifyRequest)(nil),              // 1: io.VerifyRequest
-	(*emptypb.Empty)(nil),                 // 2: google.protobuf.Empty
-	(*io.Credentials)(nil),                // 3: io.Credentials
-	(*io.Username)(nil),                   // 4: io.Username
-	(*io.PasswordResetInput)(nil),         // 5: io.PasswordResetInput
-	(*io.ChangeOwnPasswordInput)(nil),     // 6: io.ChangeOwnPasswordInput
-	(*io.Email)(nil),                      // 7: io.Email
-	(*io.ConfirmEmailChangeInput)(nil),    // 8: io.ConfirmEmailChangeInput
-	(*io.CompanyName)(nil),                // 9: io.CompanyName
-	(*Pagination)(nil),                    // 10: io.Pagination
-	(*Filters)(nil),                       // 11: io.Filters
-	(*Id)(nil),                            // 12: io.Id
-	(*ProjectStatusFilter)(nil),           // 13: io.ProjectStatusFilter
-	(*io.ScannerConfiguration)(nil),       // 14: io.ScannerConfiguration
-	(*io.OAuth2AuthorizationRequest)(nil), // 15: io.OAuth2AuthorizationRequest
-	(*io.DeleteAccountRequest)(nil),       // 16: io.DeleteAccountRequest
-	(*io.NewTeamMember)(nil),              // 17: io.NewTeamMember
-	(*io.TeamMemberPermissions)(nil),      // 18: io.TeamMemberPermissions
-	(*io.AuditLogRequest)(nil),            // 19: io.AuditLogRequest
-	(*IntegrationConfigs)(nil),            // 20: io.IntegrationConfigs
-	(*ProtocolIdInput)(nil),               // 21: io.ProtocolIdInput
-	(*SinkSubscription)(nil),              // 22: io.SinkSubscription
-	(*SubscriptionRequest)(nil),           // 23: io.SubscriptionRequest
-	(*ListRequestDeprecated)(nil),         // 24: io.ListRequestDeprecated
-	(*ListRequest)(nil),                   // 25: io.ListRequest
-	(*DynamicApiInput)(nil),               // 26: io.DynamicApiInput
-	(*io.NewUserResponse)(nil),            // 27: io.NewUserResponse
-	(*io.JWT)(nil),                        // 28: io.JWT
-	(*Boolean)(nil),                       // 29: io.Boolean
-	(*io.GetUserResponse)(nil),            // 30: io.GetUserResponse
-	(*Url)(nil),                           // 31: io.Url
-	(*Project)(nil),                       // 32: io.Project
-	(*ProjectByShortCodeResult)(nil),      // 33: io.ProjectByShortCodeResult
-	(*io.GetTeamMemberResponse)(nil),      // 34: io.GetTeamMemberResponse
-	(*io.ListTeamMembersResponse)(nil),    // 35: io.ListTeamMembersResponse
-	(*io.AuditLog)(nil),                   // 36: io.AuditLog
-	(*DynamicApiResponse)(nil),            // 37: io.DynamicApiResponse
+	(*NewUser)(nil),                    // 0: io.NewUser
+	(*VerifyRequest)(nil),              // 1: io.VerifyRequest
+	(*emptypb.Empty)(nil),              // 2: google.protobuf.Empty
+	(*Credentials)(nil),                // 3: io.Credentials
+	(*Username)(nil),                   // 4: io.Username
+	(*PasswordResetInput)(nil),         // 5: io.PasswordResetInput
+	(*ChangeOwnPasswordInput)(nil),     // 6: io.ChangeOwnPasswordInput
+	(*Email)(nil),                      // 7: io.Email
+	(*ConfirmEmailChangeInput)(nil),    // 8: io.ConfirmEmailChangeInput
+	(*CompanyName)(nil),                // 9: io.CompanyName
+	(*Pagination)(nil),                 // 10: io.Pagination
+	(*Filters)(nil),                    // 11: io.Filters
+	(*Id)(nil),                         // 12: io.Id
+	(*ProjectStatusFilter)(nil),        // 13: io.ProjectStatusFilter
+	(*ScannerConfiguration)(nil),       // 14: io.ScannerConfiguration
+	(*OAuth2AuthorizationRequest)(nil), // 15: io.OAuth2AuthorizationRequest
+	(*DeleteAccountRequest)(nil),       // 16: io.DeleteAccountRequest
+	(*NewTeamMember)(nil),              // 17: io.NewTeamMember
+	(*TeamMemberPermissions)(nil),      // 18: io.TeamMemberPermissions
+	(*AuditLogRequest)(nil),            // 19: io.AuditLogRequest
+	(*IntegrationConfigs)(nil),         // 20: io.IntegrationConfigs
+	(*ProtocolIdInput)(nil),            // 21: io.ProtocolIdInput
+	(*SinkSubscription)(nil),           // 22: io.SinkSubscription
+	(*SubscriptionRequest)(nil),        // 23: io.SubscriptionRequest
+	(*ListRequestDeprecated)(nil),      // 24: io.ListRequestDeprecated
+	(*ListRequest)(nil),                // 25: io.ListRequest
+	(*DynamicApiInput)(nil),            // 26: io.DynamicApiInput
+	(*NewUserResponse)(nil),            // 27: io.NewUserResponse
+	(*JWT)(nil),                        // 28: io.JWT
+	(*Boolean)(nil),                    // 29: io.Boolean
+	(*GetUserResponse)(nil),            // 30: io.GetUserResponse
+	(*Url)(nil),                        // 31: io.Url
+	(*Project)(nil),                    // 32: io.Project
+	(*ProjectByShortCodeResult)(nil),   // 33: io.ProjectByShortCodeResult
+	(*GetTeamMemberResponse)(nil),      // 34: io.GetTeamMemberResponse
+	(*ListTeamMembersResponse)(nil),    // 35: io.ListTeamMembersResponse
+	(*AuditLog)(nil),                   // 36: io.AuditLog
+	(*DynamicApiResponse)(nil),         // 37: io.DynamicApiResponse
 }
 var file_io_core_a_rpc_others_proto_depIdxs = []int32{
 	0,  // 0: io.Users.createUser:input_type -> io.NewUser
@@ -323,6 +322,7 @@ func file_io_core_a_rpc_others_proto_init() {
 	file_io_common_pagination_proto_init()
 	file_io_common_filter_proto_init()
 	file_io_common_integration_proto_init()
+	file_io_user_user_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
